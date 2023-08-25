@@ -12,7 +12,7 @@
         <?php endwhile; ?>
     <?php else : ?>
         <article>
-            <p class="ffa" >Nothing to see.</p>
+      
           
         </article>
     <?php endif; ?>

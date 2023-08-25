@@ -11,16 +11,22 @@
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
     <header>
-        <nav role="navigation">
+    <nav class="menu-container">
+        <?php if (get_theme_mod('logo_setting')) : ?>
+            <div class="logo">
+               <li> <a href="<?php echo esc_url(home_url('/')); ?>">
+                    <img class="logo" src="<?php echo esc_url(get_theme_mod('logo_setting')); ?>" alt="<?php bloginfo('name'); ?> Logo">
+                </a></li>
+            </div>
+        <?php endif; ?>
+
         <?php
-// Afficher le menu de navigation
-wp_nav_menu([
-    'theme_location' => 'mota', // Emplacement du menu défini dans votre thème
-    'menu_class' => 'menu', // Classe CSS pour le menu
-    'container' => 'nav', // Balise HTML entourant le menu
-]);
-
-// Ajouter des liens personnalisés à côté du menu
-?>
-
-    </header>
+        $menu_args = array(
+            'theme_location' => 'navigation',
+            'container'      => 'ul', 
+            'menu_class'     => 'menu-container', 
+        );
+        wp_nav_menu($menu_args);
+        ?>
+    </nav>
+</header>
