@@ -1,5 +1,8 @@
 import dotenv from 'dotenv';
 import { defineConfig } from 'vite';
+import sass from 'sass';
+import postcssPresetEnv from 'postcss-preset-env';
+import postcssFor from 'postcss-for'; // Import postcss-for
 
 dotenv.config();
 
@@ -24,4 +27,17 @@ export default defineConfig({
       },
     },
   ],
+  css: {
+    postcss: {
+      plugins: [
+        postcssPresetEnv({ stage: 3, features: { 'nesting-rules': true } }),
+        postcssFor(), // Use postcss-for here
+      ],
+    },
+    preprocessorOptions: {
+      sass: {
+        implementation: sass,
+      },
+    },
+  },
 });

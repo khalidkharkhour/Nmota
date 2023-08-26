@@ -25,8 +25,10 @@
             'theme_location' => 'navigation',
             'container'      => 'ul', 
             'menu_class'     => 'menu-container', 
+            /*'walker'         => new Custom_Walker_Nav_Menu()*/
         );
         wp_nav_menu($menu_args);
         ?>
     </nav>
+    
 </header>

@@ -101,3 +101,23 @@ add_action('login_head', function () {
         implode(';', $styles)
     );
 });
+/*class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
+    function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
+        $classes = empty($item->classes) ? array() : (array) $item->classes;
+
+        // Vérifier si l'élément de menu est "Contact"
+        if (in_array('contact', $classes)) {
+            $classes[] = 'js-modal'; // Ajouter la classe "js-modal"
+        }
+
+        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
+
+        $output .= '<li class="' . esc_attr($class_names) . '">';
+
+        // Autres parties de la fonction start_el restent inchangées
+        // ...
+
+        $output .= '</li>';
+    }
+}*/
+
