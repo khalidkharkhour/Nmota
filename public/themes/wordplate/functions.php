@@ -50,13 +50,13 @@ add_filter('script_loader_tag', function (string $tag, string $handle, string $s
 }, 10, 3);
 
 // Remove admin menu items.
-add_action('admin_init', function () {
-    remove_menu_page('edit-comments.php'); // Comments
+//add_action('admin_init', function () {
+   // remove_menu_page('edit-comments.php'); // Comments
     // remove_menu_page('edit.php?post_type=page'); // Pages
-    remove_menu_page('edit.php'); // Posts
-    remove_menu_page('index.php'); // Dashboard
+   // remove_menu_page('edit.php'); // Posts
+   // remove_menu_page('index.php'); // Dashboard
     // remove_menu_page('upload.php'); // Media
-});
+//});
 
 /* Remove admin toolbar menu items.
 add_action('admin_bar_menu', function (WP_Admin_Bar $menu) {
@@ -101,23 +101,56 @@ add_action('login_head', function () {
         implode(';', $styles)
     );
 });
-/*class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
-    function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
-        $classes = empty($item->classes) ? array() : (array) $item->classes;
+// Enqueue des scripts et des styles nécessaires
+function enqueue_lightbox_scripts() {
+    wp_localize_script('gallery-ajax', 'galleryAjax', array(
+        'ajaxUrl' => admin_url('admin-ajax.php')
+    ));
+}
+add_action('wp_enqueue_scripts', 'enqueue_lightbox_scripts');
 
-        // Vérifier si l'élément de menu est "Contact"
-        if (in_array('contact', $classes)) {
-            $classes[] = 'js-modal'; // Ajouter la classe "js-modal"
+// AJAX handler pour charger les images de la galerie depuis un dossier
+function load_gallery_images() {
+    $image_folder_path = get_theme_file_uri() . '/inc/images/';
+
+    $gallery_images = array();
+    
+    if (is_dir($image_folder_path)) {
+        $image_files = scandir($image_folder_path);
+        
+        foreach ($image_files as $file) {
+            if (in_array($file, array('.', '..'))) {
+                continue;
+            }
+            
+            $image_url = get_theme_file_uri() . '/inc/images/' . $file;
+            $gallery_images[] = $image_url;
         }
-
-        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
-
-        $output .= '<li class="' . esc_attr($class_names) . '">';
-
-        // Autres parties de la fonction start_el restent inchangées
-        // ...
-
-        $output .= '</li>';
     }
-}*/
+    
+    wp_send_json_success($gallery_images);
+}
 
+add_action('wp_ajax_load_gallery_images', 'load_gallery_images');
+add_action('wp_ajax_nopriv_load_gallery_images', 'load_gallery_images');
+function wp_enqueue_custom_fonts() {
+  wp_enqueue_style( 'space-mono', get_theme_file_uri() . '/inc/fonts/' );
+  wp_enqueue_style( 'poppins', get_theme_file_uri() . '/inc/fonts/' );
+}
+add_action( 'wp_enqueue_scripts', 'wp_enqueue_custom_fonts' );
+function get_foreground(array $images) {
+    $foreground_images = [];
+    foreach ($images as $image) {
+        // Assurez-vous que la fonction get_image_data existe et retourne les données de l'image
+        $image_data = get_image_data($image['Fichier']);
+        
+        // Assurez-vous que la fonction image_extract_foreground existe et renvoie l'image d'avant-plan
+        $foreground = image_extract_foreground($image_data);
+        
+        // Vérifiez si l'image d'avant-plan a été correctement extraite avant de l'ajouter au tableau
+        if ($foreground !== false) {
+            $foreground_images[] = $foreground;
+        }
+    }
+    return $foreground_images;
+}
