@@ -13,9 +13,10 @@
     <?php else : ?>
         <article>
       
-          
+       
         </article>
     <?php endif; ?>
 </main>
 
-<?php get_footer(); ?>
+<?php 
+get_footer(); ?>

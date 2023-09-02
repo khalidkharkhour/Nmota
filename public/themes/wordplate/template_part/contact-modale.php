@@ -7,7 +7,8 @@
         <h5 class="modal-title " id="myModalLabel"> </h5>
       </div>
       <div class="modal-body">
-      <form action="formulaire-contact.php" method="post">
+      <form id ="form" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
+    <input type="hidden" name="action" value="custom_form_action">
   <div class="form-group">
     <label for="name">Nom</label>
     <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom">

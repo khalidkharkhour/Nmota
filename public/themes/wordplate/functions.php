@@ -1,12 +1,12 @@
 <?php
 require 'inc/customize.php';
+require 'inc/data/type-costume.php';
 // Register theme defaults.
 add_action('after_setup_theme', function () {
     show_admin_bar(false);
 
     add_theme_support('post-thumbnails');
     add_theme_support('title-tag');
-
     register_nav_menus([
         'navigation' => __('Navigation'),
         
@@ -50,15 +50,15 @@ add_filter('script_loader_tag', function (string $tag, string $handle, string $s
 }, 10, 3);
 
 // Remove admin menu items.
-//add_action('admin_init', function () {
-   // remove_menu_page('edit-comments.php'); // Comments
-    // remove_menu_page('edit.php?post_type=page'); // Pages
-   // remove_menu_page('edit.php'); // Posts
-   // remove_menu_page('index.php'); // Dashboard
-    // remove_menu_page('upload.php'); // Media
-//});
+add_action('admin_init', function () {
+    remove_menu_page('edit-comments.php'); // Comments
+     remove_menu_page('edit.php?post_type=page'); // Pages
+   remove_menu_page('edit.php'); // Posts
+    remove_menu_page('index.php'); // Dashboard
+    remove_menu_page('upload.php'); // Media
+});
 
-/* Remove admin toolbar menu items.
+// Remove admin toolbar menu items.
 add_action('admin_bar_menu', function (WP_Admin_Bar $menu) {
     $menu->remove_node('comments'); // Comments
     $menu->remove_node('customize'); // Customize
@@ -74,16 +74,16 @@ add_action('admin_bar_menu', function (WP_Admin_Bar $menu) {
     $menu->remove_node('view'); // View
     $menu->remove_node('widgets'); // Widgets
    $menu->remove_node('wp-logo'); // WordPress Logo
-}, 999);*/
+}, 999);
 
-/* Remove admin dashboard widgets.
+//Remove admin dashboard widgets.
 add_action('wp_dashboard_setup', function () {
     remove_meta_box('dashboard_activity', 'dashboard', 'normal'); // Activity
     remove_meta_box('dashboard_right_now', 'dashboard', 'normal'); // At a Glance
     remove_meta_box('dashboard_site_health', 'dashboard', 'normal'); // Site Health Status
     remove_meta_box('dashboard_primary', 'dashboard', 'side'); // WordPress Events and News
     remove_meta_box('dashboard_quick_press', 'dashboard', 'side'); // Quick Draft
-});*/
+});
 
 // Add custom login form logo.
 add_action('login_head', function () {
@@ -138,19 +138,27 @@ function wp_enqueue_custom_fonts() {
   wp_enqueue_style( 'poppins', get_theme_file_uri() . '/inc/fonts/' );
 }
 add_action( 'wp_enqueue_scripts', 'wp_enqueue_custom_fonts' );
-function get_foreground(array $images) {
-    $foreground_images = [];
-    foreach ($images as $image) {
-        // Assurez-vous que la fonction get_image_data existe et retourne les données de l'image
-        $image_data = get_image_data($image['Fichier']);
+
+// Define the action for form submission
+function custom_form_action_handler() {
+    // Verify nonce
+    if (isset($_POST['custom_form_nonce']) && wp_verify_nonce($_POST['custom_form_nonce'], 'custom_form_nonce')) {
+        // Handle form data here
         
-        // Assurez-vous que la fonction image_extract_foreground existe et renvoie l'image d'avant-plan
-        $foreground = image_extract_foreground($image_data);
-        
-        // Vérifiez si l'image d'avant-plan a été correctement extraite avant de l'ajouter au tableau
-        if ($foreground !== false) {
-            $foreground_images[] = $foreground;
-        }
+        // Load the template part
+        get_template_part('template_part/formulaire', 'contact');
     }
-    return $foreground_images;
 }
+add_action('admin_post_custom_form_action', 'custom_form_action_handler');
+add_action('admin_post_nopriv_custom_form_action', 'custom_form_action_handler');
+/*function activer_gutenberg_par_defaut() {
+    // Désactive l'éditeur classique
+    add_filter('use_block_editor_for_post', '__return_true', 100);
+
+    // Active Gutenberg par défaut
+    update_option('classic-editor-replace', 'block');
+
+    // Désactive la demande de choix entre l'éditeur classique et Gutenberg
+    update_option('classic-editor-allow-users', 'disallow');
+}
+add_action('admin_init', 'activer_gutenberg_par_defaut');*/

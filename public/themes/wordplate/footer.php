@@ -1,3 +1,4 @@
+
 <footer class="footer-container">
     <ul>
         <?php
@@ -10,6 +11,7 @@
         foreach ($links as $link) {
             echo '<li><a href="' . esc_url($link['url']) . '">' . esc_html($link['label']) . '</a></li>';
         }
+       /* get_template_part('template_part/photo', 'single');*/
         ?>
     </ul>
 </footer>

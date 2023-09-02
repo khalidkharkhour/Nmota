@@ -1,26 +1,22 @@
-<?php
+<div id="primary" class="content-area container">
+    <main id="main" class="site-main full-width" role="main">
 
-$element_id = get_the_ID();
+        <?php
+        if (have_posts()) :
+            while (have_posts()) : the_post();
+                the_content();
+                get_template_part('template-parts/content', 'sin');
 
-if (isset($_GET['image_id'])) {
-    $image_index = intval($_GET['image_id']);
+                the_post_navigation();
 
-    if ($image_index >= 0 && $image_index < count($data)) {
-        $image = $data[$image_index];
+                // Si les commentaires sont ouverts ou s'il y a au moins un commentaire, chargez le modèle de commentaire.
+                if (comments_open() || get_comments_number()) :
+                    comments_template();
+                endif;
 
-        echo '<div class="frame">';
-        echo '<div class="team-mari-e">TEAM MARIÉE</div>';
-        echo '<div class="text-wrapper">RÉFÉRENCE : ' . $image['Référence'] . '</div>';
-        echo '<div class="text-wrapper">CATÉGORIE : ' . $image['Catégorie'] . '</div>';
-        echo '<div class="text-wrapper">FORMAT : ' . $image['Format'] . '</div>';
-        echo '<div class="text-wrapper">TYPE : ' . $image['Type'] . '</div>';
-        echo '<div class="text-wrapper">ANNÉE : ' . $image['Année'] . '</div>';
-        
-        // Ajoutez un bouton qui déclenche l'affichage des détails
-        echo '<i class="fa fa-eye" aria-hidden="true" data-toggle="details" data-element-id="' . $element_id . '"></i>';
-        
-        echo '</div>';
-    } else {
-        echo 'Image not found.';
-    }
-}
+            endwhile; // Fin de la boucle.
+        endif;
+        ?>
+
+    </main><!-- #main -->
+</div><!-- #primary -->
