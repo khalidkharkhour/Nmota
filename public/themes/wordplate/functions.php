@@ -1,6 +1,6 @@
 <?php
 require 'inc/customize.php';
-require 'inc/data/type-costume.php';
+
 // Register theme defaults.
 add_action('after_setup_theme', function () {
     show_admin_bar(false);
@@ -14,7 +14,7 @@ add_action('after_setup_theme', function () {
 });
 
 // Register scripts and styles.
-add_action('wp_enqueue_scripts', function () {
+function my_enqueue_scripts() {
     $manifestPath = get_theme_file_path('assets/manifest.json');
 
     if (
@@ -37,8 +37,16 @@ add_action('wp_enqueue_scripts', function () {
             wp_enqueue_style('wordplate', get_theme_file_uri('assets/' . $cssFile), [], null);
         }
     }
-    
-});
+
+    if (is_page_template('single.php')) {
+        // Enqueue the generated CSS and JS
+        wp_enqueue_script('wordplate', get_theme_file_uri('assets/index.js'), [], null);
+        wp_enqueue_style('wordplate', get_theme_file_uri('assets/index.css'), [], null);
+    }
+}
+
+add_action('wp_enqueue_scripts', 'my_enqueue_scripts');
+
 
 // Load scripts as modules.
 add_filter('script_loader_tag', function (string $tag, string $handle, string $src) {
@@ -49,13 +57,14 @@ add_filter('script_loader_tag', function (string $tag, string $handle, string $s
     return $tag;
 }, 10, 3);
 
-// Remove admin menu items.
+/* Remove admin menu items.
 add_action('admin_init', function () {
     remove_menu_page('edit-comments.php'); // Comments
      remove_menu_page('edit.php?post_type=page'); // Pages
    remove_menu_page('edit.php'); // Posts
     remove_menu_page('index.php'); // Dashboard
     remove_menu_page('upload.php'); // Media
+    
 });
 
 // Remove admin toolbar menu items.
@@ -84,7 +93,7 @@ add_action('wp_dashboard_setup', function () {
     remove_meta_box('dashboard_primary', 'dashboard', 'side'); // WordPress Events and News
     remove_meta_box('dashboard_quick_press', 'dashboard', 'side'); // Quick Draft
 });
-
+*/
 // Add custom login form logo.
 add_action('login_head', function () {
     $url = get_theme_file_uri('favicon.svg');

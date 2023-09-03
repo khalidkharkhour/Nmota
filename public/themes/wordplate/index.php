@@ -1,4 +1,5 @@
-<?php get_header(); ?>
+<?php
+get_header(); ?>
 
 <main>
     <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -12,8 +13,7 @@
         <?php endwhile; ?>
     <?php else : ?>
         <article>
-      
-       
+            <h2>No posts found</h2>
         </article>
     <?php endif; ?>
 </main>

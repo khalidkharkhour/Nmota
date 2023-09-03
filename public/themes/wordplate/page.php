@@ -9,8 +9,11 @@ get_template_part('template_part/contact', 'modale');
 
 
 global $wpdb;
+
 $query = "SELECT * FROM mytable";
 $data = $wpdb->get_results($query, ARRAY_A);
+
+
 if ($data) {
     $categories = array_unique(array_column($data, 'Catégorie'));
     $formats = array_unique(array_column($data, 'Format'));
@@ -47,6 +50,20 @@ if ($data) {
 } else {
     die('Erreur lors du chargement des données.');
 }
+// Récupérer l'URL actuelle
+$current_url = esc_url($_SERVER['REQUEST_URI']);
+
+// Divisez l'URL en segments en utilisant "/"
+$url_segments = explode('/', $current_url);
+
+// Le dernier segment de l'URL contient l'ID du post personnalisé
+$custom_post_id = end($url_segments);
+
+// Assurez-vous que l'ID est un nombre
+if (is_numeric($custom_post_id)) {
+    // Convertissez-le en entier
+    $custom_post_id = intval($custom_post_id);
+}
 
 $filteredData = $data;
 
@@ -61,9 +78,9 @@ if ($filteredData) {
         // Création du lien pour l'image avec les détails$permalink = get_permalink(); // Get the permalink of the current post
         $permalink = get_permalink(); // Get the permalink of the current post
         $post_number = get_the_ID(); // Get the post ID, which can be considered as the post number
-
-echo '<a class="image-link" href="' . esc_url(get_theme_file_uri($item['Fichier'])) . '" data-fancybox="images" data-caption="<a href=' . get_post_meta(get_the_ID(), 'type', true). ' ><i class=\'fa fa-eye\' aria-hidden=\'true\' data-toggle=\'details\' data-index=\'' . $index. '\'></i></a> <p>'
-. $item['Catégorie'] . '</p> <a href=' .   get_post_meta(get_the_ID(), 'type', true) .'>' . $item['Référence'] . '</a">';
+        $custom_post_permalink = get_permalink();
+echo '<a class="image-link" href="' . esc_url(get_theme_file_uri($item['Fichier'])) . '" data-fancybox="images" data-caption="<a href=' . esc_url($custom_post_permalink). ' ><i class=\'fa fa-eye\' aria-hidden=\'true\' data-toggle=\'details\' data-index=\'' ./* $index. */'\'></i></a> <p>'
+. $item['Catégorie'] . '</p> <a href=' .   esc_url($custom_post_permalink) .'>' . $item['Référence'] . '</a">';
 
 echo '<img src="' . esc_url(get_theme_file_uri($item['Fichier'])) . '" alt="' . esc_attr($item['Titre']) . '" data-src="' . esc_url(get_theme_file_uri($item['Fichier'])) . '">'; // Display image
 
