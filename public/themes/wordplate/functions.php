@@ -126,4 +126,12 @@ function wp_enqueue_custom_fonts() {
     wp_enqueue_style( 'poppins', get_theme_file_uri() . '/inc/fonts/' );
   }
   add_action( 'wp_enqueue_scripts', 'wp_enqueue_custom_fonts' );
-  
+ 
+  add_action( 'wp_enqueue_scripts', 'enqueue_frontend_assets', 5 );
+  function enqueue_frontend_assets() {
+    if( is_singular( 'joiner' ) ){
+        wp_enqueue_style( 'style-joiner', get_theme_file_uri() . 'inc/style-joiner.css' );
+    }
+}
+
+add_action( 'wp_enqueue_scripts', 'enqueue_frontend_assets' );

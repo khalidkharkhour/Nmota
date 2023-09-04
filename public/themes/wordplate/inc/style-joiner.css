@@ -1,0 +1,231 @@
+.desktop-single-photo {
+    position: relative;
+    width: 1440px;
+    height: 1939px;
+    background-color: #ffffff;
+  }
+  
+  .desktop-single-photo .footer-desktop {
+    position: absolute;
+    width: 1440px;
+    height: 40px;
+    top: 1899px;
+    left: 0;
+    background-color: #ffffff;
+  }
+  
+  .desktop-single-photo .group {
+    position: absolute;
+    width: 620px;
+    height: 24px;
+    top: 8px;
+    left: 410px;
+  }
+  
+  .desktop-single-photo .menu-input {
+    width: 157px;
+    left: 0;
+    position: absolute;
+    height: 24px;
+    top: 0;
+  }
+  
+  .desktop-single-photo .accueil {
+    position: absolute;
+    height: 24px;
+    top: -1px;
+    left: 0;
+    font-family: "Space Mono-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-single-photo .accueil-wrapper {
+    width: 97px;
+    left: 243px;
+    position: absolute;
+    height: 24px;
+    top: 0;
+  }
+  
+  .desktop-single-photo .div-wrapper {
+    width: 194px;
+    left: 426px;
+    position: absolute;
+    height: 24px;
+    top: 0;
+  }
+  
+  .desktop-single-photo .line {
+    width: 1440px;
+    top: 0;
+    left: 0;
+    position: absolute;
+    height: 1px;
+    object-fit: cover;
+  }
+  
+  .desktop-single-photo .frame {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    position: absolute;
+    top: 605px;
+    left: 144px;
+  }
+  
+   .team-mari-e {
+    position: relative;
+    width: 420px;
+    margin-top: -1px;
+    font-family: var(--h2-desktop-font-family);
+    font-weight: var(--h2-desktop-font-weight);
+    font-style: var(--h2-desktop-font-style);
+    color: #000000;
+    font-size: var(--h2-desktop-font-size);
+    letter-spacing: var(--h2-desktop-letter-spacing);
+    line-height: var(--h2-desktop-line-height);
+  }
+  
+  .text-wrapper {
+    position: relative;
+    width: fit-content;
+    font-family: var(--description-photo-desktop-font-family);
+    font-weight: var(--description-photo-desktop-font-weight);
+    color: #000000;
+    font-size: var(--description-photo-desktop-font-size);
+    letter-spacing: var(--description-photo-desktop-letter-spacing);
+    line-height: var(--description-photo-desktop-line-height);
+    font-style: var(--description-photo-desktop-font-style);
+  }
+  
+  .vous-aimerez-AUSSI {
+    position: absolute;
+    height: 27px;
+    top: 1157px;
+    left: 145px;
+    font-family: var(--h3-desktop-font-family);
+    font-weight: var(--h3-desktop-font-weight);
+    color: #000000;
+    font-size: var(--h3-desktop-font-size);
+    letter-spacing: var(--h3-desktop-letter-spacing);
+    line-height: var(--h3-desktop-line-height);
+    font-style: var(--h3-desktop-font-style);
+  }
+  
+  .desktop-single-photo .div {
+    position: absolute;
+    height: 21px;
+    top: 1010px;
+    left: 145px;
+    font-family: var(--p-font-family);
+    font-weight: var(--p-font-weight);
+    color: #000000;
+    font-size: var(--p-font-size);
+    text-align: right;
+    letter-spacing: var(--p-letter-spacing);
+    line-height: var(--p-line-height);
+    font-style: var(--p-font-style);
+  }
+  
+  .desktop-single-photo .img {
+    width: 564px;
+    top: 962px;
+    left: 146px;
+    position: absolute;
+    height: 1px;
+    object-fit: cover;
+  }
+  
+  .desktop-single-photo .line-2 {
+    width: 1148px;
+    top: 1080px;
+    left: 146px;
+    position: absolute;
+    height: 1px;
+    object-fit: cover;
+  }
+  
+  .desktop-single-photo .nathalie-jpeg {
+    position: absolute;
+    width: 563px;
+    height: 844px;
+    top: 118px;
+    left: 731px;
+    object-fit: cover;
+  }
+  
+  .desktop-single-photo.CTA {
+    top: 1000px;
+    left: 438px;
+    display: flex;
+    width: 272px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 8px 15px;
+    position: absolute;
+    background-color: #d7d7d7;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0px 2px 1px #00000005;
+    all: unset;
+    box-sizing: border-box;
+  }
+  
+  .desktop-single-photo .charger-plus {
+    position: relative;
+    width: fit-content;
+    font-family: "Space Mono-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .desktop-single-photo .charger-plus-wrapper {
+    top: 1785px;
+    left: 584px;
+    display: flex;
+    width: 272px;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 8px 15px;
+    position: absolute;
+    background-color: #d7d7d7;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow: 0px 2px 1px #00000005;
+    all: unset;
+    box-sizing: border-box;
+  }
+  
+  .desktop-single-photo .card-photo {
+    position: absolute;
+    width: 564px;
+    height: 495px;
+    top: 1237px;
+    left: 144px;
+    background-image: url(./img/nathalie-4-jpeg.png);
+    background-size: cover;
+    background-position: 50% 50%;
+  }
+  
+  .desktop-single-photo .card-photo-2 {
+    position: absolute;
+    width: 564px;
+    height: 495px;
+    top: 1237px;
+    left: 728px;
+    background-image: url(./img/nathalie-5-jpeg.png);
+    background-size: cover;
+    background-position: 50% 50%;
+  }
