@@ -1,12 +1,15 @@
-<meta charset="UTF-8">
-
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php wp_head(); ?> <!-- Assurez-vous que cette ligne est présente -->
+</head>
 <body <?php body_class(); ?>>
 <?php
- 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+/* Template Name: Page de Photos 
 
-
+get_header(); */
 ?>
 
 
@@ -17,12 +20,9 @@ ini_set('display_errors', 1);
     $data = $wpdb->get_results($query, ARRAY_A);
 
     if ($data) : // Check if there are results
-        $index = 0; // Initialize an index variable
-        while ($index < count($data)) : // Use a while loop
-            $row = $data[$index]; // Get the current row
-
+        foreach ($data as $row) :
             // Check if the keys exist in the $row array before accessing them
-            $reference = isset($row['reference']) ? strip_tags(trim($row['reference'])) : '';
+            $reference = isset($row['reference']) ? $row['reference'] : '';
             $annee = isset($row['annee']) ? $row['annee'] : '';
             $format = isset($row['format']) ? $row['format'] : '';
             $type = isset($row['type']) ? $row['type'] : '';
@@ -35,11 +35,11 @@ ini_set('display_errors', 1);
                 </div>
                 <div class="frame">
                     <div class="team-mari-e">TEAM MARIÉE</div>
-                    <div class="text-wrapper">RÉFÉRENCE : <?php echo esc_html($reference, ENT_QUOTES, 'UTF-8'); ?></div>
+                    <div class="text-wrapper">RÉFÉRENCE : <?php echo esc_html($reference); ?></div>
                     <div class="text-wrapper">CATÉGORIE : MARIAGE</div>
-                    <div class="text-wrapper">FORMAT : <?php echo esc_html($format, ENT_QUOTES, 'UTF-8'); ?></div>
-                    <div class="text-wrapper">TYPE : <?php echo esc_html($type), ENT_QUOTES, 'UTF-8'; ?></div>
-                    <div class="text-wrapper">ANNÉE : <?php echo esc_html($annee, ENT_QUOTES, 'UTF-8'); ?></div>
+                    <div class="text-wrapper">FORMAT : <?php echo esc_html($format); ?></div>
+                    <div class="text-wrapper">TYPE : <?php echo esc_html($type); ?></div>
+                    <div class="text-wrapper">ANNÉE : <?php echo esc_html($annee); ?></div>
                 </div>
                 <div class="vous-aimerez-AUSSI">VOUS AIMEREZ AUSSI</div>
                 <p class="div">Cette photo vous intéresse ?</p>
@@ -52,13 +52,10 @@ ini_set('display_errors', 1);
                 <div class="card-photo-2"></div>
             </div>
 
-            <?php
-            $index++; // Increment the index variable
-        endwhile;
+    <?php
+        endforeach;
     else :
         echo 'Aucune photo trouvée.';
     endif;
     ?>
-</main>
-
 </main><!-- #main -->

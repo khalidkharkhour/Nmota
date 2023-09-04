@@ -1,5 +1,6 @@
 <?php
 require 'inc/customize.php';
+require 'inc/data/post.php';
 // Register theme defaults.
 add_action('after_setup_theme', function () {
     show_admin_bar(false);
@@ -120,4 +121,9 @@ add_action('login_head', function () {
         $output .= '</li>';
     }
 }*/
-
+function wp_enqueue_custom_fonts() {
+    wp_enqueue_style( 'space-mono', get_theme_file_uri() . '/inc/fonts/' );
+    wp_enqueue_style( 'poppins', get_theme_file_uri() . '/inc/fonts/' );
+  }
+  add_action( 'wp_enqueue_scripts', 'wp_enqueue_custom_fonts' );
+  
