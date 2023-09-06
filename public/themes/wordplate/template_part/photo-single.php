@@ -15,13 +15,13 @@ $fichier = str_replace('/inc/images', 'themes/wordplate/inc/images', $fichier); 
 
 <div id="app">
 <div class="index">
-<div class="footer-desktop footer-desktop-instance">
+<div class="footer-desktop ">
     <div class="group">
         
     </div><img class="line" alt="Line" src="https://anima-uploads.s3.amazonaws.com/projects/63eb64c02e370d1798fe97e7/releases/64df017d18733b734262d811/img/line-2.svg">
 </div>
 <div class="frame">
-            <div class=" ">TEAM MARIÉE</div>
+            <div class=" team-mari-e">TEAM MARIÉE</div>
             <div class="text-wrapper">RÉFÉRENCE : <?php echo esc_html($reference); ?></div>
             <div class="text-wrapper">CATÉGORIE : <?php echo esc_html($type); ?></div>
             <div class="text-wrapper">FORMAT : <?php echo esc_html($format); ?></div>

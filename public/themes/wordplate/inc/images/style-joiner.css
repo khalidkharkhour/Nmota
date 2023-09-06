@@ -8,7 +8,7 @@
   --bleu-fonc: rgba(49, 49, 68, 1);
   --bluesblue-cta: rgba(33, 90, 255, 1);
   --bluesgray-2: rgba(184, 187, 194, 1);
-  --description-photo-desktop-font-family: "SpaceMono-Regular", Helvetica;
+  --description-photo-desktop-font-family: "Space Mono", Helvetica;
   --description-photo-desktop-font-size: 14px;
   --description-photo-desktop-font-style: normal;
   --description-photo-desktop-font-weight: 400;
@@ -81,96 +81,100 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/fonts/Poppins-Black.ttf");
+  src: url("./fonts/Poppins-Black.ttf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/fonts/Poppins-BlackItalic.ttf");
+  src: url("./fonts/.Poppins-BlackItalic.ttf");
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/fonts/Poppins-Bold.ttf");
+  src: url("../fonts/Poppins-Bold.ttf");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/fonts/Poppins-BoldItalic.ttf");
+  src: url("./fonts/Poppins-BoldItalic.ttf");
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/fonts/Poppins-ExtraBold.ttf");
+  src: url("./fonts/Poppins-ExtraBold.ttf");
   font-weight: bolder;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/fonts/Poppins-ExtraBoldItalic.ttf");
+  src: url("./fonts/Poppins-ExtraBoldItalic.ttf");
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/Poppins-ExtraLight.ttf");
+  src: url("./fonts/Poppins-ExtraLight.ttf");
   font-weight: lighter;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/Poppins-Medium.ttf");
+  src: url("./fonts/Poppins-Medium.ttf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/fonts/Poppins-Regular.ttf");
+  src: url("./fonts/Poppins-Regular.ttf");
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Space mono";
-  src: url("/themes/wordplate/inc/fonts/SpaceMono-Bold.ttf");
+  src: url("./fonts/SpaceMono-Bold.ttf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Space mono";
-  src: url("/themes/wordplate/inc/fonts/SpaceMono-BoldItalic.ttf");
+  src: url("./fonts/SpaceMono-BoldItalic.ttf");
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Space mono";
-  src: url("/themes/wordplate/inc/fonts/SpaceMono-Italic.ttf");
+  src: url("./fonts/SpaceMono-Italic.ttf");
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Space mono";
-  src: url("/themes/wordplate/inc/fonts/SpaceMono-Regular.ttf");
+  src: url("./fonts/SpaceMono-Regular.ttf");
   font-weight: normal;
   font-style: normal;
 }
 
-
+#app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .CTA {
   background-color: #d7d7d7;

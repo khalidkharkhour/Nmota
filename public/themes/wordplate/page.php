@@ -67,19 +67,64 @@ if (is_numeric($custom_post_id)) {
     // Convertissez-le en entier
     $custom_post_id = intval($custom_post_id);
 }
-$page = get_post_meta($post->ID, 'singular_name');
+$page = get_post_meta($post->ID, 'singular_name', true);
 
-if (get_post_meta($post->ID, 'singular_name')) {
-    $page = get_post_meta($post->ID, 'singular_name');
-} else {
+if (empty($page)) {
     $page = '';
 }
 
-$photo = 'let-s-dance-3';
+/*$photo_links = [
+    'let-s-dance-3',
+    'Santé !',
+    'Et bon anniversaire !',
+    "Let's party!",
+    'Tout est installé',
+    "Vers l'éternité",
+    'Embrassez la mariée',
+    'Dansons ensemble',
+    'Le menu',
+    'Au bal masqué',
+    "Let's dance!",
+    'Jour de match',
+    'Préparation',
+    'Bière ou eau plate ?',
+    'Bouquet final',
+    'Du soir au matin',
+    'Team mariée'
+];
 
-$url = add_query_arg('photo', $photo);
+foreach ($photo_links as $photo_name) {
+    // Utilisez sanitize_title() pour formater le nom de la photo.
+    $formatted_photo_name = sanitize_title($photo_name);
+    
+    $url = add_query_arg('photo', $formatted_photo_name, get_permalink($post->ID));
+    echo '<a href="' . esc_url($url) . '">' . esc_html($photo_name) . '</a><br>';
+}*/
+
+
+
 
 $filteredData = $data;
+
+$photo_links = [
+    'let-s-dance',
+    'Santé !',
+    'Et bon anniversaire !',
+    "Let's party!",
+    'Tout est installé',
+    "Vers l'éternité",
+    'Embrassez la mariée',
+    'Dansons ensemble',
+    'Le menu',
+    'Au bal masqué',
+    "Let's dance!",
+    'Jour de match',
+    'Préparation',
+    'Bière ou eau plate ?',
+    'Bouquet final',
+    'Du soir au matin',
+    'Team mariée'
+];
 
 if ($filteredData) {
     echo '<div class="image-grid">';
@@ -87,25 +132,18 @@ if ($filteredData) {
     foreach ($filteredData as $index => $item) {
         if ($index >= 6) { // On vérifie si l'index est supérieur ou égal à 6
             echo '<div class="image-item">';
-            echo '<div class="image-item">';
-            $post = get_post();
-        // Création du lien pour l'image avec les détails$permalink = get_permalink(); // Get the permalink of the current post
-        $permalink = get_permalink(); // Get the permalink of the current post
-        $post_number = get_the_ID(); // Get the post ID, which can be considered as the post number
-        $custom_post_permalink = get_permalink();
-echo '<a class="image-link" href="' . esc_url(get_theme_file_uri($item['Fichier'])) . '" data-fancybox="images" data-caption="<a href=' . $url.' ><i class=\'fa fa-eye\' aria-hidden=\'true\' data-toggle=\'details\' data-index=\'' ./* $index. */'\'></i>. $page . </a> <p>'
-. $item['Catégorie'] . '</p> <a href=' .   esc_url($custom_post_permalink) .'>' . $item['Référence'] . '</a">';
+            
+            // Utilisez sanitize_title() pour formater le nom de la photo.
+            $formatted_photo_name = sanitize_title($photo_links[$index]);
+            
+            $url = add_query_arg('photo', $formatted_photo_name, get_permalink($post->ID));
+            
+            $custom_post_permalink = get_permalink($post->ID); // Définition de $custom_post_permalink
+            
+            echo '<a class="image-link" href="' . esc_url(get_theme_file_uri($item['Fichier'])) . '" data-fancybox="images" data-caption="<a href=' . esc_url($url) . '><i class=\'fa fa-eye\' aria-hidden=\'true\' data-toggle=\'details\' data-index=\'' . $index . '\'></i></a><p>' . $item['Catégorie'] . '</p><a href=' . esc_url($custom_post_permalink) . '>' . $item['Référence'] . '</a>">';
+            
+            echo '<img src="' . esc_url(get_theme_file_uri($item['Fichier'])) . '" alt="' . esc_attr($item['Titre']) . '" data-src="' . esc_url(get_theme_file_uri($item['Fichier'])) . '">'; // Display image
 
-echo '<img src="' . esc_url(get_theme_file_uri($item['Fichier'])) . '" alt="' . esc_attr($item['Titre']) . '" data-src="' . esc_url(get_theme_file_uri($item['Fichier'])) . '">'; // Display image
-
-        echo '</a>';
-        echo '</div>';
-        
-
-
-
-
-    
             echo '</a>';
             echo '</div>';
         }
@@ -115,6 +153,7 @@ echo '<img src="' . esc_url(get_theme_file_uri($item['Fichier'])) . '" alt="' . 
 } else {
     echo 'No images match the selected filters.';
 }
+
 
 $pageNumber = intval(get_query_var('page'));
 
