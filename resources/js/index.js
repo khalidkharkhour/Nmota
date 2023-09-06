@@ -215,3 +215,25 @@ for (const i = 0; i < selectBoxes.length; i++) {
         window.location.href = 'URL_VERS_photo-single.php';
     });
 });*/
+
+$(document).ready(function() {
+    $('.show-photo').click(function(e) {
+        e.preventDefault();
+        var postNumber = $(this).data('index');
+        var contentContainer = $('#photo-content-' + postNumber);
+
+        // Chargez le contenu du post type "photo" ici en utilisant AJAX ou toute autre méthode souhaitée
+        // Assurez-vous que vous récupérez le contenu approprié pour le post en utilisant son ID ou d'autres données.
+
+        // Exemple d'utilisation de jQuery AJAX pour charger le contenu
+        $.ajax({
+            url: '/path/to/your/ajax-handler.php', // Remplacez par le chemin de votre gestionnaire AJAX
+            data: { postNumber: postNumber },
+            type: 'POST',
+            success: function(response) {
+                contentContainer.html(response);
+            }
+        });
+    });
+});
+

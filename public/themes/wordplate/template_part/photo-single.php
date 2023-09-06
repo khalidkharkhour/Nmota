@@ -1,37 +1,43 @@
-<?php
-/* Template Name: Page de Photos */
+<?php  
+$reference = get_post_meta(get_the_ID(), 'reference', true);
+$annee = get_post_meta(get_the_ID(), 'annee', true);
+$format = get_post_meta(get_the_ID(), 'format', true);
+$type = get_post_meta(get_the_ID(), 'type', true);
+$fichier = get_post_meta(get_the_ID(), 'fichier', true);
+$fichier = str_replace('/inc/images', 'themes/wordplate/inc/images', $fichier);      ?>
+<!DOCTYPE html>
 
+<head>
+    <link rel="stylesheet" href="<?php echo get_theme_file_uri('/inc/images/style-joiner.css'); ?>">
+    <script src="/inc/images/js.js" defer=""></script>
+</head>
+<html>
 
-
-// La boucle personnalisée pour afficher les publications personnalisées "photo"
-$args = array(
-    'post_type' => 'photo', // Le type de publication personnalisé
-    'posts_per_page' => -1 // Afficher toutes les publications
-);
-
-// Utilisation d'un modèle partiel pour afficher une seule photo
-$custom_query = new WP_Query($args);
-
-if ($custom_query->have_posts()) :
-    while ($custom_query->have_posts()) : $custom_query->the_post();
-        // Récupérer les informations nécessaires
-        $reference = get_post_meta(get_the_ID(), 'reference', true);
-        $annee = get_post_meta(get_the_ID(), 'annee', true);
-        $format = get_post_meta(get_the_ID(), 'format', true);
-        $type = get_post_meta(get_the_ID(), 'type', true);
-        $fichier = get_post_meta(get_the_ID(), 'fichier', true);
-
-        // Afficher le titre et le lien vers la page détaillée
-        echo '<h2><a href="' . esc_url(get_permalink()) . '">' . get_the_title() . '</a></h2>';
-        echo '<p>Référence : ' . esc_html($reference) . '</p>';
-        echo '<p>Année : ' . esc_html($annee) . '</p>';
-        echo '<p>Format : ' . esc_html($format) . '</p>';
-        echo '<p>Type : ' . esc_html($type) . '</p>';
-        echo '<p>Fichier : ' . esc_html($fichier) . '</p>';
-
-    endwhile;
-
-    wp_reset_postdata();
-else :
-    echo 'Aucune photo trouvée.';
-endif;
+<div id="app">
+<div class="index">
+<div class="footer-desktop footer-desktop-instance">
+    <div class="group">
+        
+    </div><img class="line" alt="Line" src="https://anima-uploads.s3.amazonaws.com/projects/63eb64c02e370d1798fe97e7/releases/64df017d18733b734262d811/img/line-2.svg">
+</div>
+<div class="frame">
+            <div class=" ">TEAM MARIÉE</div>
+            <div class="text-wrapper">RÉFÉRENCE : <?php echo esc_html($reference); ?></div>
+            <div class="text-wrapper">CATÉGORIE : <?php echo esc_html($type); ?></div>
+            <div class="text-wrapper">FORMAT : <?php echo esc_html($format); ?></div>
+            <div class="text-wrapper">TYPE : <?php echo esc_html($type); ?></div>
+            <div class="text-wrapper">ANNÉE : <?php echo esc_html($annee); ?></div>
+        </div>
+<div class="vous-aimerez-AUSSI">VOUS AIMEREZ AUSSI</div>
+<p class="div">Cette photo vous intéresse ?</p><img class="img" alt="Line" src="https://anima-uploads.s3.amazonaws.com/projects/63eb64c02e370d1798fe97e7/releases/64df43628ee8453fffe9bfb1/img/line-3.svg">
+<img class="line-2" alt="Line" src="https://anima-uploads.s3.amazonaws.com/projects/63eb64c02e370d1798fe97e7/releases/64df43628ee8453fffe9bfb1/img/line-4.svg"><?php echo '<img src="' . $fichier . '" class="nathalie-jpeg">'; ?>
+<div class="CTA CTA-instance">
+    <div class="charger-plus CTA-2">Contact</div>
+</div>
+<div class="CTA CTA-3">
+    <div class="charger-plus CTA-2">Toutes les photos</div>
+</div>
+<div class="card-photo"></div>
+<div class="card-photo-2"></div>
+</div>
+</div>

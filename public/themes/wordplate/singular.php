@@ -1,4 +1,19 @@
 <?php
+get_template_part('template_part/photo','single');
+
+
+// Récupérez le paramètre 'photo' de la chaîne de requête
+$photo_param = isset($_GET['photo']) ? sanitize_text_field($_GET['photo']) : '';
+
+if (!empty($photo_param)) {
+    // Utilisez la valeur de $photo_param pour inclure le template part approprié
+    get_template_part('template_part/photo', $photo_param);
+} else {
+    // Gérer le cas où le paramètre 'photo' est manquant ou vide
+    echo "Le paramètre 'photo' est manquant ou vide.";
+}
+
+
 /* Template Name: Page de Photos */
 
 // Récupérer le titre de la photo à afficher à partir du paramètre d'URL
@@ -23,37 +38,18 @@ if ($custom_query->have_posts()) :
         $type = get_post_meta(get_the_ID(), 'type', true);
         $fichier = get_post_meta(get_the_ID(), 'fichier', true);
 
+        $post_id = get_post_meta(get_the_ID(), true);
+        $photo_title = sanitize_title(get_the_title());
+        $custom_link = "/?photo=" . $photo_title;
+
+        $fichier = str_replace('/inc/images', 'themes/wordplate/inc/images', $fichier);
+
         // Commencez la section HTML ici
-        ?>
-        <!DOCTYPE html>
-        <html>
-        <body>
-            <div class="desktop-single-photo">
-                <!-- Le reste de votre HTML -->
-                <div class="frame">
-                    <div style=" position: relative;
-  width: 420px;
-  margin-top: -1px;
-  font-family: var(--h2-desktop-font-family);
-  font-weight: var(--h2-desktop-font-weight);
-  font-style: var(--h2-desktop-font-style);
-  color: #000000;
-  font-size: var(--h2-desktop-font-size);
-  letter-spacing: var(--h2-desktop-letter-spacing);
-  line-height: var(--h2-desktop-line-height);">TEAM MARIÉE</div>
-                    <div class="text-wrapper">RÉFÉRENCE : <?php echo esc_html($reference); ?></div>
-                    <div class="text-wrapper">CATÉGORIE : <?php echo esc_html($type); ?></div>
-                    <div class="text-wrapper">FORMAT : <?php echo esc_html($format); ?></div>
-                    <div class="text-wrapper">TYPE : <?php echo esc_html($type); ?></div>
-                    <div class="text-wrapper">ANNÉE : <?php echo esc_html($annee); ?></div>
-                </div>
-                <!-- Le reste de votre HTML -->
-            </div>
-        </body>
-        </html>
-        <?php
-        // Fin de la section HTML
-        endwhile;
+?>
+       
+<?php
+    // Fin de la section HTML
+    endwhile;
 
 else :
     echo 'Aucune photo trouvée avec le titre "' . esc_html($photo_title) . '".';

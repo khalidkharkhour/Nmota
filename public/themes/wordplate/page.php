@@ -67,6 +67,17 @@ if (is_numeric($custom_post_id)) {
     // Convertissez-le en entier
     $custom_post_id = intval($custom_post_id);
 }
+$page = get_post_meta($post->ID, 'singular_name');
+
+if (get_post_meta($post->ID, 'singular_name')) {
+    $page = get_post_meta($post->ID, 'singular_name');
+} else {
+    $page = '';
+}
+
+$photo = 'let-s-dance-3';
+
+$url = add_query_arg('photo', $photo);
 
 $filteredData = $data;
 
@@ -82,7 +93,7 @@ if ($filteredData) {
         $permalink = get_permalink(); // Get the permalink of the current post
         $post_number = get_the_ID(); // Get the post ID, which can be considered as the post number
         $custom_post_permalink = get_permalink();
-echo '<a class="image-link" href="' . esc_url(get_theme_file_uri($item['Fichier'])) . '" data-fancybox="images" data-caption="<a href=' . esc_url($custom_post_permalink). ' ><i class=\'fa fa-eye\' aria-hidden=\'true\' data-toggle=\'details\' data-index=\'' ./* $index. */'\'></i></a> <p>'
+echo '<a class="image-link" href="' . esc_url(get_theme_file_uri($item['Fichier'])) . '" data-fancybox="images" data-caption="<a href=' . $url.' ><i class=\'fa fa-eye\' aria-hidden=\'true\' data-toggle=\'details\' data-index=\'' ./* $index. */'\'></i>. $page . </a> <p>'
 . $item['Catégorie'] . '</p> <a href=' .   esc_url($custom_post_permalink) .'>' . $item['Référence'] . '</a">';
 
 echo '<img src="' . esc_url(get_theme_file_uri($item['Fichier'])) . '" alt="' . esc_attr($item['Titre']) . '" data-src="' . esc_url(get_theme_file_uri($item['Fichier'])) . '">'; // Display image

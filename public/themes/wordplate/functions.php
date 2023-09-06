@@ -127,11 +127,13 @@ function wp_enqueue_custom_fonts() {
   }
   add_action( 'wp_enqueue_scripts', 'wp_enqueue_custom_fonts' );
  
-  add_action( 'wp_enqueue_scripts', 'enqueue_frontend_assets', 5 );
-  function enqueue_frontend_assets() {
-    if( is_singular( 'joiner' ) ){
-        wp_enqueue_style( 'style-joiner', get_theme_file_uri() . 'inc/style-joiner.css' );
-    }
+  function enqueue_custom_styles() {
+    // Chemin complet vers le fichier CSS
+    $css_file_path = get_theme_file_uri() . '/inc/images/style-joiner.css';
+
+    // Enregistrez la feuille de style
+    wp_enqueue_style('custom-style', $css_file_path, array(), '1.0', 'all');
 }
 
-add_action( 'wp_enqueue_scripts', 'enqueue_frontend_assets' );
+// Ajoutez l'action pour charger la feuille de style
+add_action('wp_enqueue_scripts', 'enqueue_custom_styles');

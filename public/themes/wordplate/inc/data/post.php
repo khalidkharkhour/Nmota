@@ -61,33 +61,45 @@ register_taxonomy('format', 'photo', array(
 ));
 
 add_action('init', 'creer_type_post_personnalise');
+/*$total_count = 0; // Initialisation du total_count
+
+if (isset($count->publish)) {
+    $total_count = $count->publish;
+}
 
 // Créer des publications personnalisées pour chaque entrée
-global $wpdb;
-$result = $wpdb->get_results("SELECT * FROM mytable LIMIT 20");
+$limit = 20;
+$count = wp_count_posts('photo');
 
-foreach ($result as $row) {
-    $post_data = array(
-        'post_title'   => $row->Titre,
-        'post_status'  => 'publish',
-        'post_type'    => 'photo'
-    );
 
-    $post_id = wp_insert_post($post_data);
+if ($total_count < $limit) {
+    $remaining_limit = $limit - $total_count;
+    $result = $wpdb->get_results("SELECT * FROM mytable LIMIT $remaining_limit");
 
-    // Associer les données à des champs personnalisés
-    update_post_meta($post_id, 'reference', $row->Référence);
-    update_post_meta($post_id, 'annee', $row->Année);
-    update_post_meta($post_id, 'format', $row->Format);
-    update_post_meta($post_id, 'type', $row->Type);
-    update_post_meta($post_id, 'fichier', $row->Fichier);
-}
+    foreach ($result as $row) {
+        $post_data = array(
+            'post_title'   => $row->Titre,
+            'post_status'  => 'publish',
+            'post_type'    => 'photo'
+        );
+
+        $post_id = wp_insert_post($post_data);
+
+        // Associer les données à des champs personnalisés
+        update_post_meta($post_id, 'reference', $row->Référence);
+        update_post_meta($post_id, 'annee', $row->Année);
+        update_post_meta($post_id, 'format', $row->Format);
+        update_post_meta($post_id, 'type', $row->Type);
+        update_post_meta($post_id, 'fichier', $row->Fichier);
+    }
+}*/
+
+
 function register_custom_post_type() {
-
-    // Define the slug of the custom post type
+    // Define the slug of the post type
     $slug = 'custom_post_type';
 
-    // Define the labels for the custom post type
+    // Define the labels of the post type
     $labels = [
         'name' => 'Custom Post Type',
         'singular_name' => 'Custom Post Type Item',
@@ -100,69 +112,31 @@ function register_custom_post_type() {
         'not_found_in_trash' => 'No Custom Post Types found in Trash',
     ];
 
-    // Define the arguments for the custom post type
+    // Define the arguments of the post type
     $args = [
         'labels' => $labels,
         'public' => true,
         'has_archive' => true,
-        'supports' => ['title', 'editor', 'thumbnail'], // Add 'editor' here
+        'supports' => ['title', 'editor', 'thumbnail'],
     ];
 
-    // Register the custom post type
+    // Register the post type
     register_post_type($slug, $args);
+
+    // Register custom fields for the post type
+    register_post_meta($slug, 'custom_field_1', [
+        'type' => 'text', // Change the field type as needed
+        'description' => 'Custom Field 1 Description',
+        'single' => true, // Set to true if it's a single value, false if it's an array
+        'show_in_rest' => true, // This enables the field to be accessible via the REST API
+    ]);
+
+    register_post_meta($slug, 'custom_field_2', [
+        'type' => 'text',
+        'description' => 'Custom Field 2 Description',
+        'single' => true,
+        'show_in_rest' => true,
+    ]);
 }
+
 add_action('init', 'register_custom_post_type');
-function supprimer_publications_excedentaires() {
-    if (is_admin()) {
-        return;
-    }
-
-    $count = wp_count_posts('photo');
-    $total_count = $count->publish;
-    
-    if ($total_count > 20) {
-        $args = array(
-            'post_type' => 'photo',
-            'posts_per_page' => -1,
-            'fields' => 'ids',
-        );
-    
-        $photos = new WP_Query($args);
-    
-        if ($photos->have_posts()) {
-            $posts_to_delete = array_slice($photos->posts, 20);
-    
-            foreach ($posts_to_delete as $post_id) {
-                if (wp_delete_post($post_id, true)) {
-                    // La publication a été supprimée avec succès.
-                } else {
-                    // Une erreur s'est produite lors de la suppression de la publication.
-                }
-            }
-        }
-    }
-}
-$post_data = array(
-    'post_title'   => $row->Titre,
-    'post_status'  => 'publish',
-    'post_type'    => 'photo'
-);
-
-$post_id = wp_insert_post($post_data);
-
-// Associer les données à des champs personnalisés
-update_post_meta($post_id, 'reference', $row->Référence);
-update_post_meta($post_id, 'annee', $row->Année);
-update_post_meta($post_id, 'format', $row->Format);
-update_post_meta($post_id, 'type', $row->Type);
-update_post_meta($post_id, 'fichier', $row->Fichier);
-
-// Ajoutez les données CSS personnalisées à la colonne "custom_css"
-if (!empty($row->custom_css)) {
-    global $wpdb;
-    $wpdb->update(
-        'mytable', // Remplacez par le nom de votre table
-        ['custom_css' => $row->custom_css],
-        ['ID' => $post_id]
-    );
-}
