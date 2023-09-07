@@ -172,6 +172,37 @@ const loadMoreImages = () => {
     }
   };
   
-  // Listen for the click event on the load more button
-  document.querySelector('#load-more').addEventListener('click', loadMoreImages);
-  const element = document.querySelector("#btn2");
+  /// Listen for the click event on the load more button
+document.querySelector('#load-more').addEventListener('click', loadMoreImages);
+
+/*const gallery = document.querySelector('#gallery-1');
+const imageLinks = gallery.querySelectorAll('a');
+
+// Create an array to store the image elements
+const images = [];
+
+imageLinks.forEach((link) => {
+  const img = document.createElement('img');
+  img.src = link.href;
+  img.alt = `Image ${link.dataset.index + 1}`;
+  images.push(img);
+});
+
+// Create the image carousel HTML
+const carouselHTML = `
+<div id="imageCarousel">
+  ${images.map((img) => `
+    <div><img src="${img.src}" alt="${img.alt}"></div>
+  `).join('')}
+</div>
+`;
+
+// Replace the gallery with the image carousel
+gallery.innerHTML = carouselHTML;
+
+// Initialize Slick carousel
+$('#imageCarousel').slick();
+
+// Add a console.log statement
+console.log('Image carousel initialized.');*/
+

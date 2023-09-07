@@ -81,95 +81,100 @@
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/fonts/Poppins-Black.ttf");
+  src: url("/fonts/Poppins-Black.ttf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/fonts/Poppins-BlackItalic.ttf");
+  src: url("/fonts/Poppins-BlackItalic.ttf");
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/fonts/Poppins-Bold.ttf");
+  src: url("/fonts/Poppins-Bold.ttf");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/fonts/Poppins-BoldItalic.ttf");
+  src: url("/inc/fonts/Poppins-BoldItalic.ttf");
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/fonts/Poppins-ExtraBold.ttf");
+  src: url("/inc/fonts/Poppins-ExtraBold.ttf");
   font-weight: bolder;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/fonts/Poppins-ExtraBoldItalic.ttf");
+  src: url("/inc/fonts/Poppins-ExtraBoldItalic.ttf");
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/Poppins-ExtraLight.ttf");
+  src: url("/inc/Poppins-ExtraLight.ttf");
   font-weight: lighter;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/Poppins-Medium.ttf");
+  src: url("/inc/Poppins-Medium.ttf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/themes/wordplate/inc/fonts/Poppins-Regular.ttf");
+  src: url("/fonts/Poppins-Regular.ttf");
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Space mono";
-  src: url("/themes/wordplate/inc/fonts/SpaceMono-Bold.ttf");
+  src: url("/fonts/SpaceMono-Bold.ttf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Space mono";
-  src: url("/themes/wordplate/inc/fonts/SpaceMono-BoldItalic.ttf");
+  src: url("/fonts/SpaceMono-BoldItalic.ttf");
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Space mono";
-  src: url("/themes/wordplate/inc/fonts/SpaceMono-Italic.ttf");
+  src: url("/fonts/SpaceMono-Italic.ttf");
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Space mono";
-  src: url("/themes/wordplate/inc/fonts/SpaceMono-Regular.ttf");
+  src: url("/fonts/SpaceMono-Regular.ttf");
   font-weight: normal;
   font-style: normal;
 }
-
+@font-face {
+  font-family: "Poppins";
+  src: url("/fonts/Poppins-Medium.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
 html,
 body {
   margin: 0;
@@ -710,4 +715,42 @@ body
 {
   transform: none;
 }
+}
+$glass: rgba(255, 255, 255, 0.2);
+$glass-icon: rgba(255, 255, 255, 0.3);
+$gradient: linear-gradient(35deg, red, purple);
+$option: #320a28;
+
+
+/* <select> styles */
+#flex .cont-box > select {
+  /* Reset */
+  appearance: none;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  /* Personalize */
+  width: 20em;
+  height: 3em;
+  padding: 0 4em 0 1em;
+  background: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg)
+      no-repeat right 0.8em center / 1.4em,
+    linear-gradient(to left, $glass-icon 3em, $glass 3em);
+  color: white;
+  border-radius: 0.25em;
+  box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  /* <option> colors */
+  #flex .cont-box > option {
+    color: inherit;
+    background-color: $option;
+  }
+  /* Remove focus outline */
+  &:focus {
+    outline: none;
+  }
+  /* Remove IE arrow */
+  &::-ms-expand {
+    display: none;
+  }
 }

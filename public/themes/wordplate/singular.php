@@ -1,4 +1,5 @@
-<?php
+<?php 
+
 get_template_part('template_part/photo','single');
 
 
@@ -54,4 +55,5 @@ if ($custom_query->have_posts()) :
 else :
     echo 'Aucune photo trouvée avec le titre "' . esc_html($photo_title) . '".';
 endif;
+
 ?>

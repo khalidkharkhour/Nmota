@@ -129,7 +129,7 @@ function wp_enqueue_custom_fonts() {
  
   function enqueue_custom_styles() {
     // Chemin complet vers le fichier CSS
-    $css_file_path = get_theme_file_uri() . '/inc/images/style-joiner.css';
+    $css_file_path = get_theme_file_uri() . '/inc/style.css';
 
     // Enregistrez la feuille de style
     wp_enqueue_style('custom-style', $css_file_path, array(), '1.0', 'all');
@@ -163,3 +163,27 @@ function is_mobile() {
 
     return false;
 }
+function mon_shortcode() {
+    // Code PHP pour générer le contenu du shortcode
+    return "Contenu généré par le shortcode.";
+}
+add_shortcode('monshortcode', 'mon_shortcode');
+// Allow WebP file uploads
+function add_webp_support($mime_types) {
+    $mime_types['webp'] = 'image/webp';
+    return $mime_types;
+}
+add_filter('upload_mimes', 'add_webp_support');
+// Add the "Posts" section back to the admin menu
+function add_posts_to_admin_menu() {
+    add_menu_page(
+        'Posts',
+        'Posts',
+        'edit_posts',
+        'edit.php',
+        '',
+        'dashicons-admin-post', // You can change the icon
+        5
+    );
+}
+add_action('admin_menu', 'add_posts_to_admin_menu');

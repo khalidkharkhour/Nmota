@@ -107,24 +107,25 @@ foreach ($photo_links as $photo_name) {
 $filteredData = $data;
 
 $photo_links = [
-    'let-s-dance',
-    'Santé !',
-    'Et bon anniversaire !',
-    "Let's party!",
-    'Tout est installé',
-    "Vers l'éternité",
-    'Embrassez la mariée',
-    'Dansons ensemble',
-    'Le menu',
-    'Au bal masqué',
-    "Let's dance!",
-    'Jour de match',
-    'Préparation',
-    'Bière ou eau plate ?',
-    'Bouquet final',
-    'Du soir au matin',
-    'Team mariée'
+    
+    "0.webp" => "Santé !",//themes/wordplate/inc/images/0.webp
+    "1.webp" => 'Et bon anniversaire !',//themes/wordplate/inc/images/1.webp
+    "2.webp" =>  "Let's party!",//themes/wordplate/inc/images/2.webp
+    "3.webp" =>  'Tout est installé',//themes/wordplate/inc/images/3.webp
+    "4.webp" =>  "Vers l'éternité",//themes/wordplate/inc/images/4.webp
+    "5.webp" => 'Embrassez la mariée',//themes/wordplate/images/5.webp
+    "6.webp" => 'Dansons ensemble',//themes/wordplate/inc/images/6.webp
+    "7.webp" => 'Le menu',//themes/wordplate/inc/images/7.webp
+    "8.webp" => 'Au bal masqué',//themes/wordplate/inc/images/8.webp
+    "9.webp" => "Let's dance!",//themes/wordplate/inc/images/9.webp
+    "10.webp" => 'Jour de match',//themes/wordplate/inc/images/10.webp
+    "11.webp" => 'Préparation',//themes/wordplate/inc/images/11.webp
+    "12.webp" => 'Bière ou eau plate ?',//themes/wordplate/inc/images/12.webp
+    "13.webp" => 'Bouquet final',//themes/wordplate/inc/images/13.webp
+    "14.webp" => 'Du soir au matin',//themes/wordplate/inc/images/14.webp
+    "15.webp" => 'Team mariée'//themes/wordplate/inc/images/15.webp
 ];
+
 
 if ($filteredData) {
     echo '<div class="image-grid">';
@@ -133,10 +134,15 @@ if ($filteredData) {
         if ($index >= 6) { // On vérifie si l'index est supérieur ou égal à 6
             echo '<div class="image-item">';
             
-            // Utilisez sanitize_title() pour formater le nom de la photo.
-            $formatted_photo_name = sanitize_title($photo_links[$index]);
+            $photo_filename = basename($item['Fichier']); // Obtenir le nom du fichier image
             
-            $url = add_query_arg('photo', $formatted_photo_name, get_permalink($post->ID));
+            if (isset($photo_links[$photo_filename])) {
+                $photo_caption = $photo_links[$photo_filename];
+            } else {
+                $photo_caption = ''; // Aucune légende par défaut si le lien n'est pas trouvé
+            }
+            
+            $url = add_query_arg('photo', sanitize_title($photo_caption), get_permalink($post->ID));
             
             $custom_post_permalink = get_permalink($post->ID); // Définition de $custom_post_permalink
             
