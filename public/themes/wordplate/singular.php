@@ -1,3 +1,11 @@
+
+<head>
+    <script src="<?php echo esc_url(get_theme_file_uri('/inc/costum.js')); ?>" defer></script>
+
+</head>
+<html>
+<link rel="stylesheet" href="<?php echo get_theme_file_uri('/inc/style.css'); ?>">
+
 <?php 
 
 get_template_part('template_part/photo','single');

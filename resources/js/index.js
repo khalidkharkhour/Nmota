@@ -34,7 +34,7 @@ module.exports = {
     }
 }
 document.addEventListener("DOMContentLoaded", function () {
-    const menuItem = document.getElementById("menu-item-41725");
+    const menuItem = document.getElementById("menu-item-41725","CTA-instance");
     const modal = document.getElementById("myModal");
     const modalContent = modal.querySelector(".modal-content");
 
@@ -205,4 +205,3 @@ $('#imageCarousel').slick();
 
 // Add a console.log statement
 console.log('Image carousel initialized.');*/
-

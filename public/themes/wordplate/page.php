@@ -1,3 +1,4 @@
+
 <?php
 get_header(); ?>
 
@@ -22,34 +23,41 @@ if ($data) {
     $formats = array_unique(array_column($data, 'Format'));
     $années = array_unique(array_column($data, 'Année'));
 
-    echo '<form id="flex" method="post" action="">';
-    echo '<select class="cont-box" name="categorie" >';
-    echo '<option value="Catégorie">Catégorie</option>';
+    echo '<div id="flex" >';
+    echo ' <div class="custom-dropdown">';
+    echo '<select class="options" id="categorie" name:"Catégorie" >';
+    echo'<span class="selected">Catégorie</span>';
+    echo '<option class="selected" value="Catégorie">Catégorie</option>';
     
     foreach ($categories as $categorie) {
         echo '<option value="' . esc_html($categorie) . '">' . esc_html($categorie) . '</option>';
     }
     
     echo '</select>';
-
-    echo '<select class="cont-box" name="format">';
-    echo '<option value="Format">Format</option>';
+    echo'</div>';
+    echo ' <div class="custom-dropdown">';
+    echo '<select Onfocus="this.size=3"; class="options" id="format" name:"Format">';
+    echo'<span class="selected">Format</span>';
+   echo '<option class="selected" value="Format">Format</option>';
     
     foreach ($formats as $format) {
-        echo '<option value="' . esc_html($format) . '">' . esc_html($format) . '</option>';
+        echo '<option value="' . $format . '">' . $format . '</option>';
     }
     
     echo '</select>';
-
-    echo '<select class="cont-box" name="annee">';
-    echo '<option value="Année">Année</option>';
+    echo'</div>';
+     echo ' <div class="custom-dropdown">';
+    echo '<select class="options" id="annee" name:"Année">';
+    echo'<span class="selected">Année</span>';
+    echo '<option class="selected" value="Année">Année</option>';
     
     foreach ($années as $année) {
-        echo '<option id="color1" value="' . esc_html($année) . '">' . esc_html($année) . '</option>';
+        echo '<option  value="' . esc_html($année) . '">' . esc_html($année) . '</option>';
     }
     
     echo '</select>';
-    echo '</form>';
+    echo'</div>';
+    echo '</div>';
 } else {
     die('Erreur lors du chargement des données.');
 }
@@ -194,13 +202,48 @@ echo '<script>
         });
     });
 </script>';
+echo '<script>
+function remplacerSelectParListe(selectId) {
+  const select = document.getElementById(selectId);
+  const options = select.querySelectorAll("option");
+  const parentDiv = select.parentElement;
+
+  const ul = document.createElement("ul");
+  ul.className = "options";
+
+  const selected = document.createElement("span");
+  selected.textContent = options[0].textContent;
+  selected.className = "selected";
+
+  selected.addEventListener("click", () => {
+    ul.classList.toggle("open");
+  });
+
+  options.forEach((option) => {
+    const li = document.createElement("li");
+    li.textContent = option.textContent;
+    li.value = option.value;
+
+    li.addEventListener("click", () => {
+      selected.textContent = option.textContent;
+      ul.classList.remove("open");
+    });
+
+    ul.appendChild(li);
+  });
+
+  parentDiv.removeChild(select);
+  parentDiv.appendChild(selected);
+  parentDiv.appendChild(ul);
+}
+
+// Appel de la fonction pour chaque conteneur de select
+remplacerSelectParListe("categorie");
+remplacerSelectParListe("format");
+remplacerSelectParListe("annee");
 
   
-   
-  
-
-  
-
+  </script>';
 get_footer(); ?>
   
  

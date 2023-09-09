@@ -1,4 +1,6 @@
+
 <?php  
+get_template_part('contact-modale');
 $reference = get_post_meta(get_the_ID(), 'reference', true);
 $annee = get_post_meta(get_the_ID(), 'annee', true);
 $format = get_post_meta(get_the_ID(), 'format', true);
@@ -8,11 +10,13 @@ $fichier = str_replace('/inc/images', 'themes/wordplate/inc/images', $fichier); 
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" href="<?php echo get_theme_file_uri('/inc/style.css'); ?>">
-    <script src="<?php echo esc_url(get_theme_file_uri('/assets/index-b1d3d41d.js')); ?>" defer></script>
+    <script src="<?php echo esc_url(get_theme_file_uri('/inc/costum.js')); ?>" defer></script>
 
 </head>
 <html>
+<link rel="stylesheet" href="<?php echo get_theme_file_uri('/inc/style.css'); ?>">
+
+   <body>
 <div class="logoo">
     <a href="<?php echo esc_url(home_url('/')); ?>">
         <img class="logoo" src="<?php echo esc_url(get_theme_mod('logo_setting')); ?>" alt="<?php bloginfo('name'); ?> Logo">
@@ -24,6 +28,7 @@ $fichier = str_replace('/inc/images', 'themes/wordplate/inc/images', $fichier); 
 
 <nav class="menu-container">
     <?php
+ 
     $menu_args = array(
         'theme_location' => 'navigation',
         'container'      => 'ul',
@@ -64,7 +69,8 @@ $fichier = str_replace('/inc/images', 'themes/wordplate/inc/images', $fichier); 
 
 <div class="CTA CTA-instance " >
     
-    <div class="charger-plus CTA-2">Contact</div>
+    <div class="charger-plus " id="
+    ">Contact</div>
     
 </div>
 
@@ -80,3 +86,40 @@ $fichier = str_replace('/inc/images', 'themes/wordplate/inc/images', $fichier); 
 </div>
 </div>
 <?php get_footer();?>
+
+  
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title " data-text="TACTCONTACT" id="myModalLabel"> </h5>
+      </div>
+      <div class="modal-body " >
+      <form action="/themes/worpalte/template_part/traitement_formulaire.php" method="post">
+          <div class="form-group">
+            <label for="name">Nom</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom">
+          </div>
+          <div class="form-group">
+            <label for="email"> E-mail</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Votre adresse e-mail">
+          </div>
+          <div class="form-group">
+            <label for="text"> Réf photo</label>
+            <input type="hidden" id="generated_ref" name="generated_ref">
+            <input type="text" class="form-control" id="email" name="email" placeholder="Réf">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        
+        <button type="submit" class="btn btn-primary">Envoyer</button>
+      </div>
+    </div>
+  </div>
+</div>

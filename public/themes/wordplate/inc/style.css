@@ -208,13 +208,13 @@
   position: relative;
 }
 
-.index .footer-desktop-instance {
+.footer-desktop-instance {
   position: absolute !important;
   top: 1899px !important;
   left: 0 !important;
 }
 
-.index .frame {
+.frame {
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
@@ -224,7 +224,7 @@
   left: 144px;
 }
 
-.index .team-mari-e {
+.team-mari-e {
   color: #000;
   font-family: var(--h2-desktop-font-family);
   font-size: var(--h2-desktop-font-size);
@@ -237,7 +237,7 @@
   position: relative;
 }
 
-.index .text-wrapper {
+.text-wrapper {
   color: #000;
   font-family: var(--description-photo-desktop-font-family);
   font-size: var(--description-photo-desktop-font-size);
@@ -250,7 +250,7 @@
   position: relative;
 }
 
-.index .vous-aimerez-AUSSI {
+.vous-aimerez-AUSSI {
   color: #000;
   font-family: var(--h3-desktop-font-family);
   font-size: var(--h3-desktop-font-size);
@@ -264,7 +264,7 @@
   left: 145px;
 }
 
-.index .div {
+.div {
   color: #000;
   font-family: var(--p-font-family);
   font-size: var(--p-font-size);
@@ -279,7 +279,7 @@
   left: 145px;
 }
 
-.index .img {
+.img {
   object-fit: cover;
   width: 564px;
   height: 1px;
@@ -288,7 +288,7 @@
   left: 146px;
 }
 
-.index .line-2 {
+.line-2 {
   object-fit: cover;
   width: 1148px;
   height: 1px;
@@ -297,7 +297,7 @@
   left: 146px;
 }
 
-.index .nathalie-jpeg {
+.nathalie-jpeg {
   object-fit: cover;
   width: 563px;
   height: 844px;
@@ -306,7 +306,7 @@
   left: 731px;
 }
 
-.index .CTA-instance {
+.CTA-instance {
   width: 272px !important;
   height: 50px !important;
   display: flex !important;
@@ -315,11 +315,11 @@
   left: 438px !important;
 }
 
-.index .CTA-2 {
+#CTA-2 {
   margin-top: unset !important;
 }
 
-.index .CTA-3 {
+.CTA-3 {
   width: 272px !important;
   height: 50px !important;
   display: flex !important;
@@ -328,7 +328,7 @@
   left: 584px !important;
 }
 
-.index .card-photo {
+.card-photo {
   background-image: url("https://anima-uploads.s3.amazonaws.com/projects/63eb64c02e370d1798fe97e7/releases/64df017d18733b734262d811/img/nathalie-4-jpeg.png");
   background-position: 50%;
   background-size: cover;
@@ -339,7 +339,7 @@
   left: 144px;
 }
 
-.index .card-photo-2 {
+.card-photo-2 {
   background-image: url("https://anima-uploads.s3.amazonaws.com/projects/63eb64c02e370d1798fe97e7/releases/64df017d18733b734262d811/img/nathalie-5-jpeg.png");
   background-position: 50%;
   background-size: cover;

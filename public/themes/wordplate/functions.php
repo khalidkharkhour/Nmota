@@ -38,17 +38,19 @@ add_action('wp_enqueue_scripts', function () {
             wp_enqueue_style('wordplate', get_theme_file_uri('assets/' . $cssFile), [], null);
         }
     }
-    
+
+   
 });
 
 // Load scripts as modules.
 add_filter('script_loader_tag', function (string $tag, string $handle, string $src) {
     if (in_array($handle, ['vite', 'wordplate'])) {
         return '<script type="module" src="' . esc_url($src) . '" defer></script>';
+    } else {
+        return $tag; // Laissez les autres scripts tels quels
     }
-
-    return $tag;
 }, 10, 3);
+
 
 // Remove admin menu items.
 add_action('admin_init', function () {
