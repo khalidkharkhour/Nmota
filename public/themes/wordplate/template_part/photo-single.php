@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mota</title>
+  <link rel="stylesheet" href="<?php echo get_theme_file_uri('/inc/style.css'); ?>">
+  <script src="<?php echo esc_url(get_theme_file_uri('/inc/costum.js')); ?>" defer></script>
+</head>
 
 <?php  
 get_template_part('contact-modale');
@@ -7,16 +17,9 @@ $format = get_post_meta(get_the_ID(), 'format', true);
 $type = get_post_meta(get_the_ID(), 'type', true);
 $fichier = get_post_meta(get_the_ID(), 'fichier', true);
 $fichier = str_replace('/inc/images', 'themes/wordplate/inc/images', $fichier);      ?>
-<!DOCTYPE html>
 
-<head>
-    <script src="<?php echo esc_url(get_theme_file_uri('/inc/costum.js')); ?>" defer></script>
 
-</head>
-<html>
-<link rel="stylesheet" href="<?php echo get_theme_file_uri('/inc/style.css'); ?>">
 
-   <body>
 <div class="logoo">
     <a href="<?php echo esc_url(home_url('/')); ?>">
         <img class="logoo" src="<?php echo esc_url(get_theme_mod('logo_setting')); ?>" alt="<?php bloginfo('name'); ?> Logo">
@@ -55,24 +58,22 @@ $fichier = str_replace('/inc/images', 'themes/wordplate/inc/images', $fichier); 
             <div class="text-wrapper">TYPE : <?php echo esc_html($type); ?></div>
             <div class="text-wrapper">ANNÉE : <?php echo esc_html($annee); ?></div>
         </div>
-<div class="vous-aimerez-AUSSI">VOUS AIMEREZ AUSSI</div>
+        <div class="vous-aimerez-AUSSI">VOUS AIMEREZ AUSSI</div>
 
-<p class="div">Cette photo vous intéresse ?</p> <img class="line-2" alt="Line" src="https://anima-uploads.s3.amazonaws.com/projects/63eb64c02e370d1798fe97e7/releases/64df43628ee8453fffe9bfb1/img/line-4.svg">
-<div class="galler galler-item ">
-<?php echo do_shortcode('[gallery ids="41778,41777"]');?>
-<button  class="prev galler-icon " onclick="scrollGallery(-1)"></button>
-<button    class="next galler-icon" onclick="scrollGallery(1)"></button>
+<p class="div">Cette photo vous intéresse ?</p>
+<img class="line-2" alt="Line" src="https://anima-uploads.s3.amazonaws.com/projects/63eb64c02e370d1798fe97e7/releases/64df43628ee8453fffe9bfb1/img/line-4.svg">
+<div class="galler galler-item" id="#gallery-1">
+    <?php echo do_shortcode('[gallery ids="41778,41777,41776,41775,41774,41769,41771,41773"][gallery ids="41762,41761"]'); ?>
+    <span class="prev galler-icon"></span>
+    <span class="next galler-icon"></span>
 
-
-<?php echo '<img src="' . $fichier . '" class="nathalie-jpeg">'; ?>
+    <?php echo '<img src="' . $fichier . '" class="nathalie-jpeg">'; ?>
 </div>
 
-<div class="CTA CTA-instance " >
-    
-    <div class="charger-plus " id="
-    ">Contact</div>
-    
+<div class="CTA CTA-instance">
+    <div class="charger-plus" id="">Contact</div>
 </div>
+
 
 <div class="CTA CTA-3">
 
@@ -88,38 +89,3 @@ $fichier = str_replace('/inc/images', 'themes/wordplate/inc/images', $fichier); 
 <?php get_footer();?>
 
   
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none;">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title " data-text="TACTCONTACT" id="myModalLabel"> </h5>
-      </div>
-      <div class="modal-body " >
-      <form action="/themes/worpalte/template_part/traitement_formulaire.php" method="post">
-          <div class="form-group">
-            <label for="name">Nom</label>
-            <input type="text" class="form-control" id="name" name="name" placeholder="Votre nom">
-          </div>
-          <div class="form-group">
-            <label for="email"> E-mail</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Votre adresse e-mail">
-          </div>
-          <div class="form-group">
-            <label for="text"> Réf photo</label>
-            <input type="hidden" id="generated_ref" name="generated_ref">
-            <input type="text" class="form-control" id="email" name="email" placeholder="Réf">
-          </div>
-          <div class="form-group">
-            <label for="message">Message</label>
-            <textarea class="form-control" id="message" name="message" rows="3"></textarea>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        
-        <button type="submit" class="btn btn-primary">Envoyer</button>
-      </div>
-    </div>
-  </div>
-</div>

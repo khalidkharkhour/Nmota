@@ -1,10 +1,14 @@
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <script src="<?php echo esc_url(get_theme_file_uri('/inc/costum.js')); ?>" defer></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mota </title>
+  <link rel="stylesheet" href="<?php echo get_theme_file_uri('/inc/style.css'); ?>">
 </head>
-<html>
-<link rel="stylesheet" href="<?php echo get_theme_file_uri('/inc/style.css'); ?>">
+
+<script src="<?php echo esc_url(get_theme_file_uri('/inc/costum.js')); ?>" defer></script>
+<body>
 
 <?php 
 

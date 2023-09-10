@@ -26,7 +26,7 @@ if ($data) {
     echo '<div id="flex" >';
     echo ' <div class="custom-dropdown">';
     echo '<select class="options" id="categorie" name:"Catégorie" >';
-    echo'<span class="selected">Catégorie</span>';
+    echo'<span class="">Catégorie</span>';
     echo '<option class="selected" value="Catégorie">Catégorie</option>';
     
     foreach ($categories as $categorie) {
@@ -36,28 +36,28 @@ if ($data) {
     echo '</select>';
     echo'</div>';
     echo ' <div class="custom-dropdown">';
-    echo '<select Onfocus="this.size=3"; class="options" id="format" name:"Format">';
-    echo'<span class="selected">Format</span>';
+    echo '<select  class="options" id="format" name:"Format">';
+    echo'<span class="">Format</span>';
    echo '<option class="selected" value="Format">Format</option>';
-    
-    foreach ($formats as $format) {
-        echo '<option value="' . $format . '">' . $format . '</option>';
-    }
-    
-    echo '</select>';
-    echo'</div>';
-     echo ' <div class="custom-dropdown">';
-    echo '<select class="options" id="annee" name:"Année">';
-    echo'<span class="selected">Année</span>';
-    echo '<option class="selected" value="Année">Année</option>';
-    
-    foreach ($années as $année) {
-        echo '<option  value="' . esc_html($année) . '">' . esc_html($année) . '</option>';
-    }
-    
-    echo '</select>';
-    echo'</div>';
-    echo '</div>';
+   foreach ($formats as $format) {
+    echo '<option value="' . $format . '">' . $format . '</option>';
+}
+
+echo '</select>';
+echo '</div>';
+echo ' <div class="custom-dropdown">';
+echo '<select class="options" id="annee" name="Année">';
+echo '<span class="">Année</span>';
+echo '<option value="Année">Année</option>'; // Remove the class="options" from here
+
+foreach ($années as $année) {
+    echo '<option value="' . esc_html($année) . '">' . esc_html($année) . '</option>';
+}
+
+echo '</select>';
+echo '</div>';
+echo '</div>';
+
 } else {
     die('Erreur lors du chargement des données.');
 }
@@ -202,7 +202,7 @@ echo '<script>
         });
     });
 </script>';
-echo '<script>
+/*echo '<script>
 function remplacerSelectParListe(selectId) {
   const select = document.getElementById(selectId);
   const options = select.querySelectorAll("option");
@@ -243,7 +243,7 @@ remplacerSelectParListe("format");
 remplacerSelectParListe("annee");
 
   
-  </script>';
+  </script>';*/
 get_footer(); ?>
   
  

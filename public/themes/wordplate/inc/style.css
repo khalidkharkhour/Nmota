@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css");
 @import url("https://fonts.googleapis.com/css?family=Space+Mono:400,700&display=swap");
@@ -423,4 +424,36 @@ a {
   object-fit: contain;
   background-size: 49%;
   height: 6em;
+}
+
+.prev {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-right: 40px solid var(--black); /* Remplacez "your_color_here" par la couleur que vous souhaitez pour la flèche */
+  position: relative;
+}
+
+.next {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 40px solid var(--black); /* Remplacez "your_color_here" par la couleur que vous souhaitez pour la flèche */
+  position: relative;
+}
+
+.prev {
+  /* Vos autres propriétés CSS */
+  position: absolute;
+  left: 58%;
+  top: 52%;
+}
+
+.next {
+  /* Vos autres propriétés CSS */
+  position: absolute;
+  left: 76.8%;
+  top: 52%;
 }

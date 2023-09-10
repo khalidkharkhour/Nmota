@@ -2,7 +2,11 @@ import '../css/index.scss';
 import 'https://code.jquery.com/jquery-3.6.0.min.js'
 import 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js'
 import { formToJSON } from 'axios';
-import jQuery from 'jquery';
+import  'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js';
+//import  'https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js';
+//import 'https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css';
+
+
 // Créer l'élément <h1> avec le texte "PHOTOGRAPHE EVENT"
 const h1Element = document.createElement("h1");
 h1Element.textContent = "PHOTOGRAPHE EVENT";
@@ -121,20 +125,19 @@ $(document).ready(function() {
     });
 });
 
-$(document).ready(function() {
-    $('.cont-box').on('change', function() {
-        const selectedImageIndex = $(this).find('option:selected').index();
-        console.log("Selected image index:", selectedImageIndex);
+const dropdown = document.querySelector('.custom-dropdown');
 
-        /*$("select option#btn2").css("color", "black"); // Appliquer le style ici
-        $(this).find("option:selected").css("color", "rgba(224, 0, 0, 1)");*/
-        const imageLinks = $('.image-link');
+dropdown.addEventListener('change', function() {
+  const selectedImageIndex = this.querySelector('li:selected').index;
+  console.log('Selected image index:', selectedImageIndex);
 
-        if (selectedImageIndex >= 0 && selectedImageIndex < imageLinks.length) {
-            imageLinks.eq(selectedImageIndex).trigger('click');
-        }
-    });
+  const imageLinks = document.querySelectorAll('.image-link');
+
+  if (selectedImageIndex >= 0 && selectedImageIndex < imageLinks.length) {
+    imageLinks[selectedImageIndex].click();
+  }
 });
+
 const loadMoreImages = () => {
     // Get the array of images from the window object
     const filteredData = window.filteredData;
@@ -205,3 +208,64 @@ $('#imageCarousel').slick();
 
 // Add a console.log statement
 console.log('Image carousel initialized.');*/
+function remplacerSelectParListe(selectId) {
+    const select = document.getElementById(selectId);
+    const options = select.querySelectorAll("option");
+    const parentDiv = select.parentElement;
+  
+    const ul = document.createElement("ul");
+    ul.className = "options";
+  
+    const selected = document.createElement("span");
+    selected.textContent = options[0].textContent;
+    selected.className = "selected";
+  
+    selected.addEventListener("click", () => {
+      ul.classList.toggle("open");
+      ul.style.transform = ul.classList.contains("open") ? "translateY(0)" : "translateY(-100%)"; // Adjust the transform value for opening and closing
+    });
+  
+    options.forEach((option) => {
+      const li = document.createElement("li");
+      li.textContent = option.textContent;
+      li.value = option.value;
+  
+      li.addEventListener("click", () => {
+        selected.textContent = option.textContent;
+        ul.classList.remove("open");
+        ul.style.transform = "translateY(-100%)"; // Close the dropdown after selecting an option
+      });
+  
+      ul.appendChild(li);
+    });
+  
+    parentDiv.removeChild(select);
+    parentDiv.appendChild(selected);
+    parentDiv.appendChild(ul);
+  }
+  
+  // Appel de la fonction pour chaque conteneur de select
+  remplacerSelectParListe("categorie");
+  remplacerSelectParListe("format");
+  remplacerSelectParListe("annee");
+  document.addEventListener("DOMContentLoaded", function () {
+    // Ouvrir/fermer le menu au clic sur .selected
+    const selected = document.querySelector(".selected");
+    const menu = document.querySelector(".custom-dropdown");
+  
+    selected.addEventListener("click", function () {
+      menu.classList.toggle("open");
+    });
+  
+    // Gérer la sélection d'une option
+    const options = document.querySelectorAll(".options li");
+  
+    options.forEach(function (option) {
+      option.addEventListener("click", function () {
+        const selectedOption = option.textContent;
+        selected.textContent = selectedOption;
+        menu.classList.remove("open"); // Fermez le menu après la sélection
+      });
+    });
+  });
+  
