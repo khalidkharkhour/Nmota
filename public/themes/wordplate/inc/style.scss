@@ -283,8 +283,10 @@ a {
   cursor: pointer;
   color: var(--bluesgray-2);
   margin-right: 20rem; 
-  bottom: 2rem; 
+  bottom:0rem; 
   position: absolute;
+  right: -1em;
+
   
 }
 
@@ -293,7 +295,8 @@ a {
   cursor: pointer;
   position: absolute;
   color: var(--bluesgray-2);
-  bottom: 2rem; 
+  bottom: O; 
+  right: 7em;
    }
 
 #gallery-1 img {
@@ -301,7 +304,9 @@ a {
   object-fit: contain;
   background-size: 49%;
   height: 6em;
-  margin-right: 10rem;
+ position: absolute;
+ right: 10em;
+ bottom:2em;
 }
 .card-photo {
   background-image:  url("/themes/wordplate/inc/images/4.webp");

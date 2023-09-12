@@ -60,6 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.style.display = "block";
     });
 
-    // Reste de votre code...
+    
 });
 

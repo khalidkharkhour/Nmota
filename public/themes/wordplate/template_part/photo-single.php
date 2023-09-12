@@ -34,19 +34,19 @@
         <article class="frame">
             <div class="flex">
                 <h1 class="team-mari-e">TEAM MARIÉE</h1>
-
-
-                <p class="text-wrapper">RÉFÉRENCE :<?php echo esc_html($reference); ?></p>
-
-                <p class="text-wrapper">CATÉGORIE :<?php echo esc_html($type); ?></p>
-
-                <p class="text-wrapper">FORMAT :<?php echo esc_html($format); ?></p>
-
-                <p class="text-wrapper">TYPE :<?php echo esc_html($type); ?></p>
-
-                <p class="text-wrapper">ANNÉE :<?php echo esc_html($annee); ?></p>
-
-
+                
+                   
+                        <p class="text-wrapper">RÉFÉRENCE :<?php echo esc_html($reference); ?></p>
+                
+                        <p class="text-wrapper">CATÉGORIE :<?php echo esc_html($type); ?></p>
+                   
+                        <p class="text-wrapper">FORMAT :<?php echo esc_html($format); ?></p>
+                    
+                        <p class="text-wrapper">TYPE :<?php echo esc_html($type); ?></p>
+                  
+                        <p class="text-wrapper">ANNÉE :<?php echo esc_html($annee); ?></p>
+                  
+        
                 <span class="line text-wrapper"></span>
             </div>
             <div class="image-wrapper">
