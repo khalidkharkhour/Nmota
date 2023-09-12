@@ -25,7 +25,7 @@ if ($data) {
 
     echo '<div id="flex" >';
     echo ' <div class="custom-dropdown">';
-    echo '<select class="options" id="categorie" name:"Catégorie" >';
+    echo '<select  class="options" id="categorie" name:"Catégorie" >';
     echo'<span class="">Catégorie</span>';
     echo '<option class="selected" value="Catégorie">Catégorie</option>';
     
@@ -38,17 +38,29 @@ if ($data) {
     echo ' <div class="custom-dropdown">';
     echo '<select  class="options" id="format" name:"Format">';
     echo'<span class="">Format</span>';
-   echo '<option class="selected" value="Format">Format</option>';
+   echo '<option value="Format" class="selected" value="Format">Format</option>';
    foreach ($formats as $format) {
-    echo '<option value="' . $format . '">' . $format . '</option>';
+    echo '<option value="' . esc_html($format) . '">' . esc_html($format) . '</option>';
 }
-
+foreach ($categories as $categorie) {
+    echo '<option value="' . esc_html($categorie) . '">' . esc_html($categorie) . '</option>';
+}
+/*
+echo '</select>';
+echo'</div>';
+echo ' <div class="custom-dropdown">';
+echo '<select  class="options" id="format" name:"Format">';
+echo'<span class="">Format</span>';
+echo '<option value="Format" class="selected" value="Format">Format</option>';
+foreach ($formats as $format) {
+echo '<option value="' . esc_html($format) . '">' . esc_html($format) . '</option>';
+}*/
 echo '</select>';
 echo '</div>';
 echo ' <div class="custom-dropdown">';
 echo '<select class="options" id="annee" name="Année">';
 echo '<span class="">Année</span>';
-echo '<option value="Année">Année</option>'; // Remove the class="options" from here
+echo '<option value="Année">Année</option>'; 
 
 foreach ($années as $année) {
     echo '<option value="' . esc_html($année) . '">' . esc_html($année) . '</option>';

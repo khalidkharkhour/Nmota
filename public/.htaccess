@@ -6,5 +6,7 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule . /index.php [L]
+    RewriteCond %{QUERY_STRING} ^page_id=41724$
+    RewriteRule ^(.*)$ - [F]
 </IfModule>
 # END WordPress

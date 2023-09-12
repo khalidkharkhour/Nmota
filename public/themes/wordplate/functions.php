@@ -189,3 +189,34 @@ function add_posts_to_admin_menu() {
     );
 }
 add_action('admin_menu', 'add_posts_to_admin_menu');
+// Dans le fichier functions.php de votre thème
+add_action('admin_post_traitement_formulaire', 'traitement_formulaire');
+add_action('admin_post_nopriv_traitement_formulaire', 'traitement_formulaire');
+
+function traitement_formulaire() {
+    global $wpdb;
+
+    // Récupérer les données du formulaire
+    $name = sanitize_text_field($_POST["name"]);
+    $email = sanitize_email($_POST["email"]);
+    $ref_photo = sanitize_text_field($_POST["generated_ref"]);
+    $message = sanitize_textarea_field($_POST["message"]);
+
+    // Vous pouvez maintenant traiter les données, par exemple, enregistrer dans une base de données.
+    
+    // Exemple : Insérer les données dans une table personnalisée (mytable)
+    $wpdb->insert(
+        'mytable',
+        array(
+            'Nom' => $name,
+            'Email' => $email,
+            'Réf Photo' => $ref_photo,
+            'Message' => $message
+        ),
+        array('%s', '%s', '%s', '%s')
+    );
+
+    // Redirigez l'utilisateur vers une page de confirmation ou une autre URL
+    wp_redirect('http://localhost:8000/');
+    exit;
+}

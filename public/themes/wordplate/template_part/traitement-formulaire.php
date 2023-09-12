@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Redirigez l'utilisateur vers une page de confirmation
     header("Location:/themes/worpalte/page.php"); 
-    
+
     exit;
     echo "Le formulaire a été soumis avec succès !";
 }

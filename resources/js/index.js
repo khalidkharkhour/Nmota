@@ -2,10 +2,7 @@ import '../css/index.scss';
 import 'https://code.jquery.com/jquery-3.6.0.min.js'
 import 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js'
 import { formToJSON } from 'axios';
-import  'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js';
-//import  'https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js';
-//import 'https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css';
-
+//import 'select2';
 
 // Créer l'élément <h1> avec le texte "PHOTOGRAPHE EVENT"
 const h1Element = document.createElement("h1");
@@ -125,10 +122,11 @@ $(document).ready(function() {
     });
 });
 
-const dropdown = document.querySelector('.custom-dropdown');
+/*const dropdown = document.querySelector('.custom-dropdown');
+const options = document.querySelectorAll('.options li');
 
 dropdown.addEventListener('change', function() {
-  const selectedImageIndex = this.querySelector('li:selected').index;
+  const selectedImageIndex = this.selectedIndex;
   console.log('Selected image index:', selectedImageIndex);
 
   const imageLinks = document.querySelectorAll('.image-link');
@@ -136,7 +134,28 @@ dropdown.addEventListener('change', function() {
   if (selectedImageIndex >= 0 && selectedImageIndex < imageLinks.length) {
     imageLinks[selectedImageIndex].click();
   }
+
+  // Fermer le menu déroulant
+  dropdown.classList.remove('open');
 });
+
+options.forEach(option => {
+  option.addEventListener('mouseenter', () => {
+    dropdown.classList.add('open');
+  });
+
+  option.addEventListener('mouseleave', () => {
+    dropdown.classList.remove('open');
+  });
+
+  option.addEventListener('click', () => {
+    // Fermer le menu déroulant
+    dropdown.classList.remove('open');
+  });
+});*/
+
+
+
 
 const loadMoreImages = () => {
     // Get the array of images from the window object
@@ -208,7 +227,7 @@ $('#imageCarousel').slick();
 
 // Add a console.log statement
 console.log('Image carousel initialized.');*/
-function remplacerSelectParListe(selectId) {
+/*function remplacerSelectParListe(selectId) {
     const select = document.getElementById(selectId);
     const options = select.querySelectorAll("option");
     const parentDiv = select.parentElement;
@@ -267,5 +286,49 @@ function remplacerSelectParListe(selectId) {
         menu.classList.remove("open"); // Fermez le menu après la sélection
       });
     });
-  });
+  });*/
   
+    // Sélectionnez les éléments <select> par leurs ID et ajoutez des écouteurs d'événements JavaScript
+    const categorieSelect = document.getElementById('categorie');
+    const formatSelect = document.getElementById('format');
+    const anneeSelect = document.getElementById('annee');
+    
+    categorieSelect.addEventListener('focus', function () {
+        this.size = 3;
+    });
+    
+    categorieSelect.addEventListener('blur', function () {
+        this.size = 1;
+    });
+    
+    categorieSelect.addEventListener('change', function () {
+        this.size = 1;
+        this.blur();
+    });
+    
+    formatSelect.addEventListener('focus', function () {
+        this.size = 3;
+    });
+    
+    formatSelect.addEventListener('blur', function () {
+        this.size = 1;
+    });
+    
+    formatSelect.addEventListener('change', function () {
+        this.size = 1;
+        this.blur();
+    });
+    
+    anneeSelect.addEventListener('focus', function () {
+        this.size = 3;
+    });
+    
+    anneeSelect.addEventListener('blur', function () {
+        this.size = 1;
+    });
+    
+    anneeSelect.addEventListener('change', function () {
+        this.size = 1;
+        this.blur();
+    });
+   
