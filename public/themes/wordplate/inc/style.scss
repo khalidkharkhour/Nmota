@@ -142,6 +142,7 @@ a {
   align-items: flex-start;
   gap: 5px;
   display: inline-flex;
+  height: auto;
 }
 #single-photo-page {
   .hero {
@@ -155,7 +156,7 @@ a {
   flex-direction: row;
   align-items: center;
   gap: 2rem;
-
+  height: auto;
 }
 
 .nathalie-jpeg {
@@ -192,7 +193,7 @@ a {
   font-style: var(--description-photo-desktop-font-style);
   font-weight: var(--description-photo-desktop-font-weight);
   letter-spacing: var(--description-photo-desktop-letter-spacing);
-  // line-height: var(--description-photo-desktop-line-height);
+  line-height: var( --h1-desktop-line-height);
   width: -moz-fit-content;
   width: fit-content;
   text-align: left;
@@ -211,6 +212,7 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 40px;
+  height: auto;
 }
 #flex-cont1 {
   display: flex;
@@ -221,6 +223,7 @@ a {
   right: 10rem;
   bottom: 5rem;
   padding-top: 97px;
+  height: auto;
 }
 .div {
   color: #000;
@@ -370,4 +373,214 @@ a {
   height: 27px;
   position: relative;
   right: 30%;
+}
+.menu-container {
+  /* Your existing styles for menu-container */
+}
+
+/* Add media query for screens with a width less than 920px */
+
+  @media screen and (max-width: 920px) {
+   
+    
+    .frame,
+    #flex-cont2,
+    #flex-cont1,
+    #flex-cont,
+    .images-container ,article , section{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%; 
+      background-color: var(--white);
+      padding: 20px; 
+    }
+    #flex-cont1 ,.div , .charger-plus, #contact{
+      margin:0;
+      margin-top: 5em;
+    
+      
+    }
+    #flex-cont2{
+      height: max-content;
+    }
+    .vous-aimerez-AUSSI {
+      margin-left: 6em;
+    }
+    body {
+     
+    }
+  
+  
+    .image-wrapper img {
+      max-width: 100%; 
+      height: auto;
+      position: relative;
+    right: 2em;
+      
+    }
+  
+  
+  .line, .line2{
+    display:none
+  }
+
+  
+
+a {
+  color: #000;
+}
+
+.header {
+  background-color: #fff;
+  box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, .1);
+  position: fixed;
+  width: 100%;
+  z-index: 3;}
+ 
+
+
+.header ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: hidden;
+  background-color: #fff;
+  display: flex; /* Utilisation de flexbox pour centrer le contenu */
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+  height: 100%; /* Remplir la hauteur de l'en-tête */
+  @if (".menu-btn:checked ") {
+    color: var(--white); 
+    background-color: var(--rouge);// Changez la couleur du texte lorsque le menu est ouvert
+  }
+  }
+
+.header li a {
+  display: block;
+  padding: 20px 20px;
+  border-right: 1px solid #f4f4f4;
+  text-decoration: none;
+  color: #000;
+  @if (".menu-btn:checked ") {
+    color: var(--white); 
+    
+  }
+  }
+ 
+.header li a:hover,
+.header .menu-btn:hover {
+  background-color: #f4f4f4;
+}
+.header .logo {
+  display: block;
+  float: left;
+  font-size: 2em;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+
+/* menu */
+
+.header .menu {
+  clear: both;
+  max-height: 0;
+  transition: max-height .2s ease-out;
+}
+
+/* menu icon */
+
+.header .menu-icon {
+  cursor: pointer;
+  float: right;
+ padding: 28px 20px;
+  position: relative;
+  user-select: none;
+  background-color: transparent;
+}
+
+.header .menu-icon .navicon {
+  background: #333;
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 18px;
+}
+
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+  background: #333;
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+
+.header .menu-icon .navicon:before {
+  top: 5px;
+}
+
+.header .menu-icon .navicon:after {
+  top: -5px;
+}
+
+/* menu btn */
+
+.header .menu-btn {
+  display: none;
+}
+
+.header .menu-btn:checked ~ .menu {
+  max-height: max-content;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon {
+  background: transparent;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:after {
+  transform: rotate(45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
+.header li {
+  float: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0; /* Supprimez la marge */
+  padding: 0; /* Supprimez le padding */
+}
+
+.header li a {
+  border-right: none;
+  margin-top: -23ppx; /* Réduisez la marge supérieure pour rapprocher les éléments */
+  padding: 10px 20px; /* Ajustez le padding pour plus d'espace entre le texte et les bords */
+}
+
+.header .menu {
+  height: 400px;
+  overflow: auto;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrage vertical des éléments */
+  margin: 0;
+  padding: 0;
+}
+
 }

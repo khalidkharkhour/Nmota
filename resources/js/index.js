@@ -122,80 +122,57 @@ $(document).ready(function() {
     });
 });
 
-/*const dropdown = document.querySelector('.custom-dropdown');
-const options = document.querySelectorAll('.options li');
-
-dropdown.addEventListener('change', function() {
-  const selectedImageIndex = this.selectedIndex;
-  console.log('Selected image index:', selectedImageIndex);
-
-  const imageLinks = document.querySelectorAll('.image-link');
-
-  if (selectedImageIndex >= 0 && selectedImageIndex < imageLinks.length) {
-    imageLinks[selectedImageIndex].click();
-  }
-
-  // Fermer le menu déroulant
-  dropdown.classList.remove('open');
-});
-
-options.forEach(option => {
-  option.addEventListener('mouseenter', () => {
-    dropdown.classList.add('open');
-  });
-
-  option.addEventListener('mouseleave', () => {
-    dropdown.classList.remove('open');
-  });
-
-  option.addEventListener('click', () => {
-    // Fermer le menu déroulant
-    dropdown.classList.remove('open');
-  });
-});*/
-
-
-
-
 const loadMoreImages = () => {
-    // Get the array of images from the window object
-    const filteredData = window.filteredData;
-  
-    // If there are more images to load
-    if (filteredData.length) {
+  // Get the array of images from the window object
+  const filteredData = window.filteredData;
+
+  // If there are more images to load
+  if (filteredData.length) {
       // Create a new array to store the images HTML
       const imagesHTML = [];
-  
+
       // Loop through the array of images
       for (const image of filteredData) {
-        // Generate the full URL for the image
-        const imageUrl = `${window.location.origin}${image.Fichier}`;
-  
-        // Replace the old image path with the new one
-        const adjustedImageUrl = imageUrl.replace('/inc/images/', '/themes/wordplate/inc/images/');
-  
-        // Generate HTML for the image and add it to the array
-        imagesHTML.push(`
-          <div class="image-item">
-            <a class="image-link" data-fancybox="images" href="${adjustedImageUrl}" data-caption="${image.Titre}">
-              <img src="${adjustedImageUrl}" alt="${image.Titre}">
-            </a>
-          </div>
-        `);
+          // Generate the full URL for the image
+          const imageUrl = `${window.location.origin}${image.Fichier}`;
+
+          // Replace the old image path with the new one
+          const adjustedImageUrl = imageUrl.replace('/inc/images/', '/themes/wordplate/inc/images/');
+
+          // Generate HTML for the image and add it to the array
+          imagesHTML.push(`
+              <div class="image-item">
+                  <a class="image-link" data-fancybox="images" href="${adjustedImageUrl}" data-caption="${image.Titre}">
+                      <img src="${adjustedImageUrl}" alt="${image.Titre}">
+                  </a>
+              </div>
+          `);
       }
-  
+
       // Append the new HTML to the image grid
       const imageGrid = document.querySelector('.image-grid');
       imageGrid.innerHTML += imagesHTML.join('');
-  
+
       // Hide the load more button if needed
       const loadMoreButton = document.querySelector('#load-more');
       loadMoreButton.style.display = 'none';
-    }
-  };
-  
-  /// Listen for the click event on the load more button
+
+      // Display the return button
+      const returnButton = document.querySelector('#return-button');
+      returnButton.style.display = 'block';
+  }
+};
+
+// Listen for the click event on the load more button
 document.querySelector('#load-more').addEventListener('click', loadMoreImages);
+
+// Listen for the click event on the return button
+document.querySelector('#return-button').addEventListener('click', () => {
+  
+   window.location.href = 'http://localhost:8000/';
+  
+});
+
 
 /*const gallery = document.querySelector('#gallery-1');
 const imageLinks = gallery.querySelectorAll('a');
@@ -331,4 +308,18 @@ console.log('Image carousel initialized.');*/
         this.size = 1;
         this.blur();
     });
-   
+    $(document).ready(function () {
+      $('.custom-dropdown').on('change', function () {
+ 
+          const selectedImageIndex = $(this).find('option:selected').index();
+          console.log("Selected image index:", selectedImageIndex);
+  
+          /*$("select option#btn2").css("color", "black"); // Appliquer le style ici
+          $(this).find("option:selected").css("color", "rgba(224, 0, 0, 1)");*/
+          const imageLinks = $('.image-link');
+  
+          if (selectedImageIndex >= 0 && selectedImageIndex < imageLinks.length) {
+              imageLinks.eq(selectedImageIndex).trigger('click');
+          }
+      });
+  });

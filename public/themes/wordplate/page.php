@@ -185,16 +185,24 @@ $pageNumber = intval(get_query_var('page'));
 
 $itemsPerPage = 6;
 $totalPages = ceil(count($filteredData) / $itemsPerPage);
+
 if ($pageNumber < $totalPages) {
     echo '<div class="cont-btn1">';
     echo '<button class="btn1" id="load-more">Charger plus</button>';
+    echo '<button class="btn1" id="return-button" style="display: none;">Retour</button>';
     echo '</div>';
 } elseif ($pageNumber === $totalPages && $totalPages > 1) {
-    echo '<button class="btn1" id="load-more">Retour</button>';
+    echo '<button class="btn1" id="load-more" style="display: none;">Charger plus</button>';
+    echo '<button class="btn1" id="return-button">Retour</button>';
+} elseif ($pageNumber === 16) { // Condition spécifique pour $pageNumber égal à 16
+    echo '<button class="btn1" id="return-button" ">Retour</button>';
 } else {
-    // Si $pageNumber est égal à 1
-    echo '<button class="btn1" id="load-more">Retour</button>';
+    // Si $pageNumber est égal à 1 ou une autre valeur non spécifiée
+    echo '<button class="btn1"  id="load-more">Retour</button>';
 }
+
+
+
 
 // Calculate the starting index for the next set of items
 $startIndex = ($pageNumber - 1) * $itemsPerPage;
