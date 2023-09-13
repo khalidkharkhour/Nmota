@@ -220,3 +220,12 @@ function traitement_formulaire() {
     wp_redirect('http://localhost:8000/');
     exit;
 }
+function get_attachment_id_from_file_uri($file_uri) {
+    // Convertissez le chemin du fichier en chemin absolu sur le serveur
+    $file_path = str_replace(get_theme_file_uri(), ABSPATH, $file_uri);
+    
+    // Obtenez l'ID de l'attachement d'image en fonction du chemin du fichier
+    $attachment_id = attachment_url_to_postid($file_path);
+    
+    return $attachment_id;
+}

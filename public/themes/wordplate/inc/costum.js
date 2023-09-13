@@ -63,3 +63,8 @@ document.addEventListener("DOMContentLoaded", function () {
     
 });
 
+const largeurFenetre = window.innerWidth;
+const hauteurFenetre = window.innerHeight;
+
+console.log("Largeur de la fenêtre : " + largeurFenetre + "px");
+console.log("Hauteur de la fenêtre : " + hauteurFenetre + "px");

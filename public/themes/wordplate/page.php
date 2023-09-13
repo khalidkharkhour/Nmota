@@ -42,19 +42,8 @@ if ($data) {
    foreach ($formats as $format) {
     echo '<option value="' . esc_html($format) . '">' . esc_html($format) . '</option>';
 }
-foreach ($categories as $categorie) {
-    echo '<option value="' . esc_html($categorie) . '">' . esc_html($categorie) . '</option>';
-}
-/*
-echo '</select>';
-echo'</div>';
-echo ' <div class="custom-dropdown">';
-echo '<select  class="options" id="format" name:"Format">';
-echo'<span class="">Format</span>';
-echo '<option value="Format" class="selected" value="Format">Format</option>';
-foreach ($formats as $format) {
-echo '<option value="' . esc_html($format) . '">' . esc_html($format) . '</option>';
-}*/
+
+
 echo '</select>';
 echo '</div>';
 echo ' <div class="custom-dropdown">';
@@ -73,18 +62,18 @@ echo '</div>';
 } else {
     die('Erreur lors du chargement des données.');
 }
-// Récupérer l'URL actuelle
+// Récupération l'URL actuelle
 $current_url = esc_url($_SERVER['REQUEST_URI']);
 
-// Divisez l'URL en segments en utilisant "/"
+// Division l'URL en segments en utilisant "/"
 $url_segments = explode('/', $current_url);
 
 // Le dernier segment de l'URL contient l'ID du post personnalisé
 $custom_post_id = end($url_segments);
 
-// Assurez-vous que l'ID est un nombre
+// l'ID est un nombre
 if (is_numeric($custom_post_id)) {
-    // Convertissez-le en entier
+    //  en entier
     $custom_post_id = intval($custom_post_id);
 }
 $page = get_post_meta($post->ID, 'singular_name', true);
@@ -92,37 +81,6 @@ $page = get_post_meta($post->ID, 'singular_name', true);
 if (empty($page)) {
     $page = '';
 }
-
-/*$photo_links = [
-    'let-s-dance-3',
-    'Santé !',
-    'Et bon anniversaire !',
-    "Let's party!",
-    'Tout est installé',
-    "Vers l'éternité",
-    'Embrassez la mariée',
-    'Dansons ensemble',
-    'Le menu',
-    'Au bal masqué',
-    "Let's dance!",
-    'Jour de match',
-    'Préparation',
-    'Bière ou eau plate ?',
-    'Bouquet final',
-    'Du soir au matin',
-    'Team mariée'
-];
-
-foreach ($photo_links as $photo_name) {
-    // Utilisez sanitize_title() pour formater le nom de la photo.
-    $formatted_photo_name = sanitize_title($photo_name);
-    
-    $url = add_query_arg('photo', $formatted_photo_name, get_permalink($post->ID));
-    echo '<a href="' . esc_url($url) . '">' . esc_html($photo_name) . '</a><br>';
-}*/
-
-
-
 
 $filteredData = $data;
 
@@ -222,48 +180,6 @@ echo '<script>
         });
     });
 </script>';
-/*echo '<script>
-function remplacerSelectParListe(selectId) {
-  const select = document.getElementById(selectId);
-  const options = select.querySelectorAll("option");
-  const parentDiv = select.parentElement;
-
-  const ul = document.createElement("ul");
-  ul.className = "options";
-
-  const selected = document.createElement("span");
-  selected.textContent = options[0].textContent;
-  selected.className = "selected";
-
-  selected.addEventListener("click", () => {
-    ul.classList.toggle("open");
-  });
-
-  options.forEach((option) => {
-    const li = document.createElement("li");
-    li.textContent = option.textContent;
-    li.value = option.value;
-
-    li.addEventListener("click", () => {
-      selected.textContent = option.textContent;
-      ul.classList.remove("open");
-    });
-
-    ul.appendChild(li);
-  });
-
-  parentDiv.removeChild(select);
-  parentDiv.appendChild(selected);
-  parentDiv.appendChild(ul);
-}
-
-// Appel de la fonction pour chaque conteneur de select
-remplacerSelectParListe("categorie");
-remplacerSelectParListe("format");
-remplacerSelectParListe("annee");
-
-  
-  </script>';*/
 get_footer(); ?>
   
  

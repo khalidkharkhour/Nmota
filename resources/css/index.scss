@@ -255,13 +255,23 @@ a {
   margin-left: 7%;
 }
 
+.element img {
+  image-rendering: -webkit-optimize-contrast; // Pour les navigateurs basés sur WebKit (comme Chrome et Safari)
+  image-rendering: crisp-edges; // Pour les navigateurs compatibles
+}
+
 .hero {
   position: relative ;
-  background: url("../inc/images/nathalie-11.jpeg") center/cover no-repeat ;
+  background: url("../inc/images/nathalie-11.webp") center/cover no-repeat ;
   color: white ;
   text-align: center ;
   padding: 400px 0 ;
   width: 100% ;
+  transition: background-color 0.3s ease-in-out;
+  filter: contrast(1.2) brightness(1.2) saturate(1.2) blur(0px);
+}
+img {
+  filter: contrast(1.2) brightness(1.2) saturate(1.2) blur(0px) !important;
 }
 
 .hero-content {
@@ -570,8 +580,7 @@ $colors: var(--rouge), var(--rouge-secondaire), var(--rouge-tertiaire), var(--ro
 
 
 .selected:hover + .options option:hover {
-  background-color: var(--white); // Changez la couleur au survol
- // transform: translateY(10px); // Déplacez l'élément vers le bas (ajustez la valeur selon vos besoins)
+  background-color: var(--white); 
 }
 
 
@@ -579,8 +588,6 @@ $colors: var(--rouge), var(--rouge-secondaire), var(--rouge-tertiaire), var(--ro
 .selected + .options {
   display: flex;
   flex-direction: column;
- // transform: translateY(300px); // Initial state, no translation
-  //transition: transform 15s; // Ajoutez une transition pour le déplacement
 }
 
 .selected {
@@ -649,9 +656,6 @@ $colors: var(--rouge), var(--rouge-secondaire), var(--rouge-tertiaire), var(--ro
   margin-right: 21em;
 }
 
-/* Styles pour la navigation mobile */
-/* Styles pour les écrans de moins de 920px de large */
-/* Styles pour les écrans de moins de 920px de large */
 @media screen and (max-width: 920px) {
   body {
     margin: 0;

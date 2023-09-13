@@ -1,17 +1,16 @@
 {
-    "name": "wordplate",
-    "version": "1.0.0",
-    "description": "Wordplate",
-    "scripts": {
-        "compile:scss": "sass style.scss style.css --no-source-map --update --style expanded",
-        "watch:scss": "sass style.scss:style.css --no-source-map --watch --style expanded"
-      },
-      
-    "devDependencies": {
-      "node-sass": "^9.0.0",
-      "sass": "^1.49.0"
-    },
-    "dependencies": {
-      
-    }
-  }
+  "name": "wordplate",
+  "version": "1.0.0",
+  "description": "Wordplate",
+  "scripts": {
+    "compile:scss": "sass style.scss style.css --no-source-map --update --style expanded && postcss style.css --use cssnano -o style.min.css",
+    "watch:scss": "sass style.scss:style.css --no-source-map --watch --style expanded"
+  },
+  "devDependencies": {
+    "node-sass": "^9.0.0",
+    "sass": "^1.49.0",
+    "postcss": "^8.4.5",
+    "cssnano": "^5.0.7"
+  },
+  "dependencies": {}
+}

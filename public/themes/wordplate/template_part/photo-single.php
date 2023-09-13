@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mota</title>
-    <link rel="stylesheet" href="<?php echo get_theme_file_uri('/inc/style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo get_theme_file_uri('/inc/style.min.css'); ?>">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<?php echo esc_url(get_theme_file_uri('/inc/costum.js')); ?>" defer></script>
 </head>
