@@ -311,7 +311,7 @@ right: 5rem;
  bottom:2em;
    width: 100wv;
   &:hover {
-    transform: scale(5.5);
+    transform: scale(2.2);
     cursor: pointer;
   }
 }
@@ -601,5 +601,43 @@ ul {
   margin: 0;
   padding: 0;
 }
-
+#flex-cont1  > :nth-child(2) {
+  position: relative;
+  right: 3rem;
+  width: 200px;
+  height: 50px;
 }
+#flex-cont1  > :nth-child(1) {
+  position: relative;
+  right: 3rem;
+ top: -2rem;
+  padding: 2%;
+}
+#flex-cont1 {
+  width: fit-content;
+  height: auto;
+}
+#gallery-1 img{
+  bottom: -1em;
+  right: -1em;
+  position: absolute;
+  top: 2em;
+}
+.next {
+ 
+  position: absolute;
+  left: 0em;
+    bottom: -3em;
+}
+.prev{
+  position: absolute;
+  right: -8em;
+  bottom: -3em;
+}
+.vous-aimerez-AUSSI{
+  position: relative;
+  right: 7%;
+  margin: 10%;
+  top:4%;
+}
+  }

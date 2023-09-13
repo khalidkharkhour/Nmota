@@ -113,7 +113,10 @@ if ($filteredData) {
             echo '<div class="image-item">';
             
             $photo_filename = basename($item['Fichier']); // Obtenir le nom du fichier image
-            
+            $image_src = wp_attachment_image_src($attachment_id);
+            $attachment_id = attachment_url_to_postid($item['Fichier']); 
+            $url = esc_url(get_theme_file_uri($item['Fichier']));
+
             if (isset($photo_links[$photo_filename])) {
                 $photo_caption = $photo_links[$photo_filename];
             } else {
