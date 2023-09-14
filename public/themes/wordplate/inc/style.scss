@@ -317,25 +317,21 @@ right: 5rem;
 #gallery-1 .gallery-item{
 
 }
-.card-photo {
-  background-image:  url("/themes/wordplate/inc/images/4.webp");
+.card-photo, .card-photo-2 {
   background-position: 50% 50%;
   background-size: cover;
   width: 32rem;
   height: 31rem;
   object-fit: contain;
-  
 }
 
-.card-photo-2 {
-  background-image:  url("/themes/wordplate/inc/images/5.webp");
-  background-position: 50% 50%;
-  background-size: cover;
-  width: 32rem;
-  height: 31rem;
-  object-fit: contain;
-  
+@for $i from 1 through 2 {
+  .card-photo-#{$i} {
+    background-image:  url("/themes/wordplate/inc/images/#{$i + 3}.webp");
+  }
 }
+
+
 .CTA-2{
   display: flex;
   justify-content: center;

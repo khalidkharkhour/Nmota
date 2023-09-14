@@ -258,3 +258,31 @@ add_action('wp_ajax_nopriv_load_more', 'my_ajax_load_more');*/
     wp_localize_script('your-theme-script', 'themeData', $localized_data);
 }
 add_action('wp_enqueue_scripts', 'localize_data_for_js');*/
+/*function get_category_background_image($category) {
+    // Define an array mapping categories to background images
+    $category_backgrounds = array(
+        'Category1' => '/themes/wordplate/inc/images/0.webp',
+        'Category2' => '/inc/images/1.webp',
+        'Category1' => '/inc/images/2.webp',
+        'Category2' => '/inc/images/3.webp',
+        'Category1' => '/inc/images/4.webp',
+        'Category2' => '/inc/images/5.webp',
+        'Category1' => '/inc/images/6.webp',
+        'Category2' => '/inc/images/7.webp',
+        'Category1' => '/inc/images/8.webp',
+        'Category2' => '/inc/images/9.webp',
+        'Category1' => '/inc/images/10.webp',
+        'Category2' => '/inc/images/11.webp',
+        'Category1' => '/inc/images/12.webp',
+        'Category2' => '/inc/images/13.webp',
+        'Category1' => '/inc/images/14.webp',
+        'Category2' => '/inc/images/15.webp',
+    );
+
+    // Check if the category exists in the array, otherwise use a default image
+    if (array_key_exists($category, $category_backgrounds)) {
+        return $category_backgrounds[$category];
+    } else {
+        return 'http://localhost:8000/themes/wordplate/inc/images/defult.webp'; // Default image URL
+    }
+}*/

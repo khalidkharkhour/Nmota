@@ -19,11 +19,38 @@
     </header>
 
     <?php
+    
+    $categories = [
+     
+    "0.webp" => "Réception",
+    "1.webp" =>"Réception ",
+    "2.webp" => "Télévision",
+    "3.webp" => "Concert",
+    "4.webp" =>  "Concert",
+    "5.webp" =>   "Mariage",
+    "6.webp" => "Mariage",
+    "7.webp" => "Mariage",
+    "8.webp" => "Concert",
+    "9.webp" => "Mariage",
+    "10.webp" => "Mariage",
+    "11.webp" => "Mariage",
+    "12.webp" => "Mariage",
+    "13.webp" => "Mariage",
+    "14.webp" => "Concert",
+    "15.webp" =>  "Mariage"
+    ];
+    
+
+
+
+
+
     $reference = get_post_meta(get_the_ID(), 'reference', true);
     $annee = get_post_meta(get_the_ID(), 'annee', true);
     $format = get_post_meta(get_the_ID(), 'format', true);
     $type = get_post_meta(get_the_ID(), 'type', true);
     $fichier = get_post_meta(get_the_ID(), 'fichier', true);
+
     $fichier = str_replace('/inc/images', 'themes/wordplate/inc/images', $fichier);
     ?>
 
@@ -38,7 +65,9 @@
                    
                         <p class="text-wrapper">RÉFÉRENCE :<?php echo esc_html($reference); ?></p>
                 
-                        <p class="text-wrapper">CATÉGORIE :<?php echo esc_html($type); ?></p>
+                        <p class="text-wrapper">CATÉGORIE : <?php echo isset($categories[basename($fichier)]) ? $categories[basename($fichier)] : 'Catégorie inconnue'; ?></p>
+
+
                    
                         <p class="text-wrapper">FORMAT :<?php echo esc_html($format); ?></p>
                     

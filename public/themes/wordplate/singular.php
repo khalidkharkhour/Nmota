@@ -45,6 +45,7 @@ $custom_query = new WP_Query($args);
 if ($custom_query->have_posts()) :
     while ($custom_query->have_posts()) : $custom_query->the_post();
         // Récupérer les informations nécessaires
+        $categorie = get_post_meta(get_the_ID(), 'categorie', true);
         $reference = get_post_meta(get_the_ID(), 'reference', true);
         $annee = get_post_meta(get_the_ID(), 'annee', true);
         $format = get_post_meta(get_the_ID(), 'format', true);
