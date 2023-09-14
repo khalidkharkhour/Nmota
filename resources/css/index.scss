@@ -651,11 +651,14 @@ $colors: var(--rouge), var(--rouge-secondaire), var(--rouge-tertiaire), var(--ro
 
 }
 
-.fancybox-caption__body>p {
+.fancybox-caption__body> p {
   display: inline-block;
   margin-right: 21em;
 }
-
+.caption__body{
+  word-spacing: 15em; 
+  padding-left: 19em;
+}
 @media screen and (max-width: 920px) {
   body {
     margin: 0;

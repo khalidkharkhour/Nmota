@@ -123,56 +123,82 @@ $(document).ready(function() {
 });
 
 const loadMoreImages = () => {
-  // Get the array of images from the window object
-  const filteredData = window.filteredData;
-
-  // If there are more images to load
-  if (filteredData.length) {
-      // Create a new array to store the images HTML
-      const imagesHTML = [];
-
-      // Loop through the array of images
-      for (const image of filteredData) {
-          // Generate the full URL for the image
-          const imageUrl = `${window.location.origin}${image.Fichier}`;
-
-          // Replace the old image path with the new one
-          const adjustedImageUrl = imageUrl.replace('/inc/images/', '/themes/wordplate/inc/images/');
-
-          // Generate HTML for the image and add it to the array
-          imagesHTML.push(`
-              <div class="image-item">
-                  <a class="image-link" data-fancybox="images" href="${adjustedImageUrl}" data-caption="${image.Titre}">
-                      <img src="${adjustedImageUrl}" alt="${image.Titre}">
-                  </a>
-              </div>
-          `);
-      }
-
-      // Append the new HTML to the image grid
-      const imageGrid = document.querySelector('.image-grid');
-      imageGrid.innerHTML += imagesHTML.join('');
-
-      // Hide the load more button if needed
-      const loadMoreButton = document.querySelector('#load-more');
-      loadMoreButton.style.display = 'none';
-
-      // Display the return button
-      const returnButton = document.querySelector('#return-button');
-      returnButton.style.display = 'block';
-  }
+    // Get the array of images from the window object
+    const filteredData = window.filteredData;
+  
+    // If there are more images to load
+    if (filteredData.length) {
+        // Create a new array to store the images HTML
+        const imagesHTML = [];
+  
+        // Loop through the array of images
+        for (const image of filteredData) {
+            // Generate the full URL for the image
+            const imageUrl = `${window.location.origin}${image.Fichier}`;
+  
+            // Replace the old image path with the new one
+            const adjustedImageUrl = imageUrl.replace('/inc/images/', '/themes/wordplate/inc/images/');
+  
+          // Create a mapping of image titles to image keys
+// Créez une correspondance entre les titres d'image et les clés d'image
+const photoLinks = {
+     "Santé !":"0.webp",//themes/wordplate/inc/images/0.webp
+      'Et bon anniversaire !':"1.webp",//themes/wordplate/inc/images/1.webp
+      "Let's party!":"2.webp",//themes/wordplate/inc/images/2.webp
+      'Tout est installé':"3.webp",//themes/wordplate/inc/images/3.webp
+      "Vers l'éternité":"4.webp",//themes/wordplate/inc/images/4.webp
+      'Embrassez la mariée':"5.webp",//themes/wordplate/images/5.webp
+      'Dansons ensemble':"6.webp",//themes/wordplate/inc/images/6.webp
+     'Le menu':"7.webp",//themes/wordplate/inc/images/7.webp
+      'Au bal masqué':"8.webp",//themes/wordplate/inc/images/8.webp
+    "let-s-dance!":"9.webp",//themes/wordplate/inc/images/9.webp
+    "Jour de match": "10.webp",
+    "Préparation": "11.webp",
+    "Bière ou eau plate ?": "12.webp",
+    "Bouquet final": "13.webp",
+    "Du soir au matin": "14.webp",
+    "Team mariée": "15.webp",
 };
 
-// Listen for the click event on the load more button
-document.querySelector('#load-more').addEventListener('click', loadMoreImages);
+const imageReference = image['Référence'];
+const imageCategory = image['Catégorie'];
+const imageTitle = image['Titre']; // Utilisez le titre de l'image comme titre de la page
 
-// Listen for the click event on the return button
-document.querySelector('#return-button').addEventListener('click', () => {
-  
-   window.location.href = 'http://localhost:8000/';
-  
-});
+imagesHTML.push(`
+    <div class="image-item">
+        <a class="image-link" data-fancybox="images" href="${adjustedImageUrl}" data-caption="<a class='fa fa-eye' href='/?photo=${encodeURIComponent(imageTitle)}'><p>${imageReference}</p><p>${imageCategory}</p>">
+            <img src="${adjustedImageUrl}" alt="${imageReference}">
+        </a>
+    </div>
+`);
 
+        
+        }
+  
+        // Append the new HTML to the image grid
+        const imageGrid = document.querySelector('.image-grid');
+        imageGrid.innerHTML += imagesHTML.join('');
+  
+        // Hide the load more button if needed
+        const loadMoreButton = document.querySelector('#load-more');
+        loadMoreButton.style.display = 'none';
+  
+        // Display the return button
+        const returnButton = document.querySelector('#return-button');
+        returnButton.style.display = 'block';
+    }
+  };
+  
+  // Listen for the click event on the load more button
+  document.querySelector('#load-more').addEventListener('click', loadMoreImages);
+  
+  // Listen for the click event on the return button
+  document.querySelector('#return-button').addEventListener('click', () => {
+    
+     window.location.href = 'http://localhost:8000/';
+    
+  });
+  
 
 /*const gallery = document.querySelector('#gallery-1');
 const imageLinks = gallery.querySelectorAll('a');

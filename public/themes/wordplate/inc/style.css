@@ -157,8 +157,8 @@ a {
 
 .nathalie-jpeg {
   object-fit: contain;
-  width: 35.1875rem;
-  height: 52.75rem;
+  width: 35.1875rem !important;
+  height: 52.75rem !important;
   margin-top: 10%;
 }
 

@@ -229,3 +229,32 @@ function wp_attachment_image_src($attachment_id, $size = 'thumbnail', $icon = fa
 
     return false;
 }
+/*function my_ajax_load_more() {
+    global $pageNumber, $itemsPerPage, $filteredData;
+
+    $startIndex = ($pageNumber - 1) * $itemsPerPage;
+
+    // Get the next six items from the array
+    $nextItems = array_slice($filteredData, $startIndex, $itemsPerPage);
+
+    // Echo the JSON encoded array
+    echo json_encode($nextItems);
+
+    exit;
+}
+
+add_action('wp_ajax_load_more', 'my_ajax_load_more');
+add_action('wp_ajax_nopriv_load_more', 'my_ajax_load_more');*/
+/*function localize_data_for_js() {
+    global $wpdb;
+    $query = "SELECT * FROM mytable LIMIT 20";
+    $data = $wpdb->get_results($query, ARRAY_A);
+
+    // Transférez les données vers JavaScript sous forme d'objet
+    $localized_data = array(
+        'images' => $data, // Les données de votre requête SQL
+    );
+
+    wp_localize_script('your-theme-script', 'themeData', $localized_data);
+}
+add_action('wp_enqueue_scripts', 'localize_data_for_js');*/

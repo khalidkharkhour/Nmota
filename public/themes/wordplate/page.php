@@ -95,7 +95,7 @@ $photo_links = [
     "6.webp" => 'Dansons ensemble',//themes/wordplate/inc/images/6.webp
     "7.webp" => 'Le menu',//themes/wordplate/inc/images/7.webp
     "8.webp" => 'Au bal masqué',//themes/wordplate/inc/images/8.webp
-    "9.webp" => "Let's dance!",//themes/wordplate/inc/images/9.webp
+    "9.webp" => "let-s-dance",//themes/wordplate/inc/images/9.webp
     "10.webp" => 'Jour de match',//themes/wordplate/inc/images/10.webp
     "11.webp" => 'Préparation',//themes/wordplate/inc/images/11.webp
     "12.webp" => 'Bière ou eau plate ?',//themes/wordplate/inc/images/12.webp
@@ -150,19 +150,18 @@ $totalPages = ceil(count($filteredData) / $itemsPerPage);
 if ($pageNumber < $totalPages) {
     echo '<div class="cont-btn1">';
     echo '<button class="btn1" id="load-more">Charger plus</button>';
+    
     echo '<button class="btn1" id="return-button" style="display: none;">Retour</button>';
     echo '</div>';
 } elseif ($pageNumber === $totalPages && $totalPages > 1) {
     echo '<button class="btn1" id="load-more" style="display: none;">Charger plus</button>';
+   // echo '<a" data-fancybox="images" data-caption="<a href=' . esc_url($url) . '><i class=\'fa fa-eye\' aria-hidden=\'true\' data-toggle=\'details\' data-index=\'' . $index . '\'></i></a><p>' . $item['Catégorie'] . '</p><a href=' . esc_url($custom_post_permalink) . '>' . $item['Référence'] . '</a>">';
     echo '<button class="btn1" id="return-button">Retour</button>';
-} elseif ($pageNumber === 16) { // Condition spécifique pour $pageNumber égal à 16
-    echo '<button class="btn1" id="return-button" ">Retour</button>';
+} elseif ($pageNumber === 16) {
+    echo '<button class="btn1" id="return-button">Retour</button>';
 } else {
-    // Si $pageNumber est égal à 1 ou une autre valeur non spécifiée
-    echo '<button class="btn1"  id="load-more">Retour</button>';
+    echo '<button class="btn1" id="load-more">Retour</button>';
 }
-
-
 
 
 // Calculate the starting index for the next set of items
