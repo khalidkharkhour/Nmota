@@ -308,7 +308,8 @@ a {
   cursor: pointer;
 }
 
-.card-photo, .card-photo-2 {
+.card-photo.card-photo-0.webp {
+  background-image: url("/themes/wordplate/inc/images/0.webp");
   background-position: 50% 50%;
   background-size: cover;
   width: 32rem;
@@ -316,12 +317,139 @@ a {
   object-fit: contain;
 }
 
-.card-photo-1 {
-  background-image: url("/themes/wordplate/inc/images/4.webp");
+.card-photo.card-photo-1.webp {
+  background-image: url("/themes/wordplate/inc/images/1.webp");
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32rem;
+  height: 31rem;
+  object-fit: contain;
 }
 
-.card-photo-2 {
+.card-photo.card-photo-2.webp {
+  background-image: url("/themes/wordplate/inc/images/2.webp");
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32rem;
+  height: 31rem;
+  object-fit: contain;
+}
+
+.card-photo.card-photo-3.webp {
+  background-image: url("/themes/wordplate/inc/images/3.webp");
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32rem;
+  height: 31rem;
+  object-fit: contain;
+}
+
+.card-photo.card-photo-4.webp {
+  background-image: url("/themes/wordplate/inc/images/4.webp");
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32rem;
+  height: 31rem;
+  object-fit: contain;
+}
+
+.card-photo.card-photo-5.webp {
   background-image: url("/themes/wordplate/inc/images/5.webp");
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32rem;
+  height: 31rem;
+  object-fit: contain;
+}
+
+.card-photo.card-photo-6.webp {
+  background-image: url("/themes/wordplate/inc/images/6.webp");
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32rem;
+  height: 31rem;
+  object-fit: contain;
+}
+
+.card-photo.card-photo-7.webp {
+  background-image: url("/themes/wordplate/inc/images/7.webp");
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32rem;
+  height: 31rem;
+  object-fit: contain;
+}
+
+.card-photo.card-photo-8.webp {
+  background-image: url("/themes/wordplate/inc/images/8.webp");
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32rem;
+  height: 31rem;
+  object-fit: contain;
+}
+
+.card-photo.card-photo-9.webp {
+  background-image: url("/themes/wordplate/inc/images/9.webp");
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32rem;
+  height: 31rem;
+  object-fit: contain;
+}
+
+.card-photo.card-photo-10.webp {
+  background-image: url("/themes/wordplate/inc/images/10.webp");
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32rem;
+  height: 31rem;
+  object-fit: contain;
+}
+
+.card-photo.card-photo-11.webp {
+  background-image: url("/themes/wordplate/inc/images/11.webp");
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32rem;
+  height: 31rem;
+  object-fit: contain;
+}
+
+.card-photo.card-photo-12.webp {
+  background-image: url("/themes/wordplate/inc/images/12.webp");
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32rem;
+  height: 31rem;
+  object-fit: contain;
+}
+
+.card-photo.card-photo-13.webp {
+  background-image: url("/themes/wordplate/inc/images/13.webp");
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32rem;
+  height: 31rem;
+  object-fit: contain;
+}
+
+.card-photo.card-photo-14.webp {
+  background-image: url("/themes/wordplate/inc/images/14.webp");
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32rem;
+  height: 31rem;
+  object-fit: contain;
+}
+
+.card-photo.card-photo-15.webp {
+  background-image: url("/themes/wordplate/inc/images/15.webp");
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 32rem;
+  height: 31rem;
+  object-fit: contain;
 }
 
 .CTA-2 {

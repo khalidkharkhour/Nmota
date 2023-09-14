@@ -317,20 +317,37 @@ right: 5rem;
 #gallery-1 .gallery-item{
 
 }
-.card-photo, .card-photo-2 {
-  background-position: 50% 50%;
-  background-size: cover;
-  width: 32rem;
-  height: 31rem;
-  object-fit: contain;
-}
+// Define your categories
+$categories: (
+    "0.webp",
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "5.webp",
+    "6.webp",
+    "7.webp",
+    "8.webp",
+    "9.webp",
+    "10.webp",
+    "11.webp",
+    "12.webp",
+    "13.webp",
+    "14.webp",
+    "15.webp"
+);
 
-@for $i from 1 through 2 {
-  .card-photo-#{$i} {
-    background-image:  url("/themes/wordplate/inc/images/#{$i + 3}.webp");
+// Generate CSS for .card-photo and .card-photo-2
+@each $image-name in $categories {
+  .card-photo.card-photo-#{$image-name} {
+    background-image: url("/themes/wordplate/inc/images/#{$image-name}");
+    background-position: 50% 50%;
+    background-size: cover;
+    width: 32rem;
+    height: 31rem;
+    object-fit: contain;
   }
 }
-
 
 .CTA-2{
   display: flex;

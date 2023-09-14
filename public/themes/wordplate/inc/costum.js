@@ -68,3 +68,50 @@ const hauteurFenetre = window.innerHeight;
 
 console.log("Largeur de la fenêtre : " + largeurFenetre + "px");
 console.log("Hauteur de la fenêtre : " + hauteurFenetre + "px");
+
+const categories = [
+    "0.webp",
+    "1.webp",
+    "2.webp",
+    "3.webp",
+    "4.webp",
+    "5.webp",
+    "6.webp",
+    "7.webp",
+    "8.webp",
+    "9.webp",
+    "10.webp",
+    "11.webp",
+    "12.webp",
+    "13.webp",
+    "14.webp",
+    "15.webp"
+];
+
+// Function to generate and add CSS rules dynamically
+function addCssRules() {
+    const head = document.head || document.getElementsByTagName('head')[0];
+    const style = document.createElement('style');
+    style.type = 'text/css';
+
+    let css = '';
+    categories.forEach((image, index) => {
+        css += `
+            .card-photo.card-photo-${index} {
+                background-image: url("/themes/wordplate/inc/images/${image}");
+                background-position: 50% 50%;
+                background-size: cover;
+                width: 32rem;
+                height: 31rem;
+                object-fit: contain;
+            }
+        `;
+    });
+
+    style.appendChild(document.createTextNode(css));
+    head.appendChild(style);
+}
+
+// Call the function to add CSS rules when the document is ready
+document.addEventListener('DOMContentLoaded', addCssRules);
+

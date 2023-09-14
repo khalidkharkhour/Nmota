@@ -108,8 +108,8 @@
         <picture id="flex-cont2">
             <h3 class="vous-aimerez-AUSSI">VOUS AIMEREZ AUSSI</h3>
             <div class="images-container">
-                <div class="card-photo"></div>
-                <div class="card-photo-2"></div>
+            <div class="card-photo card-photo-0"></div>
+<div class="card-photo card-photo-1"></div>
             </div>
             <div>
                 <a href="http://localhost:8000/#images-1" class="CTA-2">Toutes les photos</a>
