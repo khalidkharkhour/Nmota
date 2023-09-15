@@ -59,6 +59,5 @@
             </header>
         <?php endif; ?>
     </header>
-<body>
 
-
+    <body>

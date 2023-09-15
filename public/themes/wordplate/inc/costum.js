@@ -89,6 +89,18 @@ const categories = [
 ];
 
 // Function to generate and add CSS rules dynamically
+// Fonction pour mélanger un tableau aléatoirement
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+// Mélanger le tableau categories
+shuffleArray(categories);
+
+// La fonction pour générer et ajouter les règles CSS dynamiquement reste la même
 function addCssRules() {
     const head = document.head || document.getElementsByTagName('head')[0];
     const style = document.createElement('style');
@@ -112,6 +124,5 @@ function addCssRules() {
     head.appendChild(style);
 }
 
-// Call the function to add CSS rules when the document is ready
+// Appeler la fonction pour ajouter les règles CSS lorsque le document est prêt
 document.addEventListener('DOMContentLoaded', addCssRules);
-

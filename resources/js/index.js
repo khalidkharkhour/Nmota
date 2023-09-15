@@ -167,7 +167,7 @@ const imageTitle = image['Titre']; // Utilisez le titre de l'image comme titre d
 imagesHTML.push(`
     <div class="image-item">
         <a class="image-link" data-fancybox="images" href="${adjustedImageUrl}" data-caption="<a class='fa fa-eye' href='/?photo=${encodeURIComponent(imageTitle)}'><p>${imageReference}</p><p>${imageCategory}</p>">
-            <img src="${adjustedImageUrl}" alt="${imageReference}">
+            <img src="${adjustedImageUrl}" alt="${imageReference}"class="nathalie-jpeg">
         </a>
     </div>
 `);
