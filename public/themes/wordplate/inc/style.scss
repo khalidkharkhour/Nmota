@@ -283,7 +283,7 @@ a {
 
 .charger-plus:hover,
 #contact:hover {
-  background-color: var(--bluesblue-cta);
+  background-color: #000000;
 }
 
 .gallery-wrapper {
@@ -347,7 +347,7 @@ a {
 }
 
 .CTA-2:hover {
-  background-color: var(--bluesblue-cta);
+  background-color: #000000;
 }
 
 #flex-cont2 {
@@ -390,10 +390,10 @@ a {
   right: 30%;
 }
 
-.menu-container {
-  /* Your existing styles for menu-container */
+p {
+  font-size: small;
+  font-family: var(--p-font-family);
 }
-
 /* Add media query for screens with a width less than 920px */
 
 @media screen and (max-width: 920px) {

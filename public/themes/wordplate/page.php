@@ -9,37 +9,57 @@ if ($data) {
     $categories = array_unique(array_column($data, 'Catégorie'));
     $formats = array_unique(array_column($data, 'Format'));
     $années = array_unique(array_column($data, 'Année'));
-    echo '<div id="flex" >';
-    echo ' <div class="custom-dropdown">';
-    echo '<select  class="options" id="categorie" name:"Catégorie" >';
-    echo '<span class="">Catégorie</span>';
-    echo '<option class="selected" value="Catégorie">Catégorie</option>';
-    foreach ($categories as $categorie) {
-        echo '<option value="' . esc_html($categorie) . '">' . esc_html($categorie) . '</option>';
+    // In your theme's functions.php or a custom file (e.g., custom-config.php)
+class MyCustomConfig {
+    public static function getPDO() {
+        // Your custom PDO configuration here
+        $pdo = new PDO('mysql:host=localhost;dbname=mott', 'khar', 'nbvcxw');
+        return $pdo;
     }
-    echo '</select>';
-    echo '</div>';
-    echo ' <div class="custom-dropdown">';
-    echo '<select  class="options" id="format" name:"Format">';
-    echo '<span class="">Format</span>';
-    echo '<option value="Format" class="selected" value="Format">Format</option>';
-    foreach ($formats as $format) {
-        echo '<option value="' . esc_html($format) . '">' . esc_html($format) . '</option>';
-    }
+}
 
-    echo '</select>';
-    echo '</div>';
-    echo ' <div class="custom-dropdown">';
-    echo '<select class="options" id="annee" name="Année">';
-    echo '<span class="">Année</span>';
-    echo '<option value="Année">Année</option>';
+    require "../vendor/autoload.php";
+    try {
+        $pdo = MyCustomConfig::getPDO();
+        $images = $pdo->query("SELECT Fichier, Titre, Référence, Catégorie, Année, Format, Type, custom_css FROM mytable");
 
-    foreach ($années as $année) {
-        echo '<option value="' . esc_html($année) . '">' . esc_html($année) . '</option>';
+    
+       
+    
+    } catch (PDOException $e) {
+        echo "PDO Exception: " . $e->getMessage();
     }
-    echo '</select>';
-    echo '</div>';
-    echo '</div>';
+    
+
+    echo '<div id="flex">';
+echo ' <div class="custom-dropdown">';
+echo '<select class="options" id="categorie" name="Catégorie">';
+echo '<span class="">Catégorie</span>';
+echo '<option class="selected" value="Catégorie">Catégorie</option>';
+foreach ($categories as $categorie) {
+    echo '<option value="' . esc_html($categorie) . '">' . esc_html($categorie) . '</option>';
+}
+echo '</select>';
+echo '</div>';
+echo ' <div class="custom-dropdown">';
+echo '<select class="options" id="format" name="Format">';
+echo '<span class="">Format</span>';
+echo '<option value="Format" class="selected" value="Format">Format</option>';
+foreach ($formats as $format) {
+    echo '<option value="' . esc_html($format) . '">' . esc_html($format) . '</option>';
+}
+echo '</select>';
+echo '</div>';
+echo ' <div class="custom-dropdown">';
+echo '<select class="options" id="annee" name="Année">';
+echo '<span class="">Année</span>';
+echo '<option value="Année">Année</option>';
+foreach ($années as $année) {
+    echo '<option value="' . esc_html($année) . '">' . esc_html($année) . '</option>';
+}
+echo '</select>';
+echo '</div>';
+echo '</div>';
 } else {
     die('Erreur lors du chargement des données.');
 }
@@ -60,22 +80,22 @@ if (empty($page)) {
 }
 $filteredData = $data;
 $photo_links = [
-    "0.webp" => "Santé !", //themes/wordplate/inc/images/0.webp
-    "1.webp" => 'Et bon anniversaire !', //themes/wordplate/inc/images/1.webp
-    "2.webp" =>  "Let's party!", //themes/wordplate/inc/images/2.webp
-    "3.webp" =>  'Tout est installé', //themes/wordplate/inc/images/3.webp
-    "4.webp" =>  "Vers l'éternité", //themes/wordplate/inc/images/4.webp
-    "5.webp" => 'Embrassez la mariée', //themes/wordplate/images/5.webp
-    "6.webp" => 'Dansons ensemble', //themes/wordplate/inc/images/6.webp
-    "7.webp" => 'Le menu', //themes/wordplate/inc/images/7.webp
-    "8.webp" => 'Au bal masqué', //themes/wordplate/inc/images/8.webp
+    "0.webp" => "sante", //themes/wordplate/inc/images/0.webp
+    "1.webp" => 'et-bon-anniversaire', //themes/wordplate/inc/images/1.webp
+    "2.webp" =>  "lets-party", //themes/wordplate/inc/images/2.webp
+    "3.webp" =>  'tout-est-installe', //themes/wordplate/inc/images/3.webp
+    "4.webp" =>  "vers-leternite", //themes/wordplate/inc/images/4.webp
+    "5.webp" => 'embrassez-la-mariee', //themes/wordplate/images/5.webp
+    "6.webp" => 'dansons-ensemble', //themes/wordplate/inc/images/6.webp
+    "7.webp" => 'le-menu', //themes/wordplate/inc/images/7.webp
+    "8.webp" => 'au-bal-masque', //themes/wordplate/inc/images/8.webp
     "9.webp" => "let-s-dance", //themes/wordplate/inc/images/9.webp
-    "10.webp" => 'Jour de match', //themes/wordplate/inc/images/10.webp
-    "11.webp" => 'Préparation', //themes/wordplate/inc/images/11.webp
-    "12.webp" => 'Bière ou eau plate ?', //themes/wordplate/inc/images/12.webp
-    "13.webp" => 'Bouquet final', //themes/wordplate/inc/images/13.webp
-    "14.webp" => 'Du soir au matin', //themes/wordplate/inc/images/14.webp
-    "15.webp" => 'Team mariée' //themes/wordplate/inc/images/15.webp
+    "10.webp" => 'jour-de-match', //themes/wordplate/inc/images/10.webp
+    "11.webp" => 'preparation', //themes/wordplate/inc/images/11.webp
+    "12.webp" => 'biere-ou-eau-plate', //themes/wordplate/inc/images/12.webp
+    "13.webp" => 'bouquet-final', //themes/wordplate/inc/images/13.webp
+    "14.webp" => 'du-soir-au-matin', //themes/wordplate/inc/images/14.webp
+    "15.webp" => 'team-mariee' //themes/wordplate/inc/images/15.webp
 ];
 if ($filteredData) {
     echo '<div class="image-grid">';

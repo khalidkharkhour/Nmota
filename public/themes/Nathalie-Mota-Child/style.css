@@ -1,0 +1,12 @@
+/*
+Theme Name: Nathalie Mota Child
+Theme URI: [URL de votre site]
+Description: Thème enfant de WordPlate pour Nathalie Mota
+Author: Votre nom
+Author URI: khalidkharkhour.com
+Template: wordplate
+Version: 1.0.0
+*/
+header ,footer ,a {
+    font-family: "Poppins-Medium", Helvetica !important;
+}

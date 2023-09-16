@@ -10,7 +10,7 @@ add_action('after_setup_theme', function () {
 
     register_nav_menus([
         'navigation' => __('Navigation'),
-        
+
     ]);
 });
 
@@ -26,20 +26,18 @@ add_action('wp_enqueue_scripts', function () {
         wp_enqueue_script('wordplate', 'http://localhost:5173/resources/js/index.js', [], null);
     } elseif (file_exists($manifestPath)) {
         $manifest = json_decode(file_get_contents($manifestPath), true);
-    
+
         $jsFile = isset($manifest['resources/js/index.js']['file']) ? $manifest['resources/js/index.js']['file'] : '';
         $cssFile = isset($manifest['resources/js/index.css']['file']) ? $manifest['resources/js/index.css']['file'] : '';
-    
+
         if (!empty($jsFile)) {
             wp_enqueue_script('wordplate', get_theme_file_uri('assets/' . $jsFile), [], null);
         }
-    
+
         if (!empty($cssFile)) {
             wp_enqueue_style('wordplate', get_theme_file_uri('assets/' . $cssFile), [], null);
         }
     }
-
-   
 });
 
 // Load scripts as modules.
@@ -123,13 +121,15 @@ add_action('login_head', function () {
         $output .= '</li>';
     }
 }*/
-function wp_enqueue_custom_fonts() {
-    wp_enqueue_style( 'space-mono', get_theme_file_uri() . '/inc/fonts/' );
-    wp_enqueue_style( 'poppins', get_theme_file_uri() . '/inc/fonts/' );
-  }
-  add_action( 'wp_enqueue_scripts', 'wp_enqueue_custom_fonts' );
- 
-  function enqueue_custom_styles() {
+function wp_enqueue_custom_fonts()
+{
+    wp_enqueue_style('space-mono', get_theme_file_uri() . '/inc/fonts/');
+    wp_enqueue_style('poppins', get_theme_file_uri() . '/inc/fonts/');
+}
+add_action('wp_enqueue_scripts', 'wp_enqueue_custom_fonts');
+
+function enqueue_custom_styles()
+{
     // Chemin complet vers le fichier CSS
     $css_file_path = get_theme_file_uri() . '/inc/style.css';
 
@@ -139,7 +139,8 @@ function wp_enqueue_custom_fonts() {
 
 // Ajoutez l'action pour charger la feuille de style
 add_action('wp_enqueue_scripts', 'enqueue_custom_styles');
-function is_mobile() {
+function is_mobile()
+{
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
     // Liste des chaînes d'agent utilisateur typiques des appareils mobiles
@@ -165,19 +166,22 @@ function is_mobile() {
 
     return false;
 }
-function mon_shortcode() {
+function mon_shortcode()
+{
     // Code PHP pour générer le contenu du shortcode
     return "Contenu généré par le shortcode.";
 }
 add_shortcode('monshortcode', 'mon_shortcode');
 // Allow WebP file uploads
-function add_webp_support($mime_types) {
+function add_webp_support($mime_types)
+{
     $mime_types['webp'] = 'image/webp';
     return $mime_types;
 }
 add_filter('upload_mimes', 'add_webp_support');
 // Add the "Posts" section back to the admin menu
-function add_posts_to_admin_menu() {
+function add_posts_to_admin_menu()
+{
     add_menu_page(
         'Posts',
         'Posts',
@@ -193,7 +197,8 @@ add_action('admin_menu', 'add_posts_to_admin_menu');
 add_action('admin_post_traitement_formulaire', 'traitement_formulaire');
 add_action('admin_post_nopriv_traitement_formulaire', 'traitement_formulaire');
 
-function traitement_formulaire() {
+function traitement_formulaire()
+{
     global $wpdb;
 
     // Récupérer les données du formulaire
@@ -203,7 +208,7 @@ function traitement_formulaire() {
     $message = sanitize_textarea_field($_POST["message"]);
 
     // Vous pouvez maintenant traiter les données, par exemple, enregistrer dans une base de données.
-    
+
     // Exemple : Insérer les données dans une table personnalisée (mytable)
     $wpdb->insert(
         'mytable',
@@ -220,7 +225,8 @@ function traitement_formulaire() {
     wp_redirect('http://localhost:8000/');
     exit;
 }
-function wp_attachment_image_src($attachment_id, $size = 'thumbnail', $icon = false) {
+function wp_attachment_image_src($attachment_id, $size = 'thumbnail', $icon = false)
+{
     $image = wp_get_attachment_image_src($attachment_id, $size, $icon);
 
     if ($image) {

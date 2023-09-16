@@ -334,15 +334,18 @@ img {
 
 .modal-content {
   background-color: white;
-  border: 5px solid var(--bluesblue-cta);
+  border: 3px solid var(--black);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   border-radius: 15px;
-  opacity: 0.8;
+  
 }
 
 .modal-header {
   border-bottom: 1px solid #ccc;
   padding: 10px 20px;
+  background: url("../inc/images/contact-header.svg") center/cover no-repeat;
+  height: 7rem;
+  margin-top: 5%;
 }
 
 
@@ -381,7 +384,7 @@ img {
 }
 
 #return-button:hover {
-  background-color: var(--black);
+  background-color:  #000000
 }
 
 .btn-secondary {
@@ -402,10 +405,12 @@ img {
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.0196078431);
   border-radius: 8px;
   border-color: var(--gris-light);
+  width: 263px;
+  height: 50px ;
 }
 
 .btn-primary:hover {
-  background-color: var(--black);
+  background-color:  #000000;
 }
 
 .form-group {
@@ -420,8 +425,8 @@ img {
 
 
 
-.modal-title:nth-child(1)::before {
-  content: attr(data-text);
+/*.modal-title:nth-child(1) {
+  content: attr(data-text) "\a"  attr(data-text) ;
   display: inline-block;
   font-size: 33px;
   font-weight: 400;
@@ -433,26 +438,14 @@ img {
   font-style: italic;
   word-spacing: -12px;
   opacity: 1;
-  width: 677px;
+  width: fit-content;
   margin-left: -25px;
   transform: translateZ(-3px);
-}
+}*/
 
-.modal-title:nth-child(1)::before {
-  content: "TACTCONTACTCONTON" attr(data-text) "\a" "CONTAC" attr(data-text) "CONTACT" "CONT";
-  display: inline-block;
-  font-size: 33px;
-  font-weight: 400;
-  font-weight: var(--h2-desktop-font-weight);
-  color: var(--black);
-  font-family: var(--description-photo-desktop-font-family);
-  font-style: italic;
-  word-spacing: -12px;
-  opacity: 1;
-  width: 677px;
-  margin-left: -25px;
-  transform: translateZ(-3px);
-}
+/*.modal-title:nth-child(1) {
+  background: url("../inc/images/contact-header.svg") center/cover no-repeat;
+}*/
 
 
 /* Utilisez l'attribut data-text pour répéter le texte */
@@ -460,8 +453,7 @@ img {
 
 .modal-title {
   position: relative;
-  transform-style: preserve-3d;
-  perspective: 500px;
+  
 }
 
 
@@ -500,8 +492,8 @@ label {
 }
 
 .image-item {
-  width: 100%;
-  height: 495px;
+  width: 100% ;
+  height: 495px ; 
   overflow: hidden;
 }
 
@@ -673,22 +665,33 @@ $colors: var(--rouge), var(--rouge-secondaire), var(--rouge-tertiaire), var(--ro
 
 }
 
-.fancybox-caption__body>p {
-  display: inline-block;
-  margin-right: 21em;
+.fancybox-caption__body {
+  display: flex;
+  justify-content:space-evenly;
+  flex-direction: row;
+  align-items: center;
+  width: 81%;
+ 
+}
+p {
+  font-family: var(--description-photo-desktop-font-family);
+  font-weight: normal !important;
+ 
 }
 
-.caption__body {
-  word-spacing: 15em;
-  padding-left: 19em;
-}
+.fancybox-button--arrow_right {
+  right: 20% !important;
 
-.nathalie-jpeg {
+}
+.fancybox-button--arrow_left{
+  left:20% !important;
+}
+/*.nathalie-jpeg {
   object-fit: contain;
   width: 35.1875rem !important;
   height: 52.75rem !important;
   margin-top: 10%;
-}
+}*/
 
 @media screen and (max-width: 920px) {
   body {

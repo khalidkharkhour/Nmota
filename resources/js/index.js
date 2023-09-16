@@ -3,7 +3,11 @@ import 'https://code.jquery.com/jquery-3.6.0.min.js'
 import 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js'
 import { formToJSON } from 'axios';
 //import 'select2';
-
+import slugify from 'slugify';
+//import "https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" 
+//import "https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"
+//import 'select2/dist/css/select2.css'
+//import $ from 'jquery'; 
 // Créer l'élément <h1> avec le texte "PHOTOGRAPHE EVENT"
 const h1Element = document.createElement("h1");
 h1Element.textContent = "PHOTOGRAPHE EVENT";
@@ -82,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-jQuery(document).ready(function($) {
+$(function($) {
     $('.gallery-link').on('click', function(e) {
         e.preventDefault();
         
@@ -101,8 +105,8 @@ jQuery(document).ready(function($) {
                         galleryHtml += '<a href="' + images[i] + '" data-lightbox="gallery"><img src="' + images[i] + '" alt="Image ' + (i + 1) + '"></a>';
                     }
                     
-                    $('.lightbox-container').html(galleryHtml); // Remplacez ".lightbox-container" par le sélecteur approprié
-                    lightbox.init(); // Initialisez la lightbox
+                    $('.lightbox-container').html(galleryHtml); 
+                    lightbox.init(); 
                 } else {
                     console.log('Erreur lors du chargement des images.');
                 }
@@ -110,7 +114,7 @@ jQuery(document).ready(function($) {
         });
     });
 });
-$(document).ready(function() {
+$(function() {
     $('[data-fancybox="images"]').fancybox({
         buttons: [
             "slideShow",
@@ -138,41 +142,43 @@ const loadMoreImages = () => {
   
             // Replace the old image path with the new one
             const adjustedImageUrl = imageUrl.replace('/inc/images/', '/themes/wordplate/inc/images/');
-  
+           // const str = "This is a string with -,&, <, >, \", and ' characters.";
+          //  const escapedStr = encodeURIComponent(str);
           // Create a mapping of image titles to image keys
 // Créez une correspondance entre les titres d'image et les clés d'image
-const photoLinks = {
-     "Santé !":"0.webp",//themes/wordplate/inc/images/0.webp
-      'Et bon anniversaire !':"1.webp",//themes/wordplate/inc/images/1.webp
-      "Let's party!":"2.webp",//themes/wordplate/inc/images/2.webp
-      'Tout est installé':"3.webp",//themes/wordplate/inc/images/3.webp
-      "Vers l'éternité":"4.webp",//themes/wordplate/inc/images/4.webp
-      'Embrassez la mariée':"5.webp",//themes/wordplate/images/5.webp
-      'Dansons ensemble':"6.webp",//themes/wordplate/inc/images/6.webp
-     'Le menu':"7.webp",//themes/wordplate/inc/images/7.webp
-      'Au bal masqué':"8.webp",//themes/wordplate/inc/images/8.webp
-    "let-s-dance!":"9.webp",//themes/wordplate/inc/images/9.webp
-    "Jour de match": "10.webp",
-    "Préparation": "11.webp",
-    "Bière ou eau plate ?": "12.webp",
-    "Bouquet final": "13.webp",
-    "Du soir au matin": "14.webp",
-    "Team mariée": "15.webp",
-};
+ /*const photoLinks = {
+     "sante":"0.webp",//themes/wordplate/inc/images/0.webp
+      'et-bon-anniversaire':"1.webp",//themes/wordplate/inc/images/1.webp
+      "lets-party":"2.webp",//themes/wordplate/inc/images/2.webp
+      'tout-est-installe':"3.webp",//themes/wordplate/inc/images/3.webp
+      "vers-leternite":"4.webp",//themes/wordplate/inc/images/4.webp
+      'embrassez-la-mariee':"5.webp",//themes/wordplate/images/5.webp
+      'dansons-ensemble':"6.webp",//themes/wordplate/inc/images/6.webp
+     'le-menu':"7.webp",//themes/wordplate/inc/images/7.webp
+      'au-bal-masque':"8.webp",//themes/wordplate/inc/images/8.webp
+    "let-s-dance":"9.webp",//themes/wordplate/inc/images/9.webp
+    "jour-de-match": "10.webp",
+    "preparation": "11.webp",
+    "biere-ou-eau-plate ": "12.webp",
+    "bouquet-final": "13.webp",
+    "du-soir-au-matin": "14.webp",
+    "team-mariee": "15.webp",
+};*/
+
 
 const imageReference = image['Référence'];
 const imageCategory = image['Catégorie'];
-const imageTitle = image['Titre']; // Utilisez le titre de l'image comme titre de la page
-
+const imageTitle = image['Titre'];
+const slug = slugify(imageTitle);
 imagesHTML.push(`
     <div class="image-item">
-        <a class="image-link" data-fancybox="images" href="${adjustedImageUrl}" data-caption="<a class='fa fa-eye' href='/?photo=${encodeURIComponent(imageTitle)}'><p>${imageReference}</p><p>${imageCategory}</p>">
-            <img src="${adjustedImageUrl}" alt="${imageReference}"class="nathalie-jpeg">
-        </a>
+        <span class="image-link" data-fancybox="images" href="${adjustedImageUrl}" data-caption="<a class='fa fa-eye' href='/?photo=${slugify(imageTitle)}'></a><p>${imageReference}</p><p>${imageCategory}</p>">
+            <img src="${adjustedImageUrl}" alt="${imageReference}"class="nathalie">
+        </span>
     </div>
 `);
 
-        
+//const photoUrl = `/?photo=${encodeURIComponent(imageTitle)}`;  
         }
   
         // Append the new HTML to the image grid
@@ -334,18 +340,73 @@ console.log('Image carousel initialized.');*/
         this.size = 1;
         this.blur();
     });
-    $(document).ready(function () {
+    $(function () {
       $('.custom-dropdown').on('change', function () {
  
           const selectedImageIndex = $(this).find('option:selected').index();
           console.log("Selected image index:", selectedImageIndex);
   
-          /*$("select option#btn2").css("color", "black"); // Appliquer le style ici
+         /* $("select option#btn2").css("color", "black"); // Appliquer le style ici
           $(this).find("option:selected").css("color", "rgba(224, 0, 0, 1)");*/
           const imageLinks = $('.image-link');
   
           if (selectedImageIndex >= 0 && selectedImageIndex < imageLinks.length) {
               imageLinks.eq(selectedImageIndex).trigger('click');
           }
-      });
+     });
   });
+ 
+  $(function () {
+    $('.custom-dropdown').on('change', function () {
+        const selectedCategorie = $('#categorie').val();
+        const selectedFormat = $('#format').val();
+        const selectedAnnee = $('#annee').val();
+
+        // Construire le chemin de l'image correspondante en fonction des sélections
+        let imagePath = `images/${selectedCategorie}_${selectedFormat}_${selectedAnnee}.webp`;
+
+        // Ajuster le chemin de l'image en remplaçant la partie spécifiée
+        imagePath = imagePath.replace('/inc/images/', '/themes/wordplate/inc/images/');
+
+        // Créer une nouvelle image pour vérifier si elle existe
+        const tempImage = new Image();
+        tempImage.src = imagePath;
+
+        // Attacher un gestionnaire d'événement pour vérifier si l'image est chargée
+        tempImage.onload = function () {
+            // L'image existe, mettez à jour l'attribut src de l'élément .image-link
+            $('.image-link').attr('src', imagePath);
+            // Afficher l'image
+            $('.image-link').css('display', 'block');
+        };
+
+        // Attacher un gestionnaire d'événement pour gérer le cas où l'image n'est pas trouvée
+        tempImage.onerror = function () {
+            // L'image n'existe pas, vous pouvez afficher un message d'erreur ou masquer l'élément
+            $('.image-link').css('display', 'none'); // Masquer l'élément
+            // Afficher un message d'erreur (facultatif)
+            console.log('Aucune image trouvée.');
+        };
+    });
+});
+
+
+ /*$(function() {
+    // Initialisez Select2 sur l'élément de votre choix avec des options de personnalisation
+    $('#mySelect').select2({
+        templateResult: function(option) {
+            // Personnalisez le style des options ici
+            const backgroundColor = '#ff0000'; // Couleur de fond des options
+            const textColor = '#333'; // Couleur du texte des options
+            
+            return $('<span style="background-color:' + backgroundColor + '; color:' + textColor + ';">' + option.text + '</span>');
+        },
+        templateSelection: function(option) {
+            // Personnalisez le style de la sélection ici
+            const backgroundColor = '#ff0000'; // Couleur de fond de la sélection
+            const textColor = '#333'; // Couleur du texte de la sélection
+            
+            return $('<span style="background-color:' + backgroundColor + '; color:' + textColor + ';">' + option.text + '</span>');
+        }
+    });
+});*/

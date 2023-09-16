@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title " data-text="TACTCONTACT" id="myModalLabel"> </h5>
+        <h5 class="modal-title " data-text="TACTCON" id="myModalLabel"> </h5>
       </div>
       <div class="modal-body " >
         <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
