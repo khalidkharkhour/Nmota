@@ -1,2 +1,13 @@
+<?php get_header();?>
+    
+
 <?php 
-get_template_part('template_part/photo','single');
+get_template_part('template_part/photo','single');?>
+
+</body> 
+
+
+</body>
+
+
+</html>

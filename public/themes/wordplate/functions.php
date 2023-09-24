@@ -38,7 +38,15 @@ add_action('wp_enqueue_scripts', function () {
             wp_enqueue_style('wordplate', get_theme_file_uri('assets/' . $cssFile), [], null);
         }
     }
+
+    // Vérifiez si vous êtes sur la page photo-single.php
+    if (is_page_template('template_part/photo-single.php')) {
+        // Chargez votre fichier JavaScript personnalisé
+        wp_enqueue_script('costum-js', get_theme_file_uri('assets/js/costum.js'), [], null);
+    }
 });
+
+
 
 // Load scripts as modules.
 add_filter('script_loader_tag', function (string $tag, string $handle, string $src) {

@@ -38,7 +38,7 @@
         'hierarchical'       => false,
         'menu_position'      => 5,
         'supports'           => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
-        'taxonomies'         => array('category', 'post_tag', 'post_reference', 'post_years', 'format', 'type')
+        'taxonomies'         => array('categorie', 'post_tag', 'post_reference', 'post_years', 'format', 'type')
     );
 
     register_post_type('photo', $args);
@@ -46,12 +46,12 @@
     $done = true;
 }
 
-// Enregistrer la taxonomie personnalisée "catégorie"
-register_taxonomy('catégorie', 'photo', array(
+register_taxonomy('categorie', 'photo', array(
     'label' => 'Catégorie',
-    'rewrite' => array('slug' => 'catégorie'),
-    'hierarchical' => true, // Modifiez cela en fonction de vos besoins
+    'rewrite' => array('slug' => 'categorie'),
+    'hierarchical' => true,
 ));
+
 
 // Enregistrer la taxonomie personnalisée "format"
 register_taxonomy('format', 'photo', array(
@@ -86,6 +86,7 @@ if ($total_count < $limit) {
         $post_id = wp_insert_post($post_data);
 
         // Associer les données à des champs personnalisés
+           update_post_meta($post_id, 'categorie', $row->Catégorie);
         update_post_meta($post_id, 'reference', $row->Référence);
         update_post_meta($post_id, 'annee', $row->Année);
         update_post_meta($post_id, 'format', $row->Format);

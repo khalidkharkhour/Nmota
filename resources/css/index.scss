@@ -1,6 +1,8 @@
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css');
-/*@import url('/node_modules/select2/dist/css/select2.min.css');*/
+
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
+//@import url("https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css");
+//@import url("https:/fonts.googleapis.com/css?family=Space+Mono:400,700&display=swap");
+//@import url("https:/fonts.googleapis.com/css?family=Poppins:400,700&display=swap");
 
 
 :root {
@@ -53,7 +55,7 @@
   --h2-mobile-font-weight: 400;
   --h2-mobile-letter-spacing: 0px;
   --h2-mobile-line-height: 48px;
-  --h3-desktop-font-family: "SpaceMono-Regular", Helvetica;
+ --h3-desktop-font-family: "SpaceMono-Regular", Helvetica;
   --h3-desktop-font-size: 18px;
   --h3-desktop-font-style: normal;
   --h3-desktop-font-weight: 400;
@@ -76,105 +78,147 @@
   --rouge-secondaire: rgba(254, 88, 88, 1);
   --rouge-tertiaire: rgba(255, 214, 214, 1);
   --white: rgba(255, 255, 255, 1);
+  --white2: #FFFFFF;
 
 }
 
+.eye {
+  background: url("../inc/images/eye.svg") center/cover no-repeat;
+  position: fixed;
+  right: 50%;
+  left: 50%;
+  display: block;
+  width: 3em;
+  height: 3em;
+  z-index: 2000;
+  transform: translate(-50% ,-50%);
+  top: 15em;
+}
+
+
+
+
+
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Black.ttf");
+  src: url("../inc/fonts/Poppins-Black.ttf");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-BlackItalic.ttf");
-  font-weight: bold;
-  font-style: italic;
+src: url("../inc/fonts/Poppins-Black.ttf") format("truetype"); 
+font-weight: normal;
+font-style: normal;
+display: swap; 
+
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Bold.ttf");
+  src: url("../inc/fonts/Poppins-BlackItalic.ttf")format("truetype"); 
+  font-weight: bold;
+  font-style: italic;
+  display: swap; 
+
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../inc/fonts/Poppins-Bold.ttf")format("truetype"); 
   font-weight: bold;
   font-style: normal;
+  display: swap; 
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/inc/fonts/Poppins-BoldItalic.ttf");
+  src: url("../inc/fonts/Poppins-BoldItalic.ttf")format("truetype"); 
   font-weight: bold;
   font-style: italic;
+  display: swap; 
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/inc/fonts/Poppins-ExtraBold.ttf");
+  src: url("../inc/fonts/Poppins-ExtraBold.ttf")format("truetype"); 
   font-weight: bolder;
   font-style: italic;
+  display: swap; 
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/inc/fonts/Poppins-ExtraBoldItalic.ttf");
+  src: url("../inc/fonts/Poppins-ExtraBoldItalic.ttf")format("truetype"); 
   font-weight: normal;
   font-style: italic;
+  display: swap; 
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/inc/Poppins-ExtraLight.ttf");
+  src: url("../inc/Poppins-ExtraLight.ttf")format("truetype"); 
   font-weight: lighter;
   font-style: normal;
+  display: swap; 
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/inc/Poppins-Medium.ttf");
+  src: url("../inc/fonts/Poppins-Medium.ttf")format("truetype"); 
   font-weight: normal;
   font-style: normal;
+  display: swap; 
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Regular.ttf");
+  src: url("../inc/fonts/Poppins-Regular.ttf")format("truetype"); 
   font-weight: normal;
   font-style: italic;
+  display: swap; 
 }
 
 @font-face {
   font-family: "Space mono";
-  src: url("/fonts/SpaceMono-Bold.ttf");
+  src: url("../inc/fonts/SpaceMono-Bold.ttf")format("truetype"); 
   font-weight: normal;
   font-style: normal;
+  display: swap; 
 }
 
 @font-face {
   font-family: "Space mono";
-  src: url("/fonts/SpaceMono-BoldItalic.ttf");
+  src: url("../inc/fonts/SpaceMono-BoldItalic.ttf")format("truetype"); 
   font-weight: bold;
   font-style: italic;
+  display: swap; 
 }
 
 @font-face {
   font-family: "Space mono";
-  src: url("/fonts/SpaceMono-Italic.ttf");
+  src: url("../inc/fonts/SpaceMono-Italic.ttf")format("truetype"); 
   font-weight: normal;
   font-style: italic;
+  display: swap; 
 }
 
 @font-face {
   font-family: "Space mono";
-  src: url("/fonts/SpaceMono-Regular.ttf");
+  src: url("../inc/fonts/SpaceMono-Regular.ttf")format("truetype"); 
   font-weight: normal;
   font-style: normal;
+  display: swap; 
 }
 
 @font-face {
   font-family: "Poppins";
-  src: url("/fonts/Poppins-Medium.ttf");
+  src: url("../inc/fonts/Poppins-Medium.ttf")format("truetype"); 
   font-weight: normal;
   font-style: normal;
+  display: swap;
+  
 }
 
 html,
@@ -193,7 +237,7 @@ body {
   text-align: right;
   margin: 0;
   padding: 0;
-  background-color: #ffffff;
+  background-color: var(--white2);
   box-shadow: 0px 4px 14px 10px #00000008;
   height: 80px;
 }
@@ -246,7 +290,8 @@ a {
   bottom: 0;
   right: 1rem;
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--white2);
+  ;
   box-shadow: 0px -4px 14px 10px #00000008;
   height: 40px;
   border-top: solid black;
@@ -261,10 +306,14 @@ a {
   image-rendering: -webkit-optimize-contrast; // Pour les navigateurs basés sur WebKit (comme Chrome et Safari)
   image-rendering: crisp-edges; // Pour les navigateurs compatibles
 }
-
+#front-photo-page {
+  .hero {
+    display: block !important;
+  }
+}
 .hero {
   position: relative;
-  background: url("../inc/images/nathalie-11.webp") center/cover no-repeat;
+  background: url("../inc/images/nathalie-11.webp") center/cover no-repeat !important;
   color: white;
   text-align: center;
   padding: 400px 0;
@@ -337,7 +386,7 @@ img {
   border: 3px solid var(--black);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   border-radius: 15px;
-  
+
 }
 
 .modal-header {
@@ -384,7 +433,7 @@ img {
 }
 
 #return-button:hover {
-  background-color:  #000000
+  background-color: var(--bluesblue-cta);
 }
 
 .btn-secondary {
@@ -406,11 +455,11 @@ img {
   border-radius: 8px;
   border-color: var(--gris-light);
   width: 263px;
-  height: 50px ;
+  height: 50px;
 }
 
 .btn-primary:hover {
-  background-color:  #000000;
+  background-color: var(--bluesblue-cta);
 }
 
 .form-group {
@@ -453,14 +502,14 @@ img {
 
 .modal-title {
   position: relative;
-  
+
 }
 
 
 input {
   width: 300px;
   height: 40px;
-  background: #FFFFFF;
+  background: var(--white2);
   border: 1px solid #B8BBC2;
   border-radius: 8px;
 
@@ -469,7 +518,7 @@ input {
 textarea {
   width: 300px;
   height: 180px;
-  background: #FFFFFF;
+  background: var(--white2);
   border: 1px solid #B8BBC2;
   border-radius: 8px;
 }
@@ -492,8 +541,8 @@ label {
 }
 
 .image-item {
-  width: 100% ;
-  height: 495px ; 
+  width: 100%;
+  height: 495px;
   overflow: hidden;
 }
 
@@ -577,19 +626,19 @@ label {
 }
 
 $colors: var(--rouge), var(--rouge-secondaire), var(--rouge-tertiaire), var(--rouge);
-
+/*
 @for $i from 1 through 4 {
-  .options option:nth-child(#{$i}) {
+  .options option:nth-child {
     background-color: nth($colors, $i);
     transition: background-color 1.3s, transform 1.3s;
   }
-}
+}*/
 
 
 
-.selected:hover+.options option:hover {
+/*.selected:hover+.options option:hover {
   background-color: var(--white);
-}
+}*/
 
 
 
@@ -602,28 +651,42 @@ $colors: var(--rouge), var(--rouge-secondaire), var(--rouge-tertiaire), var(--ro
   background-color: white;
 }
 
-.options:hover option {
+.options option {
   transition: background-color 0.3s ease-in-out;
 }
 
-.options:hover option:nth-child(1) {
-  background-color: nth($colors, 1);
+.options option:hover {
+  background-color: var(--white)
 }
 
-.options:hover option:nth-child(2) {
+.options option:nth-child(1):hover {
+  background-color: nth($colors, 1);
+  transition-delay: 0s;
+  /* Pas de délai pour la première option */
+}
+
+.options option:nth-child(2):hover {
   background-color: nth($colors, 2);
+  transition-delay: 0.1s;
+  /* Délai de 0.1s pour la deuxième option */
 }
 
-.options:hover option:nth-child(3) {
+.options option:nth-child(3):hover {
   background-color: nth($colors, 3);
+  transition-delay: 0.2s;
+  /* Délai de 0.2s pour la troisième option */
 }
 
-.options:hover option:nth-child(4) {
+.options option:nth-child(4):hover {
   background-color: nth($colors, 4);
+  transition-delay: 0.3s;
+  /* Délai de 0.3s pour la quatrième option */
 }
 
-.options:hover option:nth-child(5) {
-  background-color: nth($colors, 1);
+.options option:nth-child(5):hover {
+  background-color: nth($colors, 3);
+  transition-delay: 0.4s;
+  /* Délai de 0.4s pour la cinquième option */
 }
 
 
@@ -645,7 +708,7 @@ $colors: var(--rouge), var(--rouge-secondaire), var(--rouge-tertiaire), var(--ro
 }
 
 .btn1:hover {
-  background-color: var(--black);
+  background-color: var(--bluesblue-cta);
 }
 
 .cont-btn1 {
@@ -656,36 +719,17 @@ $colors: var(--rouge), var(--rouge-secondaire), var(--rouge-tertiaire), var(--ro
 
 }
 
-
-.fa-eye::before {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-}
-
-.fancybox-caption__body {
-  display: flex;
-  justify-content:space-evenly;
-  flex-direction: row;
-  align-items: center;
-  width: 81%;
- 
-}
 p {
   font-family: var(--description-photo-desktop-font-family);
   font-weight: normal !important;
- 
-}
-
-.fancybox-button--arrow_right {
-  right: 20% !important;
 
 }
-.fancybox-button--arrow_left{
-  left:20% !important;
+
+#menu-btn{
+  display: none;
 }
+
+
 /*.nathalie-jpeg {
   object-fit: contain;
   width: 35.1875rem !important;
@@ -700,7 +744,7 @@ p {
   }
 
   a {
-    color: #000;
+    color: var(--black);
   }
 
   .header {
@@ -710,7 +754,9 @@ p {
     width: 100%;
     z-index: 3;
   }
-
+  input {
+    display: none;
+  }
 
 
   .header ul {
@@ -736,10 +782,13 @@ p {
 
   .header li a {
     display: block;
-    padding: 20px 20px;
+
     border-right: 1px solid #f4f4f4;
     text-decoration: none;
-    color: #000;
+    color: var(--black);
+    border-right: none;
+    text-align: center;
+    line-height: var(--drop-menu-menu-line-height);
 
     @if (".menu-btn:checked ") {
       color: var(--white);
@@ -749,15 +798,12 @@ p {
 
   .header li a:hover,
   .header .menu-btn:hover {
-    background-color: #f4f4f4;
+    background-color: transparent;
   }
 
-  .header .logo {
-    display: block;
-    float: left;
-    font-size: 2em;
-    padding: 10px 20px;
-    text-decoration: none;
+  .logo {
+    top: 11px;
+    width: 36vw;
   }
 
   /* menu */
@@ -841,17 +887,13 @@ p {
     justify-content: center;
     flex-direction: column;
     margin: 0;
-    /* Supprimez la marge */
+
     padding: 0;
-    /* Supprimez le padding */
+
   }
 
   .header li a {
-    border-right: none;
-    margin-top: -23ppx;
-    /* Réduisez la marge supérieure pour rapprocher les éléments */
-    padding: 10px 20px;
-    /* Ajustez le padding pour plus d'espace entre le texte et les bords */
+    padding: 2em;
   }
 
   .header .menu {
@@ -881,7 +923,8 @@ p {
     padding-top: 7%;
     margin-bottom: 20%;
   }
-  .modal-title:nth-child(1)::before{
+
+  .modal-title:nth-child(1)::before {
     font-size: 19px;
   }
 }

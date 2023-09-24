@@ -8,11 +8,10 @@
     <?php wp_head(); ?>
 </head>
 
-
 <body <?php body_class(); ?>>
     <?php wp_body_open(); ?>
     <header>
-        <?php if (!is_mobile()) : ?>
+        <?php if (!wp_is_mobile()) : ?>
             <nav class="menu-container">
                 <?php if (get_theme_mod('logo_setting')) : ?>
                     <div class="logo">
@@ -34,12 +33,12 @@
             </nav>
         <?php endif; ?>
 
-        <?php if (is_mobile()) : ?>
+        <?php if (wp_is_mobile()) : ?>
             <header class="header">
                 <?php if (get_theme_mod('logo_setting')) : ?>
                     <div class="logo">
                         <a href="<?php echo esc_url(home_url('/')); ?>">
-                            <img class="logo" src="<?php echo esc_url(get_theme_mod('logo_setting')); ?>" alt="<?php bloginfo('name'); ?> Logo">
+                            <img class="logo" src="<?php echo esc_url(get_theme_mod('logo_setting')); ?>" alt="<?php bloginfo('name'); ?>">
                         </a>
                     </div>
                 <?php endif; ?>
@@ -59,5 +58,3 @@
             </header>
         <?php endif; ?>
     </header>
-
-    <body>

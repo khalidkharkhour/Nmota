@@ -1,4 +1,8 @@
-(function () {
+import '../js/index.js';
+import '../css/style.scss';
+//import '../css/fancy.css';
+//import '../js/slider.js';
+$(function () {
     // Variables locales pour éviter les conflits
     let currentImageIndex = 0;
     const images = document.querySelectorAll('#gallery-1 img');
@@ -39,7 +43,7 @@
     galleryContainer.addEventListener('click', () => {
         window.location.href = 'localhost:8000/#images-1';
     });
-})();
+})
 
 document.addEventListener("DOMContentLoaded", function () {
     const menuItem = document.getElementById("contact");
@@ -88,7 +92,11 @@ const categories = [
     "15.webp"
 ];
 
-// Function to generate and add CSS rules dynamically
+// Fonction pour obtenir la catégorie de la photo courante
+function getCategory(photo) {
+    return photo.dataset.category;
+}
+
 // Fonction pour mélanger un tableau aléatoirement
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -99,6 +107,56 @@ function shuffleArray(array) {
 
 // Mélanger le tableau categories
 shuffleArray(categories);
+
+// Fonction pour obtenir les deux premières photos de la catégorie courante
+function getTwoPhotos(category) {
+    const photos = categories.filter((photo) => photo.category === category);
+    return photos.slice(0, 2);
+}
+
+// Fonction pour créer un élément <div> pour une photo
+function createPhotoDiv(photo) {
+    const div = document.createElement('div');
+    div.classList.add('card-photo');
+    div.classList.add(`card-photo-${categories.indexOf(photo)}`);
+    div.style.backgroundImage = `url("/themes/wordplate/inc/images/${photo}")`;
+    return div;
+}
+
+
+function showPhotos() {
+    console.log("showPhotos() appelée");
+    const category = getCategory(document.querySelector('.active-photo'));
+    const photos = getTwoPhotos(category);
+
+    photos.forEach((photo) => {
+        const div = createPhotoDiv(photo);
+        createIcons(div, photo);
+        document.querySelector('.photos').appendChild(div);
+    });
+}
+
+$(function() {
+    $('[data-fancybox="images"]')({
+        buttons: [
+            "slideShow",
+            "fullScreen",
+            "thumbs",
+            "close"
+        ],
+        loop: true, // Activer la navigation en boucle
+        afterClose: function(instance, slide) {
+            
+            showPhotos();
+        }
+    });
+});
+
+    // Appeler la fonction pour afficher les photos lorsque le document est prêt
+    document.addEventListener('DOMContentLoaded', showPhotos);
+
+
+
 
 // La fonction pour générer et ajouter les règles CSS dynamiquement reste la même
 function addCssRules() {
@@ -116,6 +174,7 @@ function addCssRules() {
                 width: 32rem;
                 height: 31rem;
                 object-fit: contain;
+                overflow: hidden;
             }
         `;
     });
@@ -126,3 +185,6 @@ function addCssRules() {
 
 // Appeler la fonction pour ajouter les règles CSS lorsque le document est prêt
 document.addEventListener('DOMContentLoaded', addCssRules);
+
+
+

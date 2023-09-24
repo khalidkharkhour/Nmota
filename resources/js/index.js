@@ -1,14 +1,34 @@
 import '../css/index.scss';
+import '../css/fancy.css';
+import '../js/slider.js';
+import '../js/costum.js';
+import '../css/style.scss';
+//import $ from 'jquery';
 import 'https://code.jquery.com/jquery-3.6.0.min.js'
-import 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js'
+
 import { formToJSON } from 'axios';
 //import 'select2';
 import slugify from 'slugify';
-//import "https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" 
-//import "https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"
-//import 'select2/dist/css/select2.css'
-//import $ from 'jquery'; 
-// Créer l'élément <h1> avec le texte "PHOTOGRAPHE EVENT"
+import  'confetti-js';
+
+
+
+// Sélectionnez un bouton ou un élément sur lequel vous souhaitez déclencher le confetti
+const buttonElement = document.getElementById('menu-item-41725');
+
+// Attachez un gestionnaire d'événements pour le clic sur le bouton
+buttonElement.addEventListener('click', () => {
+  // Options de configuration pour l'effet de confetti (vous pouvez personnaliser cela selon vos besoins)
+  const confettiConfig = {
+    particleCount: 100,
+    spread: 70,
+    colors: ['#FF0000', '#00FF00', '#0000FF'],
+  };
+
+  // Déclenchez l'effet de confetti
+  confetti(confettiConfig);
+});
+
 const h1Element = document.createElement("h1");
 h1Element.textContent = "PHOTOGRAPHE EVENT";
 
@@ -99,9 +119,9 @@ $(function($) {
             success: function(response) {
                 if (response.success) {
                     const images = response.data;
-                    const galleryHtml = '';
+                    let galleryHtml = '';
                     
-                    for (const i = 0; i < images.length; i++) {
+                    for (let i = 0; i < images.length; i++) {
                         galleryHtml += '<a href="' + images[i] + '" data-lightbox="gallery"><img src="' + images[i] + '" alt="Image ' + (i + 1) + '"></a>';
                     }
                     
@@ -115,14 +135,15 @@ $(function($) {
     });
 });
 $(function() {
-    $('[data-fancybox="images"]').fancybox({
+    $('[data-fancybox="images"]')({
         buttons: [
             "slideShow",
             "fullScreen",
             "thumbs",
             "close"
         ],
-        loop: true // Activer la navigation en boucle
+        loop: true, // Activer la navigation en boucle
+        margin: [20, 20] 
     });
 });
 
@@ -172,7 +193,7 @@ const imageTitle = image['Titre'];
 const slug = slugify(imageTitle);
 imagesHTML.push(`
     <div class="image-item">
-        <span class="image-link" data-fancybox="images" href="${adjustedImageUrl}" data-caption="<a class='fa fa-eye' href='/?photo=${slugify(imageTitle)}'></a><p>${imageReference}</p><p>${imageCategory}</p>">
+        <span class="image-link" data-fancybox="images" href="${adjustedImageUrl}" data-caption="<a class='fa fa-eye' href='/?photo=${slugify(imageTitle)}'></a><p>${imageCategory}</p><p>${imageReference}</p>">
             <img src="${adjustedImageUrl}" alt="${imageReference}"class="nathalie">
         </span>
     </div>
@@ -296,6 +317,7 @@ console.log('Image carousel initialized.');*/
       });
     });
   });*/
+ 
   
     // Sélectionnez les éléments <select> par leurs ID et ajoutez des écouteurs d'événements JavaScript
     const categorieSelect = document.getElementById('categorie');
@@ -383,9 +405,11 @@ console.log('Image carousel initialized.');*/
         // Attacher un gestionnaire d'événement pour gérer le cas où l'image n'est pas trouvée
         tempImage.onerror = function () {
             // L'image n'existe pas, vous pouvez afficher un message d'erreur ou masquer l'élément
-            $('.image-link').css('display', 'none'); // Masquer l'élément
-            // Afficher un message d'erreur (facultatif)
-            console.log('Aucune image trouvée.');
+            $('.image-link').css('display', 'none');
+            setTimeout(function() {
+                $('.image-link').css('display', 'block');
+            }, 300); // 300 milliseconds (0.3 seconds)
+            
         };
     });
 });
