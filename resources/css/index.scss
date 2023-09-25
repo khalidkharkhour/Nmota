@@ -87,8 +87,8 @@
   right: 50%;
   left: 50%;
   display: block;
-  width: 3em;
-  height: 3em;
+  width: 1.5em;
+  height: 1.5em;
   z-index: 2000;
   transform: translate(-50%, -50%);
   top: 15em;
@@ -314,17 +314,17 @@ a {
 
 .hero {
   position: relative;
-  background: url("../inc/images/nathalie-11.webp") center/cover no-repeat !important;
+  background: url("../inc/images/1.webp") center/cover no-repeat !important;
   color: white;
   text-align: center;
   padding: 400px 0;
   width: 100%;
   transition: background-color 0.3s ease-in-out;
-  filter: contrast(1.2) brightness(1.2) saturate(1.2) blur(0px);
+  filter: contrast(1.2) brightness(-85) saturate(1.2) blur(0px);
 }
 
 img {
-  filter: contrast(1.2) brightness(1.2) saturate(1.2) blur(0px) !important;
+  filter: contrast(1.2) brightness(-85) saturate(1.2) blur(0px) !important;
 }
 
 .hero-content {

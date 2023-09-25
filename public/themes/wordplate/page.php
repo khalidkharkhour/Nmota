@@ -105,7 +105,7 @@ get_header(); ?>
                 $image_src = wp_attachment_image_src($attachment_id);
                 $attachment_id = attachment_url_to_postid($item['Fichier']);
                 $url = esc_url(get_theme_file_uri($item['Fichier']));
-
+    
                 if (isset($photo_links[$photo_filename])) {
                     $photo_caption = $photo_links[$photo_filename];
                 } else {
@@ -113,9 +113,12 @@ get_header(); ?>
                 }
                 $url = add_query_arg('photo', sanitize_title($photo_caption), get_permalink($post->ID));
                 $custom_post_permalink = get_permalink($post->ID); // Définition de $custom_post_permalink
+    
+                // Add the <i> element to the image link
                 echo '<a class="image-link" href="' . esc_url(get_theme_file_uri($item['Fichier'])) . '" data-fancybox="images" data-caption="<a href=' . esc_url($url) . '><i class=\'eye\' aria-hidden=\'true\' data-toggle=\'details\' data-index=\'' . $index . '\'></i></a><p>' . $item['Titre'] . '</p><a href=' . esc_url($custom_post_permalink) . '>' . $item['Référence'] . '</a>">';
+                
                 echo '<img  src="' . esc_url(get_theme_file_uri($item['Fichier'])) . '" alt="' . esc_attr($item['Titre']) . '" data-src="' . esc_url(get_theme_file_uri($item['Fichier'])) . '">';
-
+                
                 echo '</a>';
                 echo '</div>';
             }
@@ -124,10 +127,13 @@ get_header(); ?>
     } else {
         echo 'No images match the selected filters.';
     }
+    
+    
     $pageNumber = intval(get_query_var('page'));
     $itemsPerPage = 6;
     $totalPages = ceil(count($filteredData) / $itemsPerPage);
     if ($pageNumber < $totalPages) {
+       
         echo '<div class="cont-btn1">';
         echo '<button class="btn1" id="load-more">Charger plus</button>';
         echo '<button class="btn1" id="return-button" style="display: none;">Retour</button>';

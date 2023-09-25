@@ -300,3 +300,20 @@ add_action('wp_enqueue_scripts', 'localize_data_for_js');*/
         return 'http://localhost:8000/themes/wordplate/inc/images/defult.webp'; // Default image URL
     }
 }*/
+function shortcode_galerie_personnalisee($atts) {
+    // Obtenir la source de l'image depuis la variable $fichier
+    $fichier = get_post_meta(get_the_ID(), 'fichier', true);
+    $fichier = str_replace('/inc/images', 'themes/wordplate/inc/images', $fichier);
+    
+    $source_image = esc_html($fichier);
+
+    // Créez le code HTML de la galerie avec la source d'image spécifiée
+    $html_galerie = '<div id="#gallery-1">';
+    $html_galerie .= '<img src="' . $source_image . '" id="#gallery-1" />';
+    $html_galerie .= '</div>';
+
+    return $html_galerie;
+}
+
+// Enregistrez le shortcode personnalisé
+add_shortcode('galerie_personnalisee', 'shortcode_galerie_personnalisee');

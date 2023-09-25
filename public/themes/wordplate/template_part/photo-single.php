@@ -44,12 +44,21 @@
         </div>
         <article class="frame">
             <div class="flex">
-                <h1 class="team-mari-e">TEAM MARIÉE</h1>
-                <p class="text-wrapper">RÉFÉRENCE :<?php echo esc_html($reference); ?></p>
-                <p class="text-wrapper">CATÉGORIE : <?php echo isset($categories[basename($fichier)]) ? $categories[basename($fichier)] : 'Catégorie inconnue'; ?></p>
-                <p class="text-wrapper">FORMAT :<?php echo esc_html($format); ?></p>
-                <p class="text-wrapper">TYPE :<?php echo esc_html($type); ?></p>
-                <p class="text-wrapper">ANNÉE :<?php echo esc_html($annee); ?></p>
+                <?php
+                $query = "SELECT * FROM mytable LIMIT 20";
+                $data = $wpdb->get_results($query, ARRAY_A);
+
+                foreach ($data as $index => $item) {
+                    if (get_the_title() === $item['Titre']) {
+                        echo '<h1 class="team-mari-e">' . esc_attr($item['Titre']) . '</h1>';
+                    }
+                }
+                ?>
+                <p class="text-wrapper">RÉFÉRENCE: <?php echo esc_html($reference); ?></p>
+                <p class="text-wrapper">CATÉGORIE: <?php echo isset($categories[basename($fichier)]) ? $categories[basename($fichier)] : 'Catégorie inconnue'; ?></p>
+                <p class="text-wrapper">FORMAT: <?php echo esc_html($format); ?></p>
+                <p class="text-wrapper">TYPE: <?php echo esc_html($type); ?></p>
+                <p class="text-wrapper">ANNÉE: <?php echo esc_html($annee); ?></p>
                 <em class="line text-wrapper"></em>
             </div>
             <div class="image-wrapper">
@@ -66,11 +75,14 @@
             echo '</div>';
             echo '<div class="gallery-wrapper">';
             echo '<div class="galler galler-item" id="gallery-1">';
-            echo do_shortcode('[gallery ids="41778,41777,41776,41775,41774,41769,41771,41773"][gallery ids="41762,41761"]');
+            echo do_shortcode('[galerie_personnalisee]');
             echo '</div>';
             echo ' <div class="arrow-container">';
-            echo '<span class="prev fa fa-arrow-left"></span>';
-            echo '<span class="next fa fa-arrow-right"></span>';
+            $gallery_ids = array(42078, 42077, 42085, 42084, 42083, 42082, 42081, 42080, 41773, 41771, 41777, 41776, 42086, 42079, 42076, 42075, 42074, 42073, 42071, 41769, 41774, 41778);
+            $prev_id = $gallery_ids[0];
+            $next_id = $gallery_ids[1];
+            echo '<a class="prev fa fa-arrow-left" href="' . wp_get_attachment_image_url($prev_id, 'full') . '"></a>';
+            echo '<a class="next fa fa-arrow-right" href="' . wp_get_attachment_image_url($next_id, 'full') . '"></a>';
             echo '</div>';
             echo '</div>';
             echo '</article>';
