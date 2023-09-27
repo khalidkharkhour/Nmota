@@ -66,7 +66,7 @@ a {
 .team-mari-e {
   color: #000;
   font-family: var(--h2-desktop-font-family);
-  font-size: var(--h2-desktop-font-size);
+  font-size: 40px;
   font-style: var(--h2-desktop-font-style);
   font-weight: var(--h2-desktop-font-weight);
   letter-spacing: var(--h2-desktop-letter-spacing);
@@ -191,6 +191,16 @@ a {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  position: absolute;
+
+}
+
+#gallery-1 {
+  max-width: 100%;
+  max-height: 100%;
+
+  height: 8em;
+  margin-top: -10px;
 }
 
 #gallery-1 img {

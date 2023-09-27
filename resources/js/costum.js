@@ -46,3 +46,34 @@ elements.forEach(function (element) {
     //  le texte à l'intérieur de l'élément avec le nouveau titre
     element.textContent = newTitle;
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    let currentIndex = 0;
+    const images = document.querySelectorAll('.galler-item img');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+
+    function showImage(index) {
+        for (let i = 0; i < images.length; i++) {
+            images[i].style.display = 'none';
+        }
+        images[index].style.display = 'block';
+    }
+
+    function goToPreviousImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+    }
+
+    function goToNextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    }
+
+    // Afficher la première image au chargement de la page
+    showImage(currentIndex);
+
+    // Gérer les clics sur les boutons précédent et suivant
+    prevButton.addEventListener('click', goToPreviousImage);
+    nextButton.addEventListener('click', goToNextImage);
+});

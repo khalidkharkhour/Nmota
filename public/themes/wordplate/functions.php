@@ -300,19 +300,46 @@ add_action('wp_enqueue_scripts', 'localize_data_for_js');*/
         return 'http://localhost:8000/themes/wordplate/inc/images/defult.webp'; // Default image URL
     }
 }*/
-function shortcode_galerie_personnalisee($atts) {
+/*function shortcode_galerie_personnalisee($atts) {
     // Obtenir la source de l'image depuis la variable $fichier
     $fichier = get_post_meta(get_the_ID(), 'fichier', true);
     $fichier = str_replace('/inc/images', 'themes/wordplate/inc/images', $fichier);
     
     $source_image = esc_html($fichier);
-
+    echo do_shortcode('[gallery ids="42078,42077,42085,42084,42083,42082,42081,42080,41773,41771,41777,41776,42086,42079,42076,42075,42074,42073,42071,41769,41774,41778"]');
     // Créez le code HTML de la galerie avec la source d'image spécifiée
     $html_galerie = '<div id="#gallery-1">';
     $html_galerie .= '<img src="' . $source_image . '" id="#gallery-1" />';
     $html_galerie .= '</div>';
 
     return $html_galerie;
+}
+
+// Enregistrez le shortcode personnalisé
+add_shortcode('galerie_personnalisee', 'shortcode_galerie_personnalisee');*/
+
+function shortcode_galerie_personnalisee($atts) {
+    // Vous pouvez personnaliser ces valeurs en fonction de vos besoins
+    $ids = '42078,42077,42085,42084,42083,42082,42081,42080,41773,41771,41777,41776,42086,42079,42076,42075,42074,42073,42071,41769,41774,41778';
+    $output = '';
+
+    // Obtenez les IDs d'images en tant qu'attribut
+    $atts = shortcode_atts(array(
+        'ids' => $ids,
+    ), $atts, 'galerie_personnalisee');
+
+    // Créez le code HTML pour la galerie d'images
+    $output .= '<div class="gallery">';
+    $image_ids = explode(',', $atts['ids']);
+    foreach ($image_ids as $image_id) {
+        $photo_url = wp_get_attachment_url($image_id);
+        $output .= '<a class="gallery-icon portrait" href="' . esc_url($photo_url) . '">';
+        $output .= '<img src="' . esc_url($photo_url) . '">';
+        $output .= '</a>';
+    }
+    $output .= '</div>';
+
+    return $output;
 }
 
 // Enregistrez le shortcode personnalisé

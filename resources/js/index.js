@@ -168,7 +168,7 @@ const loadMoreImages = () => {
 
             imagesHTML.push(`
                 <div class="image-item">
-                    <span class="image-link" data-fancybox="images" href="${adjustedImageUrl}" data-caption="<a 'eye' href='/?photo=${slugify(imageTitle)}'></a><p>${imageCategory}</p><p>${imageReference}</p>">
+                    <span class="image-link" data-fancybox="images" href="${adjustedImageUrl}" data-caption="<a class='eye' href='/?photo=${slugify(imageTitle)}'></a><p>${imageCategory}</p><p>${imageReference}</p>">
                         <img src="${adjustedImageUrl}" alt="${imageReference}" class="nathalie">
                     </span>
                 </div>

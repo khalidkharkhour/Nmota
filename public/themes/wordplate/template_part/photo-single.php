@@ -31,7 +31,7 @@
 
     // Récupération des métadonnées de l'image
     $reference = get_post_meta(get_the_ID(), 'reference', true);
-    $annee = get_post_meta(get_the_ID(), 'annee', true);
+    $annee = get_post_meta(get_the_ID(), 'reference', true);
     $format = get_post_meta(get_the_ID(), 'format', true);
     $type = get_post_meta(get_the_ID(), 'type', true);
     $fichier = get_post_meta(get_the_ID(), 'fichier', true);
@@ -75,14 +75,51 @@
             echo '</div>';
             echo '<div class="gallery-wrapper">';
             echo '<div class="galler galler-item" id="gallery-1">';
-            echo do_shortcode('[galerie_personnalisee]');
+            $slug = get_query_var('photo');
+            $photo_url = home_url("/?photo=$slug");
+
+            echo '</a>';
+
+
+            $args = array(
+                'post_type' => 'photo',
+                'posts_per_page' => -1,
+            );
+           
+            $query = new WP_Query($args);
+
+            if ($query->have_posts()) {
+                while ($query->have_posts()) {
+                    $query->the_post();
+
+                    // Récupérez les pièces jointes de la publication
+                    $attachments = get_posts(array(
+                        'post_type' => 'attachment',
+                        'post_parent' => get_post_meta('fichier'),
+                        
+                    ));
+
+                    if ($attachments) {
+                        foreach ($attachments as $attachment) {
+                            
+                            echo '<a href="' . $photo_url . '">' . wp_get_attachment_image(esc_html($attachment->ID, 'thumbnail')) . '</a>';
+                        }
+                    }
+                }
+                wp_reset_postdata();
+                
+            } else {
+                // Aucune publication trouvée
+                echo 'Aucune publication trouvée.';
+            }
+
+
+
             echo '</div>';
             echo ' <div class="arrow-container">';
-            $gallery_ids = array(42078, 42077, 42085, 42084, 42083, 42082, 42081, 42080, 41773, 41771, 41777, 41776, 42086, 42079, 42076, 42075, 42074, 42073, 42071, 41769, 41774, 41778);
-            $prev_id = $gallery_ids[0];
-            $next_id = $gallery_ids[1];
-            echo '<a class="prev fa fa-arrow-left" href="' . wp_get_attachment_image_url($prev_id, 'full') . '"></a>';
-            echo '<a class="next fa fa-arrow-right" href="' . wp_get_attachment_image_url($next_id, 'full') . '"></a>';
+
+            echo '<a class="prev fa fa-arrow-left" ></a>';
+            echo '<a class="next fa fa-arrow-right" ></a>';
             echo '</div>';
             echo '</div>';
             echo '</article>';
