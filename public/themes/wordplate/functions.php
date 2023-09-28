@@ -320,7 +320,7 @@ add_shortcode('galerie_personnalisee', 'shortcode_galerie_personnalisee');*/
 
 function shortcode_galerie_personnalisee($atts) {
     // Vous pouvez personnaliser ces valeurs en fonction de vos besoins
-    $ids = '42078,42077,42085,42084,42083,42082,42081,42080,41773,41771,41777,41776,42086,42079,42076,42075,42074,42073,42071,41769,41774,41778';
+    $ids = '42078,42077,42085,42084,42083,42082,42081,42080,41773,41771,41777,41776,42086,42079,42076,42075,42074,42073';
     $output = '';
 
     // Obtenez les IDs d'images en tant qu'attribut

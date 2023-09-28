@@ -85,33 +85,43 @@
                 'post_type' => 'photo',
                 'posts_per_page' => -1,
             );
-           
-            $query = new WP_Query($args);
 
+            $args = array(
+                'post_type' => 'photo',
+                'posts_per_page' => 1,
+            );
+            
+            $query = new WP_Query($args);
+            
             if ($query->have_posts()) {
                 while ($query->have_posts()) {
                     $query->the_post();
-
-                    // Récupérez les pièces jointes de la publication
+            
+                    // Obtenez l'ID de la publication actuelle
+                    $post_id = get_post_meta(get_the_ID(), 'fichier', true);
+            
+                    // Récupérez toutes les images attachées sans limite
                     $attachments = get_posts(array(
                         'post_type' => 'attachment',
-                        'post_parent' => get_post_meta('fichier'),
-                        
+                        'post_parent' => $fichier,
+                        'posts_per_page' => -1,
+                        'numberposts' => 15, // Récupérer toutes les images
                     ));
-
+            
                     if ($attachments) {
-                        foreach ($attachments as $attachment) {
-                            
-                            echo '<a href="' . $photo_url . '">' . wp_get_attachment_image(esc_html($attachment->ID, 'thumbnail')) . '</a>';
+                        foreach ($attachments as $index => $attachment) {
+                            echo do_shortcode('[galerie_personnalisee]');
+
+
                         }
                     }
                 }
                 wp_reset_postdata();
-                
             } else {
                 // Aucune publication trouvée
                 echo 'Aucune publication trouvée.';
             }
+            
 
 
 

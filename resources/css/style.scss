@@ -42,7 +42,7 @@ a {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 2rem;
+  gap: 6rem;
   height: auto;
   justify-content: center;
 
@@ -66,9 +66,9 @@ a {
 .team-mari-e {
   color: #000;
   font-family: var(--h2-desktop-font-family);
-  font-size: 40px;
+  font-size: var(--h2-desktop-line-height);
   font-style: var(--h2-desktop-font-style);
-  font-weight: var(--h2-desktop-font-weight);
+  font-weight: var(--h1-desktop-font-weight);
   letter-spacing: var(--h2-desktop-letter-spacing);
   //line-height: var(--h2-desktop-line-height);
   width: 27rem;
