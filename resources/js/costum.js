@@ -46,79 +46,67 @@ elements.forEach(function (element) {
     //  le texte à l'intérieur de l'élément avec le nouveau titre
     element.textContent = newTitle;
 });
-document.addEventListener("DOMContentLoaded", function() {
-  
-    let currentIndex  = 0;
-    const images = document.querySelectorAll('.galler-item img');
-    const prevButton = document.querySelector('.prev');
-    const nextButton = document.querySelector('.next');
-    
-    const photoLinks = {
-        "0.webp": "sante",
-        "1.webp": "et-bon-anniversaire",
-        "2.webp": "lets-party",
-        "3.webp": "tout-est-installe",
-        "4.webp": "vers-leternite",
-        "5.webp": "embrassez-la-mariee",
-        "6.webp": "dansons-ensemble",
-        "7.webp": "le-menu",
-        "8.webp": "au-bal-masque",
-        "9.webp": "let-s-dance",
-        "10.webp": "jour-de-match",
-        "11.webp": "preparation",
-        "12.webp": "biere-ou-eau-plate",
-        "13.webp": "bouquet-final",
-        "14.webp": "du-soir-au-matin",
-        "15.webp": "team-mariee"
-    };
 
-    function showImage(index) {
-        for (let i = 0; i < images.length; i++) {
-            images[i].style.display = 'none';
-        }
-        images[index].style.display = 'block';
+// Variables pour suivre l'image actuelle
+let currentIndex =15;
 
-        // Obtenir le nom de l'image actuelle
-        const currentImageSrc = images[index].src;
-        const imageName = currentImageSrc.substring(currentImageSrc.lastIndexOf('/') + 1);
+// Récupérez la valeur de $imageUrl depuis PHP (remplacez cette ligne par votre méthode)
+let currentImageUrl = "<?php echo esc_html($fichier); ?>";
 
-        // Vérifier si l'image correspond à une clé dans le tableau photoLinks
-        if (photoLinks.hasOwnProperty(imageName)) {
-            // Faire quelque chose avec la valeur associée, par exemple :
-            const imageDescription = photoLinks[imageName];
-            console.log(`Description de l'image : ${imageDescription}`);
-        }
-    }
+// Sélectionnez toutes les images de la galerie
+const gallerItemImgs = document.querySelectorAll('.galler-item img');
+const itemAmt = gallerItemImgs.length;
 
-    function goToPreviousImage() {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        showImage(currentIndex);
-    }
-
-    function goToNextImage() {
-        currentIndex = (currentIndex + 1) % images.length;
-        showImage(currentIndex);
-    }
-
-    // Vérifier si l'URL contient un paramètre "photo"
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has("photo")) {
-        const photoName = urlParams.get("photo");
-        // Trouver l'index de l'image correspondant au nom dans le tableau photoLinks
-        for (let i = 0; i < images.length; i++) {
-            const currentImageSrc = images[i].src;
-            const imageName = currentImageSrc.substring(currentImageSrc.lastIndexOf('/') + 1);
-            if (imageName === `${photoName}.webp`) {
-                currentIndex = i;
-                break;
-            }
-        }
-    }
-
-    // Afficher l'image correspondante au chargement de la page
-    showImage(currentIndex);
-
-    // Gérer les clics sur les boutons précédent et suivant
-    prevButton.addEventListener('click', goToPreviousImage);
-    nextButton.addEventListener('click', goToNextImage);
+// Cache toutes les images sauf la première
+gallerItemImgs.forEach((img, index) => {
+  if (index !== currentIndex) {
+    img.style.display = 'none';
+  }
 });
+
+// Fonction pour afficher l'image suivante
+function cycleItems() {
+  // Cache toutes les images sauf celle avec l'indice actuel (currentIndex)
+  gallerItemImgs.forEach((img, index) => {
+    if (index !== currentIndex) {
+      img.style.display = 'none';
+    } else {
+      img.style.display = 'block';
+    }
+  });
+}
+
+// Fonction pour afficher l'image précédente
+function showPrev() {
+  // Décrémente l'index de l'image actuelle
+  currentIndex--;
+
+  // Si l'index est inférieur à 0, le remettre à la dernière image
+  if (currentIndex < 0) {
+    currentIndex = itemAmt - 1;
+  }
+
+  // Affiche l'image actuelle
+  cycleItems();
+}
+
+// Fonction pour afficher l'image suivante
+function showNext() {
+  // Incrémente l'index de l'image actuelle
+  currentIndex++;
+
+  // Si l'index est supérieur ou égal au nombre d'images, le remettre à la première image
+  if (currentIndex >= itemAmt) {
+    currentIndex = 0;
+  }
+
+  // Affiche l'image actuelle
+  cycleItems();
+}
+
+// Écouteurs d'événements pour les boutons Précédent et Suivant
+document.querySelector('.prev').addEventListener('click', showPrev);
+document.querySelector('.next').addEventListener('click', showNext);
+
+// Appel de la fonction cycleItems() pour afficher la première image au chargement de la page
+cycleItems();

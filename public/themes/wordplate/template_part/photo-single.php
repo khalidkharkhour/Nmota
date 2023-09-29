@@ -31,7 +31,7 @@
 
     // Récupération des métadonnées de l'image
     $reference = get_post_meta(get_the_ID(), 'reference', true);
-    $annee = get_post_meta(get_the_ID(), 'reference', true);
+   $annee = get_post_meta(get_the_ID(), 'annee', true);
     $format = get_post_meta(get_the_ID(), 'format', true);
     $type = get_post_meta(get_the_ID(), 'type', true);
     $fichier = get_post_meta(get_the_ID(), 'fichier', true);
@@ -73,19 +73,14 @@
             echo '<p class="div">Cette photo vous intéresse ?</p>';
             echo '<div id="contact" class="charger-plus" data-ref-photo="' . esc_attr($reference) . '">Contact</div>';
             echo '</div>';
+            ?>
+            <?php
             echo '<div class="gallery-wrapper">';
             echo '<div class="galler galler-item" id="gallery-1">';
             $slug = get_query_var('photo');
             $photo_url = home_url("/?photo=$slug");
 
             echo '</a>';
-
-
-            $args = array(
-                'post_type' => 'photo',
-                'posts_per_page' => -1,
-            );
-
             $args = array(
                 'post_type' => 'photo',
                 'posts_per_page' => 1,
@@ -97,34 +92,67 @@
                 while ($query->have_posts()) {
                     $query->the_post();
             
-                    // Obtenez l'ID de la publication actuelle
-                    $post_id = get_post_meta(get_the_ID(), 'fichier', true);
+                    // Get the post ID
+                   // $post_id = get_post_meta(get_the_ID(), 'fichier', true);
             
                     // Récupérez toutes les images attachées sans limite
                     $attachments = get_posts(array(
                         'post_type' => 'attachment',
-                        'post_parent' => $fichier,
-                        'posts_per_page' => -1,
-                        'numberposts' => 15, // Récupérer toutes les images
+                      //  'post_parent' => $post_id, // Use the post ID here
+                        'posts_per_page' => 15, // Retrieve all images
                     ));
             
                     if ($attachments) {
                         foreach ($attachments as $index => $attachment) {
-                            echo do_shortcode('[galerie_personnalisee]');
+                            // Get the file path of the attachment
+                            $filePath = wp_get_attachment_url($attachment->ID);
 
 
+    
+                            $filteredData =$data;
+                            if ($filteredData) {
+                                
+                                foreach ($filteredData as $index => $item) {
+                                    $fichier = get_post_meta(get_the_ID(), 'fichier', true);
+                                    if ($index ) { // On vérifie si l'index est supérieur ou égal à 6
+          
+                                    
+
+                                        $photo_filename = basename($item['Fichier']); // Obtenir le nom du fichier image
+                                        $image_src = wp_attachment_image_src($attachment_id);
+                                        $attachment_id = attachment_url_to_postid($item['Fichier']);
+                                        $url = esc_url(get_theme_file_uri($item['Fichier']));
+                            
+                                        if (isset($photo_links[$photo_filename])) {
+                                            $photo_caption = $photo_links[$photo_filename];
+                                        } else {
+                                            $photo_caption = ''; // Aucune légende par défaut si le lien n'est pas trouvé
+                                        }
+                                        $url = add_query_arg('photo', sanitize_title($photo_caption), get_permalink($post->ID));
+                                        $custom_post_permalink = get_permalink($post->ID); 
+                        
+                                        echo '<a class="image-link" href="' . esc_url(get_theme_file_uri($item['Fichier'])) . '" data-fancybox="images" data-caption="<a href=' . esc_url($url) . '><i class=\'eye\' aria-hidden=\'true\' data-toggle=\'details\' data-index=\'' . $index . '\'></i></a><p>' . $item['Titre'] . '</p><a href=' . esc_url($custom_post_permalink) . '>' . $item['Référence'] . '</a>">';
+                                        
+                                        echo '<img  src="' . esc_url(get_theme_file_uri($item['Fichier'])) . '" alt="' . esc_attr($item['Titre']) . '" data-src="' . esc_url(get_theme_file_uri($item['Fichier'])) . '">';
+                                        
+                                        echo '</a>';
+                                      
+                                    }
+                                }
+                               
+                            }
                         }
+                        wp_reset_postdata();
+                    
+                        
                     }
-                }
-                wp_reset_postdata();
+                        }
+                    
+            
+           
             } else {
                 // Aucune publication trouvée
-                echo 'Aucune publication trouvée.';
             }
-            
-
-
-
             echo '</div>';
             echo ' <div class="arrow-container">';
 
@@ -199,7 +227,12 @@
         </div>
     </picture>
     </section>
-    <?php get_footer(); ?>
+    <?php get_footer();
+      echo  '<script>
+      const currentImageUrl = <?php echo json_encode($imageUrl); ?>;
+    </script>';
+    
+     ?>
 </body>
 
 </html>

@@ -344,3 +344,27 @@ function shortcode_galerie_personnalisee($atts) {
 
 // Enregistrez le shortcode personnalisé
 add_shortcode('galerie_personnalisee', 'shortcode_galerie_personnalisee');
+/*function attacher_galerie_a_post_type_photos() {
+    $gallery_id = 41759; // Remplacez 123 par l'ID de votre galerie
+
+    // Récupérez toutes les publications du post type "photos"
+    $args = array(
+        'post_type' => 'photo',
+        'posts_per_page' => -1, // Récupère toutes les publications
+    );
+
+    $photos_query = new WP_Query($args);
+
+    if ($photos_query->have_posts()) {
+        while ($photos_query->have_posts()) {
+            $photos_query->the_post();
+
+            // Attachez la galerie à chaque publication
+            add_post_meta(get_the_ID(), '_gallery_images', $gallery_id);
+        }
+
+        wp_reset_postdata();
+    }
+}
+
+add_action('init', 'attacher_galerie_a_post_type_photos');*/
