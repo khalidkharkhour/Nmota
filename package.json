@@ -1,0 +1,22 @@
+{
+  "name": "foce-child",
+  "version": "1.0.0",
+  "description": "Child theme for Foce",
+  "scripts": {
+    "compile:scss": "sass assets/css/style.scss assets/css/style.css --no-source-map --update --style expanded",
+    "watch:scss": "sass assets/css/style.scss:assets/css/style.css --no-source-map --watch --style expanded"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^5.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-sass": "^5.1.0",
+    "node-sass": "^9.0.0",
+    "purgecss": "^5.0.0",
+    "sass": "^1.49.0"
+  },
+  "dependencies": {
+    "graceful-fs": "^4.2.2",
+    "gulp": "^4.0.2",
+    "swiper": "^10.1.0"
+  }
+}
