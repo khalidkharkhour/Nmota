@@ -1,6 +1,8 @@
 <footer class="footer-container">
     <ul>
         <?php
+       
+
         $links = [
             ['url' => '#', 'label' => 'Mentions Légales'],
             ['url' => '#', 'label' => 'Vie privée'],
@@ -14,7 +16,7 @@
     </ul>
 </footer>
 
-<?php wp_footer();
+<?php wp_footer(); 
 ?>
 </body>
 

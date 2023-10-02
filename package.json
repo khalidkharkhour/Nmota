@@ -1,10 +1,10 @@
 {
-  "name": "foce-child",
+  "name": "nathalie-mota",
   "version": "1.0.0",
   "description": "Child theme for Foce",
   "scripts": {
-    "compile:scss": "sass assets/css/style.scss assets/css/style.css --no-source-map --update --style expanded",
-    "watch:scss": "sass assets/css/style.scss:assets/css/style.css --no-source-map --watch --style expanded"
+    "compile:scss": "sass assets/css/style.scss assets/css/style.css ",
+    "watch:scss": "sass assets/css/style.scss:assets/css/style.css "
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^5.0.0",
@@ -17,6 +17,25 @@
   "dependencies": {
     "graceful-fs": "^4.2.2",
     "gulp": "^4.0.2",
+    "install": "^0.13.0",
+    "npm": "^10.1.0",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.9.0",
+    "react-redux": "^8.1.3",
     "swiper": "^10.1.0"
-  }
+  },
+  "main": "custom.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khalidkharkhour/Nmota.git"
+  },
+  "keywords": [
+    "nbvcxw"
+  ],
+  "author": "khalid",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/khalidkharkhour/Nmota/issues"
+  },
+  "homepage": "https://github.com/khalidkharkhour/Nmota#readme"
 }
