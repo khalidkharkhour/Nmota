@@ -13,13 +13,11 @@
     <header>
         <?php if (!wp_is_mobile()) : ?>
             <nav class="menu-container">
-                <?php if (get_theme_mod('logo_setting')) : ?>
-                    <div class="logo">
-                        <a href="<?php echo esc_url(home_url('/')); ?>">
-                            <img class="logo" src="<?php echo esc_url(get_theme_mod('logo_setting')); ?>" alt="<?php bloginfo('name'); ?> Logo">
-                        </a>
-                    </div>
-                <?php endif; ?>
+               
+                    <img src="http://localhost:10038/wp-content/themes/nathalie-mota/assets/images/Logo.png" class="logo">
+                      
+        
+               
 
                 <?php
                 $menu_args = array(
@@ -35,13 +33,12 @@
 
         <?php if (wp_is_mobile()) : ?>
             <header class="header">
-                <?php if (get_theme_mod('logo_setting')) : ?>
-                    <div class="logo">
-                        <a href="<?php echo esc_url(home_url('/')); ?>">
-                            <img class="logo" src="<?php echo esc_url(get_theme_mod('logo_setting')); ?>" alt="<?php bloginfo('name'); ?>">
-                        </a>
+               
+            <img src="http://localhost:10038/wp-content/themes/nathalie-mota/assets/images/Logo.png" class="logo">
+
+                       
                     </div>
-                <?php endif; ?>
+                
                 <input class="menu-btn" type="checkbox" id="menu-btn" />
                 <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
                 <nav class="menu">

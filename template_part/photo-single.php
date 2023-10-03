@@ -24,6 +24,16 @@
     if (is_array($type)) {
         $type = implode(', ', $type);
     }
+    if (is_array( $format)) {
+        $format = implode(', ',  $format);
+    }
+    if (is_array(  $annees)) {
+        $annees = implode(', ',   $annees);
+    }
+    if (is_array(  $reference )) {
+        $reference = implode(', ',  $reference );
+    }
+
     // Vérifier si une image est définie
     if ($image_url) {
         ?>
@@ -51,20 +61,113 @@
                         <div id="contact" class="charger-plus" data-ref-photo="<?php echo esc_attr($reference); ?>">Contact</div>
                     </div>
                  
-                </article>
-            </div>
-        </div>
-    <?php } else {
-        // Aucune image définie
-        echo 'Aucune image n\'est définie.';
+               <?php
+            echo '<div class="gallery-wrapper">';
+            echo '<div class="galler galler-item" id="gallery-1">';
+
+$args = array(
+    'post_type'      => 'photo',
+    'posts_per_page' => 1,
+);
+
+$query = new WP_Query($args);
+
+if ($query->have_posts()) {
+    while ($query->have_posts()) {
+        $query->the_post();
+
+        // Get the post ID
+        $post_id = get_the_ID(); // Vous devez stocker l'ID du post dans une variable
+
+        // Récupérez toutes les images attachées sans limite
+        $attachments = get_posts(array(
+            'post_type'      => 'attachment',
+            'post_parent'    => $post_id, // Utilisez la variable $post_id ici
+            'posts_per_page' => -1,
+        ));
+
+        if ($attachments) {
+            foreach ($attachments as $index => $attachment) {
+                $image_url = wp_get_attachment_url($attachment->ID); // Obtenez l'URL de l'image
+
+                echo '<img class ="image-item" src="' . esc_url($image_url) . '" alt="Image ' . $index . '">';
+            }
+        }
     }
-    ?>
-    <span class="line2 text-wrapper"></span>
-    <picture id="flex-cont2">
-        <h3 class="vous-aimerez-AUSSI">VOUS AIMEREZ AUSSI</h3>
+    wp_reset_postdata();
+
+echo '</div>';
+echo '</div>';
+    
+
+                        echo '</div>';
+                        echo ' <div class="arrow-container">';
+                        
+                        // Output the links.
+                        echo '<span  class="prev fa fa-arrow-left"></span>';
+                        echo '<span  class="next fa fa-arrow-right"></span>';
+
+                        echo '</div>';
+                        echo '</div>';
+}
+
+                    } else {
+                        // Aucune image attachée trouvée
+                    }
+                
+                
+
+            echo '</article>';
+            ?>
+        </div>
+    </div>
+    
+    <!-- ... Previous code ... -->
+
+<span class="line2 text-wrapper"></span>
+<picture id="flex-cont2">
+    <h3 class="vous-aimerez-AUSSI">VOUS AIMEREZ AUSSI</h3>
+
+
+<?php
+// Retrieve two photos from the same category
+$args = array(
+    'post_type' => 'photo',
+    'posts_per_page' => 2,  // Adjust the number of photos to display as needed
+    'post__not_in' => array($post_id),  // Exclude the current photo
+    'meta_query' => array(
+        array(
+            'key' => 'categories',  // Assuming 'categories' is the custom field for the category
+            'value' => $categories,  // Use the current photo's category
+            'compare' => 'LIKE',  // Check if the category matches
+        ),
+    ),
+);
+
+$query = new WP_Query($args);
+echo '<div class="images-container">';
+if ($query->have_posts()) {
+    while ($query->have_posts()) {
+        $query->the_post();
+        $photo_id = get_the_ID();
+        $photo_title = get_the_title();
+        $photo_image_url = get_field('image');
+
+       // echo '<div class="image-grid">';
+      //  echo '<h4 class="photo-title">' . esc_html($photo_title) . '</h4>';
+        echo '<img src="' . esc_url($photo_image_url) . '" alt="' . esc_attr($photo_title) . '">';
        
-    </picture>
+    }
+}
+echo '</div>';
+wp_reset_postdata();  // Reset the post data to the original query
+?>
+ <a href="http://localhost:10038/" class="CTA-2" id="myLink" target="_self">Toutes les photos</a>
+        </div>
+        </div>
+</picture>
+
+
     <?php get_footer(); ?>
 </body>
 </html>
-etjxcufykcvitullllllvio

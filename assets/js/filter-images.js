@@ -1,70 +1,85 @@
-/*jQuery(document).ready(($) => {
-    // Fonction de mise à jour des photos filtrées
-    const updateFilteredPhotos = () => {
-        const categorie = $('#categorie').val();
-        const format = $('#format').val();
-        const annee = $('#annee').val();
 
-        // Effectuez une requête AJAX pour récupérer les photos filtrées
-        $.ajax({
-            url: ajaxurl, // Assurez-vous que ajaxurl est correctement défini par WordPress
-            type: 'POST',
-            data: {
-                action: 'filter_photos', // Action WordPress personnalisée
-                categorie: categorie,
-                format: format,
-                annee: annee
-            },
-            success: (response) => {
-                $('#image-grid').html(response); // Mettez à jour le contenu de la zone d'affichage des photos
-            },
-            error: (xhr, status, error) => {
-                console.error(error); // Gérez les erreurs
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('image-grid');
+    const loadMoreButton = document.getElementById('load-more');
+    const returnButton = document.getElementById('return-button');
+    const itemsPerPage = 12; // Nombre d'images à afficher initialement
+    let currentIndex = 0;
+
+    // Fonction pour afficher les images à partir de l'index donné
+    function showImages(startIndex, endIndex) {
+        const imageItems = container.querySelectorAll('.image-item');
+        for (let i = startIndex; i < endIndex; i++) {
+            if (imageItems[i]) {
+                imageItems[i].style.display = 'block';
             }
-        });
+        }
     }
 
-    // Gérez les changements de sélection dans les sélecteurs
-    $('#categorie, #format, #annee').change(() => {
-        updateFilteredPhotos();
+    // Affiche les 12 premières images
+    showImages(0, itemsPerPage);
+
+    loadMoreButton.addEventListener('click', () => {
+        // Incrémente l'index de départ
+        currentIndex += itemsPerPage;
+        // Affiche les images suivantes
+        showImages(currentIndex, currentIndex + itemsPerPage);
+
+        // Cache le bouton "Charger plus" si toutes les images ont été chargées
+        const imageItems = container.querySelectorAll('.image-item');
+        if (currentIndex + itemsPerPage >= imageItems.length) {
+            loadMoreButton.style.display = 'none';
+        }
+
+        // Affiche le bouton "Retour"
+        returnButton.style.display = 'block';
     });
 
-    // Initialisez les photos au chargement de la page
-    updateFilteredPhotos();
-});*/
-$(function () {
-    // Fonction de mise à jour des photos filtrées
-    const updateFilteredPhotos = () => {
-        const selectedCategorie = $('#categorie').val();
-        const selectedFormat = $('#format').val();
-        const selectedAnnee = $('#annee').val();
-        const selectedTri = $('#tri').val();
-
-        // Effectuez une requête AJAX pour récupérer les photos filtrées
-        $.ajax({
-            url: ajaxurl, // Assurez-vous que ajaxurl est correctement défini par WordPress
-            type: 'POST',
-            data: {
-                action: 'filter_photos', // Action WordPress personnalisée
-                categorie: selectedCategorie,
-                format: selectedFormat,
-                annee: selectedAnnee,
-                tri: selectedTri
-            },
-            success: (response) => {
-                $('#image-grid').html(response); // Mettez à jour le contenu de la zone d'affichage des photos
-            },
-            error: (xhr, status, error) => {
-                console.error(error); // Gérez les erreurs
-            }
-        });
-    }
-
-    // Écoutez les changements dans les champs de sélection
-    $('#categorie, #format, #annee, #tri').change(() => {
-        updateFilteredPhotos();
+    returnButton.addEventListener('click', () => {
+        // Cache le bouton "Retour"
+        returnButton.style.display = 'none';
+        // Réinitialise l'index
+        currentIndex = 0;
+        // Cache toutes les images
+        const imageItems = container.querySelectorAll('.image-item');
+        for (let i = 0; i < imageItems.length; i++) {
+            imageItems[i].style.display = 'none';
+        }
+        // Affiche les 12 premières images
+        showImages(0, itemsPerPage);
+        // Affiche le bouton "Charger plus"
+        loadMoreButton.style.display = 'block';
     });
-
-    // Initialisez les photos au chargement de la page
-    updateFilteredPhotos();
 });
+
+    // Fonction pour filtrer les images en fonction des sélecteurs
+    function filterImages() {
+        var selectedCategory = document.getElementById("categorie").value;
+        var selectedFormat = document.getElementById("format").value;
+        var selectedYear = document.getElementById("annee").value;
+
+        var imageItems = document.querySelectorAll('.image-item');
+
+        imageItems.forEach(function (item) {
+            var itemCategory = item.getAttribute("data-category");
+            var itemFormat = item.getAttribute("data-format");
+            var itemYear = item.getAttribute("data-year");
+
+            if (
+                (selectedCategory === 'Toutes' || selectedCategory === itemCategory) &&
+                (selectedFormat === 'Tous' || selectedFormat === itemFormat) &&
+                (selectedYear === 'Toutes' || selectedYear === itemYear)
+            ) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    // Écoutez les changements dans les sélecteurs et filtrez les images en conséquence
+    document.getElementById("categorie").addEventListener('change', filterImages);
+    document.getElementById("format").addEventListener('change', filterImages);
+    document.getElementById("annee").addEventListener('change', filterImages);
+
+

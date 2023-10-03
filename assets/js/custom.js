@@ -64,47 +64,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-// Sélection des éléments de formulaire
-const categorieSelect = document.getElementById('categorie');
-const formatSelect = document.getElementById('format');
-const anneeSelect = document.getElementById('annee');
 
-// Gestion de la taille des menus déroulants lorsqu'ils sont en focus
-categorieSelect.addEventListener('focus', function () {
-    this.size = 3;
+jQuery(document).ready(function ($) {
+    $(".fancybox").fancybox();
 });
-
-categorieSelect.addEventListener('blur', function () {
-    this.size = 1;
-});
-
-categorieSelect.addEventListener('change', function () {
-    this.size = 1;
-    this.blur();
-});
-
-formatSelect.addEventListener('focus', function () {
-    this.size = 3;
-});
-
-formatSelect.addEventListener('blur', function () {
-    this.size = 1;
-});
-
-formatSelect.addEventListener('change', function () {
-    this.size = 1;
-    this.blur();
-});
-
-anneeSelect.addEventListener('focus', function () {
-    this.size = 3;
-});
-
-anneeSelect.addEventListener('blur', function () {
-    this.size = 1;
-});
-
-anneeSelect.addEventListener('change', function () {
-    this.size = 1;
-    this.blur();
+jQuery(function () {
+    jQuery('[data-fancybox="images"]').fancybox({
+        buttons: [
+            "slideShow",
+            "fullScreen",
+            "thumbs",
+            "close"
+        ],
+        loop: true, // Navigation en boucle
+        margin: [20, 20]
+    });
 });

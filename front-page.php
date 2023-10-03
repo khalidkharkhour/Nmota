@@ -26,7 +26,7 @@ if ($query->have_posts()) {
         $post_categories = get_field('categories');
         $post_formats = get_field('format');
         $post_annees = get_field('annees');
-
+        $post_references =get_field('references');
         // Vérifier si les valeurs sont des tableaux
         if (is_array($post_categories)) {
             $categories = array_merge($categories, $post_categories);
@@ -39,8 +39,12 @@ if ($query->have_posts()) {
         if (is_array($post_annees)) {
             $annees = array_merge($annees, $post_annees);
         }
+        if (is_array($post_references)) {
+            $references = array_merge($references, $post_references);
+        }
     }
-
+    $references = get_field('categories');
+    $reference = is_array($references) ? implode(', ', $references) : esc_html($references);
     // Supprimer les doublons en conservant l'ordre
     $categories = array_unique($categories);
     $formats = array_unique($formats);
@@ -50,9 +54,9 @@ if ($query->have_posts()) {
     echo '<div id="flex">';
     
     // Sélecteur pour les catégories
-    echo '<div class="custom-dropdown" >';
-    echo '<select  class="options" id="categorie " name="Catégorie">';
-    echo '<option class="selected" value="Catégorie">Catégorie</option>';
+    echo '<div class="custom-dropdown"  >';
+    echo '<select  id="categorie"   class=" options"name="Catégorie">';
+    echo '<option class="selected" value="Toutes">Catégories</option>';
     foreach ($categories as $categorie) {
         echo '<option value="' . esc_html($categorie) . '">' . esc_html($categorie) . '</option>';
     }
@@ -60,9 +64,9 @@ if ($query->have_posts()) {
     echo '</div>';
 
     // Sélecteur pour les formats
-    echo '<div class="custom-dropdown">';
-    echo '<select  class="options" id="format " name="Format">';
-    echo '<option value="Format" class="selected" ">Format</option>';
+    echo '<div class="custom-dropdown"  >';
+    echo '<select  id="format" class="options"  name="Format">';
+    echo '<option value="Tous" class="selected" > Formats</option>';
     foreach ($formats as $format) {
         echo '<option value="' . esc_html($format) . '">' . esc_html($format) . '</option>';
     }
@@ -70,9 +74,9 @@ if ($query->have_posts()) {
     echo '</div>';
 
     // Sélecteur pour les années
-    echo '<div class="custom-dropdown">';
-    echo '<select  class="options " id="annee" name="Année">';
-    echo '<option value="Année">Année</option>';
+    echo '<div class="custom-dropdown" >';
+    echo '<select  id="annee" class="options"  name="Année">';
+    echo '<option  value="Toutes">Année</option>';
     foreach ($annees as $annee) {
         echo '<option value="' . esc_html($annee) . '">' . esc_html($annee) . '</option>';
     }
@@ -86,27 +90,45 @@ if ($query->have_posts()) {
     echo 'Aucune image n\'a été trouvée pour le type de publication "photo".';
 }
 
-$args = array(
-    'post_type' => 'photo', // Type de publication personnalisé "photo"
-    'posts_per_page' => -1, // Pour afficher toutes les images
-);
-echo '<div  id="image-grid">';
+echo '<div id="image-grid">';
 $query = new WP_Query($args);
 
+$index = 0;
 if ($query->have_posts()) :
     while ($query->have_posts()) : $query->the_post();
-// Récupérer la valeur du champ 'categories'
-//
-        // Récupérer l'URL de l'image depuis le champ personnalisé 'image'
-       
 
+        // Récupérer la valeur du champ 'categories'
+        $categories = get_field('categories');
+        $categorie = is_array($categories) ? implode(', ', $categories) : esc_html($categories);
+       
+        // Récupérer l'URL de l'image depuis le champ personnalisé 'image'
         $image_url = get_field('image');
+        $reference = get_field('reference');
+        if (is_array(  $reference )) {
+            $reference = implode(', ',  $reference );
+        }
         if ($image_url) {
+            echo '<div class="image-item" data-index="' . $index . '" data-category="' . esc_html($categorie) . '" data-format="' . esc_html($format) . '" data-year="' . esc_html($annee) . '">';
+            echo '<a href="' . esc_url($image_url) . '" class="fancybox" data-fancybox="images" data-caption="<p>' . $reference . ' ' . $categorie . '</p>">';
            
-            echo '<div id="image-container " class="image-item" data-category="' . esc_html($categorie) . '" data-format="' . esc_html($format) . '" data-year="' . esc_html($annee) . '">';
+            echo '<i class="fas fa-expand"></i>'; 
+            $post= get_permalink();
+         
+            echo '<a href="' . esc_url($post) . '"><i class="fas fa-eye"></i></a>';
+           
+              echo '<div id="flex3">';
+            echo '<p class ="prag">' . esc_html(get_the_title()) . '</p>';
+           
+            echo '<p class ="prag">' . esc_html($categorie) . '</p>';
+
+            echo '</div>';
+         
             echo '<img src="' . esc_url($image_url) . '" alt="' . get_the_title() . '" />';
+          
+            echo '</a>';
             echo '</div>';
         }
+        
 
     endwhile;
     wp_reset_postdata(); // Réinitialiser la requête
@@ -114,5 +136,15 @@ else :
     echo 'Aucune image n\'a été trouvée pour le type de publication "photo".';
 endif;
 echo '</div>';
+echo '<div class="cont-btn1">';
+echo '<button class="btn1" id="load-more">Charger plus</button>';
+echo '<button class="btn1" id="return-button" style="display: none;">Retour</button>';
+echo '</div>';
+
+echo '<button class="btn1" id="load-more" style="display: none;">Charger plus</button>';
+
+
+
+
 
 get_footer();

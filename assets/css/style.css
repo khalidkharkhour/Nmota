@@ -159,34 +159,36 @@
   font-style: italic;
   display: swap;
 }
-@font-face {
+/*@font-face {
   font-family: "Space mono";
-  src: url("../inc/fonts/SpaceMono-Bold.ttf") format("truetype");
+  src: url("../inc/fonts/SpaceMono-Bold.ttf")format("truetype");
   font-weight: normal;
   font-style: normal;
   display: swap;
 }
+
 @font-face {
   font-family: "Space mono";
-  src: url("../inc/fonts/SpaceMono-BoldItalic.ttf") format("truetype");
+  src: url("../inc/fonts/SpaceMono-BoldItalic.ttf")format("truetype");
   font-weight: bold;
   font-style: italic;
   display: swap;
 }
-@font-face {
+
+/*@font-face {
   font-family: "Space mono";
-  src: url("../inc/fonts/SpaceMono-Italic.ttf") format("truetype");
+  src: url("../inc/fonts/SpaceMono-Italic.ttf")format("truetype");
   font-weight: normal;
   font-style: italic;
   display: swap;
-}
-@font-face {
+}*/
+/*@font-face {
   font-family: "Space mono";
-  src: url("../inc/fonts/SpaceMono-Regular.ttf") format("truetype");
+  src: url("../inc/fonts/SpaceMono-Regular.ttf")format("truetype");
   font-weight: normal;
   font-style: normal;
   display: swap;
-}
+}*/
 @font-face {
   font-family: "Poppins";
   src: url("../inc/fonts/Poppins-Medium.ttf") format("truetype");
@@ -234,8 +236,8 @@ ol {
 
 a {
   text-decoration: none;
-  font-family: "Space Mono";
-  text-transform: uppercase;
+  font-family: var(--drop-menu-menu-font-family);
+  text-transform: capitalize !important;
   font-weight: 400;
   color: #000000;
   font-style: normal;
@@ -243,7 +245,7 @@ a {
 }
 
 .logo {
-  width: 214px;
+  width: 214px !important;
   height: 14px;
   float: left;
   text-align: center;
@@ -282,7 +284,7 @@ a {
 
 .hero {
   position: relative;
-  background: url("../images/nathalie-1.webp") center/cover no-repeat !important;
+  background: url("../images/nathalie-1.webp") center/cover no-repeat;
   color: white;
   text-align: center;
   padding: 400px 0;
@@ -495,6 +497,7 @@ label {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  margin-top: -3em;
 }
 
 #flex {
@@ -994,8 +997,10 @@ a {
 .arrow-container {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  position: absolute;
+  width: 10%;
+  position: relative;
+  left: 62em;
+  bottom: 2em;
 }
 
 #gallery-1 {
@@ -1215,6 +1220,66 @@ p {
     margin: 10%;
     top: 4%;
   }
+}
+.fa-expand::before {
+  content: "\f065";
+  position: relative;
+  z-index: 2000;
+  left: 33em;
+  top: 2em;
+  color: var(--white2);
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 15s ease; /* Ajoute une transition pour smooth l'effet */
+}
+
+.fa-expand:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.fa-eye::before {
+  content: "\f06e";
+  position: relative;
+  bottom: -11em;
+  left: 16em;
+  color: var(--white2);
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 15s ease;
+}
+
+.fa-eye:hover::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+.prag {
+  font-size: small;
+  font-family: var(--p-font-family);
+  color: var(--white2);
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.prag:hover {
+  opacity: 1;
+  visibility: visible;
+}
+
+#flex3 {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  top: 28em;
+  flex-direction: row;
+}
+
+#customize-controls img {
+  max-width: 100%;
+  width: 20vw;
+}
+
+.fancybox-caption__body {
+  word-spacing: 20em !important;
 }
 
 /*# sourceMappingURL=style.css.map */

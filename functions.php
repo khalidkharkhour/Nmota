@@ -1,13 +1,19 @@
 <?php
 function enqueue_custom_styles_and_scripts()
 {
-    // Enqueuez le CSS
+    wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.6.0.min.js', array(), '3.6.0', true);
+    wp_enqueue_style('lightbox-css', 'https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css');
+   // wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js', array('jquery'), '4.0.13', true);
+  // wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css');
+   
+
+    wp_enqueue_style('fancybox-css', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css');
+    wp_enqueue_script('fancybox-js', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', array('jquery'), '3.5.7', true);
+
+    // Enqueuez le CSS personnalisé
     wp_enqueue_style('custom-style', get_template_directory_uri() . '/assets/css/style.css', array(), '1.0', 'all');
 
-    // Enqueuez jQuery
-    wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.6.0.min.js', array(), '3.6.0', true);
-
-    // Enqueuez le JavaScript
+    // Enqueuez le JavaScript commun à toutes les pages
     wp_enqueue_script('custom-script', get_template_directory_uri() . '/assets/js/custom.js', array('jquery'), '1.0', true);
 
     // Enqueuez le script filter-images
@@ -15,9 +21,16 @@ function enqueue_custom_styles_and_scripts()
 
     // Définissez l'URL AJAX pour votre JavaScript
     wp_localize_script('filter-images', 'ajaxurl', admin_url('admin-ajax.php'));
+
+    // Vérifiez si vous êtes sur une page single.php et enqueu js spécifique
+    if (is_single()) {
+        // Enqueuez votre script spécifique à single.php ici
+        wp_enqueue_script('single-script', get_template_directory_uri() . '/assets/js/single.js', array('jquery'), '1.0', true);
+    }
 }
 
 add_action('wp_enqueue_scripts', 'enqueue_custom_styles_and_scripts');
+
 
 
 function wp_enqueue_custom_fonts()
@@ -252,4 +265,74 @@ add_action('acf/include_fields', function () {
     ));
 });
 
+/*add_action( 'acf/include_fields', function() {
+	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
+		return;
+	}
+
+	acf_add_local_field_group( array(
+	'key' => 'group_651b9526b659a',
+	'title' => 'fa',
+	'fields' => array(
+		array(
+			'key' => 'field_651b95270c7e2',
+			'label' => '<i class="fas fa-eye"></i> Lien', 
+			'name' => 'lien',
+			'aria-label' => '',
+			'type' => 'page_link',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'post_type' => array(
+				0 => 'photo',
+			),
+			'post_status' => array(
+				0 => 'publish',
+			),
+			'taxonomy' => '',
+			'allow_archives' => 1,
+			'multiple' => 1,
+			'allow_null' => 0,
+		),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'photo',
+			),
+			array(
+				'param' => 'post_type',
+				'operator' => '==',
+				'value' => 'page',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'normal',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => true,
+	'description' => '',
+	'show_in_rest' => 0,
+) );
+} );*/
+
+/*function custom_theme_setup() {
+    add_theme_support('custom-logo', array(
+        'height'      => 100,
+        'width'       => 300,
+        'flex-height' => true,
+        'flex-width'  => true,
+    ));
+}
+add_action('after_setup_theme', 'custom_theme_setup');*/
 
