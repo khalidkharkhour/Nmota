@@ -14,7 +14,7 @@
         <?php if (!wp_is_mobile()) : ?>
             <nav class="menu-container">
                
-                    <img src="http://localhost:10038/wp-content/themes/nathalie-mota/assets/images/Logo.png" class="logo">
+                    <img src="http://localhost:10038/wp-content/themes/nathalie-mota/assets/images/Logo.svg" class="logo">
                       
         
                
@@ -34,7 +34,7 @@
         <?php if (wp_is_mobile()) : ?>
             <header class="header">
                
-            <img src="http://localhost:10038/wp-content/themes/nathalie-mota/assets/images/Logo.png" class="logo">
+            <img src="http://localhost:10038/wp-content/themes/nathalie-mota/assets/images/Logo.svg" class="logo">
 
                        
                     </div>

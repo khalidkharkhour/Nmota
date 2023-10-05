@@ -77,6 +77,48 @@ jQuery(function () {
             "close"
         ],
         loop: true, // Navigation en boucle
-        margin: [20, 20]
+        margin: [10, 10]
     });
 });
+
+
+const hoverContainer = document.querySelector('#image-grid');
+const elementsToShow = document.querySelectorAll('.fa-expand, .fa-eye, .prag');
+
+let hovered = false;
+
+hoverContainer.addEventListener('mouseover', () => {
+  if (!hovered) {
+    elementsToShow.forEach(e => {
+      e.style.opacity = 1;
+      e.style.visibility = 'visible';
+    });
+    hovered = true;
+  }
+});
+
+hoverContainer.addEventListener('mouseout', () => {
+  if (hovered) {
+    elementsToShow.forEach(e => {
+      e.style.opacity = 0;
+      e.style.visibility = 'hidden';
+    });
+    hovered = false;
+  }
+});
+
+hoverContainer.addEventListener('click', () => {
+  elementsToShow.forEach(e => {
+    if (hovered) {
+      e.style.opacity = 0;
+      e.style.visibility = 'hidden';
+      hovered = false;
+    } else {
+      e.style.opacity = 1;
+      e.style.visibility = 'visible';
+      hovered = true;
+    }
+  });
+});
+
+

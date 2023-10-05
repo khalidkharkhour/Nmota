@@ -3,8 +3,8 @@ function enqueue_custom_styles_and_scripts()
 {
     wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.6.0.min.js', array(), '3.6.0', true);
     wp_enqueue_style('lightbox-css', 'https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css');
-   // wp_enqueue_script('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js', array('jquery'), '4.0.13', true);
-  // wp_enqueue_style('select2', 'https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css');
+    wp_enqueue_style('select2-css', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css');
+  wp_enqueue_script('select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), '', true);
    
 
     wp_enqueue_style('fancybox-css', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css');
@@ -264,75 +264,4 @@ add_action('acf/include_fields', function () {
         'show_in_rest' => 0,
     ));
 });
-
-/*add_action( 'acf/include_fields', function() {
-	if ( ! function_exists( 'acf_add_local_field_group' ) ) {
-		return;
-	}
-
-	acf_add_local_field_group( array(
-	'key' => 'group_651b9526b659a',
-	'title' => 'fa',
-	'fields' => array(
-		array(
-			'key' => 'field_651b95270c7e2',
-			'label' => '<i class="fas fa-eye"></i> Lien', 
-			'name' => 'lien',
-			'aria-label' => '',
-			'type' => 'page_link',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'post_type' => array(
-				0 => 'photo',
-			),
-			'post_status' => array(
-				0 => 'publish',
-			),
-			'taxonomy' => '',
-			'allow_archives' => 1,
-			'multiple' => 1,
-			'allow_null' => 0,
-		),
-	),
-	'location' => array(
-		array(
-			array(
-				'param' => 'post_type',
-				'operator' => '==',
-				'value' => 'photo',
-			),
-			array(
-				'param' => 'post_type',
-				'operator' => '==',
-				'value' => 'page',
-			),
-		),
-	),
-	'menu_order' => 0,
-	'position' => 'normal',
-	'style' => 'default',
-	'label_placement' => 'top',
-	'instruction_placement' => 'label',
-	'hide_on_screen' => '',
-	'active' => true,
-	'description' => '',
-	'show_in_rest' => 0,
-) );
-} );*/
-
-/*function custom_theme_setup() {
-    add_theme_support('custom-logo', array(
-        'height'      => 100,
-        'width'       => 300,
-        'flex-height' => true,
-        'flex-width'  => true,
-    ));
-}
-add_action('after_setup_theme', 'custom_theme_setup');*/
 

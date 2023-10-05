@@ -69,6 +69,7 @@
   --noir-100: rgba(0, 0, 0, 1);
   --p-font-family: "Poppins-Light", Helvetica;
   --p-font-size: 14px;
+  --a-font-size :16px;
   --p-font-style: normal;
   --p-font-weight: 300;
   --p-letter-spacing: 0px;
@@ -181,7 +182,7 @@
   display: swap;
 }
 
-/*@font-face {
+@font-face {
   font-family: "Space mono";
   src: url("../inc/fonts/SpaceMono-Bold.ttf")format("truetype");
   font-weight: normal;
@@ -197,21 +198,21 @@
   display: swap;
 }
 
-/*@font-face {
+@font-face {
   font-family: "Space mono";
   src: url("../inc/fonts/SpaceMono-Italic.ttf")format("truetype");
   font-weight: normal;
   font-style: italic;
   display: swap;
-}*/
+}
 
-/*@font-face {
+@font-face {
   font-family: "Space mono";
   src: url("../inc/fonts/SpaceMono-Regular.ttf")format("truetype");
   font-weight: normal;
   font-style: normal;
   display: swap;
-}*/
+}
 
 @font-face {
   font-family: "Poppins";
@@ -265,11 +266,11 @@ ol {
 a {
   text-decoration: none;
   font-family: var(--drop-menu-menu-font-family);
-  text-transform: capitalize !important;
+  text-transform: uppercase;
   font-weight: 400;
-  color: #000000;
+  color: var(--black);
   font-style: normal;
-  font-size: 16px;
+  font-size: var(--a-font-size);
 }
 
 .logo {
@@ -396,7 +397,7 @@ img {
 .modal-header {
   border-bottom: 1px solid #ccc;
   padding: 10px 20px;
-  background: url("../inc/images/contact-header.svg") center/cover no-repeat;
+  background: url("../images/contact-header.svg") center/cover no-repeat;
   height: 7rem;
   margin-top: 5%;
 }
@@ -474,34 +475,6 @@ img {
   flex-direction: column;
 
 }
-
-
-
-
-/*.modal-title:nth-child(1) {
-  content: attr(data-text) "\a"  attr(data-text) ;
-  display: inline-block;
-  font-size: 33px;
-  font-weight: 400;
-  font-weight: var(--h2-desktop-font-weight);
-  color: #313144;
-  color: var(--black);
-  font-family: SpaceMono-Regular, Helvetica;
-  font-family: var(--description-photo-desktop-font-family);
-  font-style: italic;
-  word-spacing: -12px;
-  opacity: 1;
-  width: fit-content;
-  margin-left: -25px;
-  transform: translateZ(-3px);
-}*/
-
-/*.modal-title:nth-child(1) {
-  background: url("../inc/images/contact-header.svg") center/cover no-repeat;
-}*/
-
-
-/* Utilisez l'attribut data-text pour répéter le texte */
 
 
 .modal-title {
@@ -585,116 +558,39 @@ label {
   overflow: visible;
 }
 
-/*.custom-dropdown   {
-  display: block;
-  padding: 8px 12px;
-  background-color: #f0f0f0;
+.select2-container ,#annee ,#format ,#categorie {
+  
+  background-color: var(--white);
   //border: 1px solid #ccc;
-  border-radius: 8px;
-  width: 281px ;
-  height: 46px ;
+  border-radius: 8px !important;
+  width: 281px !important;
+ 
   cursor: pointer;
   //background: url("../inc/images/fleche-vers-le-bas.png") center/cover no-repeat;
-  background-position: 98% 50%;
-  background-size: 20px
-}*/
-
-.options::before {
-
-  margin: 0;
-  padding: 0;
-  border: 1px solid var(--bleu-fonc);
-  background-color: var(--white);
-
-
-
-
+  
 }
-
-.options {
-  width: 20em;
-  padding: 16px 12px;
-  border: 1px solid var(--bleu-fonc);
-  background-color: var(--white);
-  border-radius: 8px;
+.select2-selection--single {
+  height: 46px !important;
 }
-
-
-
-.options option {
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--bleu-fonc);
-  cursor: pointer;
-  /*transition: background-color 0.9s;*/
-  /*width: 281px ;
-  height: 46px ;*/
-
-}
-
 $colors: var(--rouge), var(--rouge-secondaire), var(--rouge-tertiaire), var(--rouge);
-/*
-@for $i from 1 through 4 {
-  .options option:nth-child {
-    background-color: nth($colors, $i);
-    transition: background-color 1.3s, transform 1.3s;
-  }
-}*/
-
-
-
-/*.selected:hover+.options option:hover {
-  background-color: var(--white);
-}*/
-
-
-.selected+.options {
-  display: flex;
-  flex-direction: column;
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+  background-color: var(--rouge);
+  
+  color: white
+}
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable:nth-child(1){
+  background-color: var(--rouge-secondaire);
 }
 
-.selected {
-  background-color: white;
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable:nth-child(2){
+  background-color: var(--rouge-tertiaire);
 }
-
-.options option {
-  transition: background-color 0.3s ease-in-out;
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable:nth-child(3){
+  background-color: var(--rouge-secondaire);
 }
-
-.options option:hover {
-  background-color: var(--white)
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable:nth-child(4){
+  background-color: var(--rouge-secondaire);
 }
-
-.options option:nth-child(1):hover {
-  background-color: nth($colors, 1);
-  transition-delay: 0s;
-  /* Pas de délai pour la première option */
-}
-
-.options option:nth-child(2):hover {
-  background-color: nth($colors, 2);
-  transition-delay: 0.1s;
-  /* Délai de 0.1s pour la deuxième option */
-}
-
-.options option:nth-child(3):hover {
-  background-color: nth($colors, 3);
-  transition-delay: 0.2s;
-  /* Délai de 0.2s pour la troisième option */
-}
-
-.options option:nth-child(4):hover {
-  background-color: nth($colors, 4);
-  transition-delay: 0.3s;
-  /* Délai de 0.3s pour la quatrième option */
-}
-
-.options option:nth-child(5):hover {
-  background-color: nth($colors, 3);
-  transition-delay: 0.4s;
-  /* Délai de 0.4s pour la cinquième option */
-}
-
-
 .btn1 {
   font-family: var(--description-photo-desktop-font-family);
   font-style: normal;
@@ -1385,6 +1281,14 @@ p {
     top: 4%;
   }
 }
+// Définir une classe commune pour les éléments à afficher en même temps
+.show-on-hover {
+  opacity: 0;
+  //visibility: hidden;
+  transition: opacity 0.1s ease, visibility 15s ease;
+}
+
+// Styles pour l'icône .fa-expand
 .fa-expand::before {
   content: "\f065";
   position: relative;
@@ -1392,41 +1296,52 @@ p {
   left: 33em;
   top: 2em;
   color: var(--white2);
-  opacity: 0;
-  transition: opacity 0.3s ease, visibility 15s ease; /* Ajoute une transition pour smooth l'effet */
+  
 }
 
-.fa-expand:hover::before {
+/*.fa-expand:hover::before {
   opacity: 1;
   visibility: visible;
-}
+}*/
 
+// Styles pour l'icône .fa-eye
 .fa-eye::before {
   content: "\f06e";
   position: relative;
   bottom: -11em;
   left: 16em;
   color: var(--white2);
-  opacity: 0;
-  transition: opacity 0.3s ease, visibility 15s ease; 
 }
 
-.fa-eye:hover::before {
+/*.fa-eye:hover::before {
   opacity: 1;
   visibility: visible;
-}
+}*/
 
+// Styles pour la classe .prag
 .prag {
-  font-size: small;
+  font-size: var(--description-photo-mobile-font-size);
   font-family: var(--p-font-family);
-  color:var(--white2);
-  opacity: 0;
-  transition: opacity 0.3s ease, visibility 0.3s ease; 
+  color: var(--white2);
+  line-height: 21px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+
 }
-.prag:hover {
+
+/*.prag:hover {
   opacity: 1;
   visibility: visible;
+}*/
+
+// Appliquer la classe commune aux éléments
+.fa-expand::before:hover,
+.fa-eye::before:hover,
+.prag:hover {
+  @extend .show-on-hover;
 }
+
 #flex3 {
   display: flex;
   justify-content: space-between;
