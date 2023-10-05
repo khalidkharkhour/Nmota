@@ -32,19 +32,19 @@ if ($query->have_posts()) {
         $post_references = get_field('references'); // Correction de cette ligne
 
         // Vérifier si les valeurs sont des tableaux
-        if (is_array($post_categories)) {
+        if ($post_categories) {
             $categories = array_merge($categories, $post_categories);
         }
 
-        if (is_array($post_formats)) {
+        if ($post_formats) {
             $formats = array_merge($formats, $post_formats);
         }
 
-        if (is_array($post_annees)) {
+        if ($post_annees) {
             $annees = array_merge($annees, $post_annees);
         }
 
-        if (is_array($post_references)) {
+        if ($post_references) {
             $references = array_merge($references, $post_references);
         }
     }
@@ -56,55 +56,46 @@ if ($query->have_posts()) {
     // Afficher les sélecteurs
     echo '<div id="flex">';
 
-    echo '<form action="' . admin_url('admin-ajax.php') . '" method="post">';
+    echo '<form action="" method="post">';
     echo '<input type="hidden" name="postid" value="' . get_the_ID() . '">';
     echo '<input type="hidden" name="nonce" value="' . wp_create_nonce('flex') . '">';
-    echo '<div class="custom-dropdown"  >';
+    echo '<div class="custom-dropdown">';
     echo '<select id="categorie" class="select2" name="Catégorie">';
     echo '<option class="selected" value="Toutes">Catégories</option>';
     foreach ($categories as $categorie) {
-        if (is_array($categorie)) {
-            // Traitez ici le cas où $categorie est un tableau
-        } else {
-            echo '<option value="' . esc_html($categorie) . '">' . esc_html($categorie) . '</option>';
-        }
+        echo '<option value="' . esc_html($categorie) . '">' . esc_html($categorie) . '</option>';
     }
     echo '</select>';
     echo '</div>';
     echo '</form>';
+    
     // Sélecteur pour les formats
-    echo '<form action="' . admin_url('admin-ajax.php') . '" method="post">';
+    echo '<form action=" " method="post">';
     echo '<input type="hidden" name="postid" value="' . get_the_ID() . '">';
     echo '<input type="hidden" name="nonce" value="' . wp_create_nonce('flex') . '">';
-    echo '<div class="custom-dropdown"  >';
-    echo '<select id="format" class="select2"  name="Format">';
-    echo '<option value="Tous" class="selected" > Formats</option>';
+    echo '<div class="custom-dropdown">';
+    echo '<select id="format" class="select2" name="Format">';
+    echo '<option value="Tous" class="selected">Formats</option>';
     foreach ($formats as $format) {
-        if (is_array($format)) {
-            // Traitez ici le cas où $format est un tableau
-        } else {
-            echo '<option value="' . esc_html($format) . '">' . esc_html($format) . '</option>';
-        }
+        echo '<option value="' . esc_html($format) . '">' . esc_html($format) . '</option>';
     }
     echo '</select>';
     echo '</div>';
     echo '</form>';
+
     // Sélecteur pour les années
-    echo '<form action="' . admin_url('admin-ajax.php') . '" method="post">';
+    echo '<form action=" " method="post">';
     echo '<input type="hidden" name="postid" value="' . get_the_ID() . '">';
     echo '<input type="hidden" name="nonce" value="' . wp_create_nonce('flex') . '">';
-    echo '<div class="custom-dropdown" >';
-    echo '<select id="annee" class="select2"  name="Année">';
-    echo '<option  value="Toutes">Année</option>';
+    echo '<div class="custom-dropdown">';
+    echo '<select id="annee" class="select2" name="Année">';
+    echo '<option value="Toutes">Année</option>';
     foreach ($annees as $annee) {
-        if (is_array($annee)) {
-            // Traitez ici le cas où $annee est un tableau
-        } else {
-            echo '<option value="' . esc_html($annee) . '">' . esc_html($annee) . '</option>';
-        }
+        echo '<option value="' . esc_html($annee) . '">' . esc_html($annee) . '</option>';
     }
     echo '</select>';
     echo '</div>';
+    echo '</form>';
 
     echo '</div>';
 
@@ -122,28 +113,28 @@ if ($query->have_posts()) :
         $titre = get_field('titre');
         // Récupérer la valeur du champ 'categories'
         $categories = get_field('categories');
-        if (is_array($categories)) {
+        if ($categories) {
             $categorie = implode(', ', $categories);
         } else {
-            $categorie = esc_html($categories);
+            $categorie = '';
         }
 
         // Récupérer l'URL de l'image depuis le champ personnalisé 'image'
         $image_url = get_field('image');
-        $reference = get_field('reference');
-        $format = get_field('format'); // Ajout de cette ligne pour récupérer le format
-        $annee = get_field('annees'); // Ajout de cette ligne pour récupérer l'année
+        $reference = get_field('references');
+        $format = get_field('format');
+        $annee = get_field('annees');
 
-        if (is_array($reference)) {
+        if ($reference) {
             $reference = implode(', ', $reference);
         }
-        if (is_array(  $annee )) {
-            $annee  = implode(', ',   $annee );
+        if ($annee) {
+            $annee = implode(', ', $annee);
         }
-        if (is_array(  $format )) {
-            $format = implode(', ',   $format);
+        if ($format) {
+            $format = implode(', ', $format);
         }
-       
+
         if ($image_url) {
             echo '<div class="image-item" data-index="' . $index . '" data-category="' . esc_html($categorie) . '" data-format="' . esc_html($format) . '" data-year="' . esc_html($annee) . '">';
             echo '<a href="' . esc_url($image_url) . '" class="fancybox" data-fancybox="images" data-caption="<p>' . $reference . ' ' . $categorie . '</p>">';
@@ -154,7 +145,7 @@ if ($query->have_posts()) :
             echo '<p class ="prag show-on-hover ">' . esc_html($titre) . '</p>';
             echo '<p class ="prag show-on-hover">' . esc_html($categorie) . '</p>';
             echo '</div>';
-            echo '<img src="' . esc_url($image_url) . '" alt="' .  $titre . '" />';
+            echo '<img src="' . esc_url($image_url) . '" alt="' . $titre . '" />';
             echo '</a>';
             echo '</div>';
         }
@@ -167,11 +158,12 @@ else :
 endif;
 echo '</div>';
 echo '<div class="cont-btn1">';
-echo '<form action="' . admin_url('admin-ajax.php') . '" method="post">';
+echo '<form id="load-more-form" method="post">';
 echo '<input type="hidden" name="postid" value="' . get_the_ID() . '">';
-echo '<input type="hidden" name="nonce" value="' . wp_create_nonce('cont-btn1') . '">';
+echo '<input type="hidden" name="nonce" value="' . wp_create_nonce('load-more-action') . '">';
 echo '<button type="submit" class="btn1" id="load-more">Charger plus</button>';
 echo '</form>';
+echo '<input style="display: none;" type="hidden" name="nonce" value="' . wp_create_nonce('return-button-action') . '">';
 echo '<button class="btn1" id="return-button" style="display: none;">Retour</button>';
 echo '</div>';
 

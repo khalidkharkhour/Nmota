@@ -4,8 +4,8 @@ function enqueue_custom_styles_and_scripts()
     wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.6.0.min.js', array(), '3.6.0', true);
     wp_enqueue_style('lightbox-css', 'https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css');
     wp_enqueue_style('select2-css', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css');
-  wp_enqueue_script('select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), '', true);
-   
+    wp_enqueue_script('select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), '', true);
+
 
     wp_enqueue_style('fancybox-css', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css');
     wp_enqueue_script('fancybox-js', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', array('jquery'), '3.5.7', true);
@@ -16,11 +16,10 @@ function enqueue_custom_styles_and_scripts()
     // Enqueuez le JavaScript commun à toutes les pages
     wp_enqueue_script('custom-script', get_template_directory_uri() . '/assets/js/custom.js', array('jquery'), '1.0', true);
 
-    // Enqueuez le script filter-images
-    wp_enqueue_script('filter-images', get_template_directory_uri() . '/assets/js/filter-images.js', array('jquery'), '1.0', true);
-
-    // Définissez l'URL AJAX pour votre JavaScript
-    wp_localize_script('filter-images', 'ajaxurl', admin_url('admin-ajax.php'));
+    wp_enqueue_script('your-custom-script', get_template_directory_uri() . '/assets/js/filter-images.js', array('jquery'), null, true);
+    wp_localize_script('your-custom-script', 'custom_script_vars', array(
+        'ajaxurl' => admin_url('admin-ajax.php')
+    ));
 
     // Vérifiez si vous êtes sur une page single.php et enqueu js spécifique
     if (is_single()) {
@@ -264,4 +263,40 @@ add_action('acf/include_fields', function () {
         'show_in_rest' => 0,
     ));
 });
+
+function load_gallery_images_callback()
+{
+    if (isset($_POST['nonce']) && wp_verify_nonce($_POST['nonce'], 'load-more-action')) {
+        // ...
+    } elseif (isset($_POST['nonce']) && wp_verify_nonce($_POST['nonce'], 'return-button-action')) {
+    } else {
+        $images = array();
+
+        // Ajoutez votre code pour récupérer les URL des images liées au post
+        $args = array(
+            'post_type' => 'attachment',
+            'post_status' => 'inherit',
+            'post_parent' => $post_id,
+            'post_mime_type' => 'image'
+        );
+
+        $attachments = get_posts($args);
+
+        foreach ($attachments as $attachment) {
+            $image_url = get_field('image');
+
+            $image_url = wp_get_attachment_image_url($attachment->ID, 'full');
+            if ($image_url) {
+                $images[] = $image_url;
+            }
+        }
+
+        // Renvoyez la réponse au format JSON avec les URL des images
+        echo json_encode(array('success' => true, 'images' => $images));
+    }
+    wp_die(); // Assurez-vous d'appeler wp_die() pour terminer correctement la requête AJAX
+}
+add_action('wp_ajax_load_gallery_images', 'load_gallery_images_callback');
+add_action('wp_ajax_nopriv_load_gallery_images', 'load_gallery_images_callback');
+
 
