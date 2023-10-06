@@ -764,8 +764,40 @@ a {
   width: 46%;
 }
 
+@keyframes moveFas {
+  from {
+    transform: translateY(20px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+#single-photo-page {
+  /* Use meaningful class names */
+  /* Use a more specific selector for Font Awesome icons */
+}
 #single-photo-page .hero {
   display: none !important;
+}
+#single-photo-page #flex3 {
+  top: -2em;
+  justify-content: center;
+  align-items: center;
+  gap: 19em;
+}
+#single-photo-page .prag {
+  letter-spacing: var(--h2-mobile-letter-spacing);
+  animation: moveFas 10s infinite alternate;
+}
+#single-photo-page .fa-eye::before {
+  content: "\f06e";
+  position: relative;
+  bottom: 14em;
+  left: 16em;
+  animation: moveFas 10s infinite alternate !important;
+}
+#single-photo-page .fa-expand::before {
+  animation: moveFas 10s infinite alternate !important;
 }
 
 .frame {

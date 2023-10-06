@@ -9,12 +9,19 @@ if ($template !== '') {
 }
 
 $args = array(
-    'post_type' => 'photo', // Type de publication personnalisé "photo"
-    'posts_per_page' => -1, // Pour afficher toutes les images
-    'orderby' => 'meta_value_num', // Tri par valeur numérique (année)
-    'meta_key' => 'annees', // Nom du champ personnalisé pour l'année
-    'order' => 'DESC', // Tri décroissant (plus récentes d'abord)au plus ancien)
+    'post_type' => 'photo',
+    'posts_per_page' => -1,
+    'orderby' => 'meta_value_num',
+    'meta_key' => 'annees',
 );
+
+$order = isset( $_GET['order'] ) ? $_GET['order'] : 'desc';
+
+if ( $order === 'asc' ) {
+    $args['orderby'] = 'meta_value_num DESC';
+}
+
+
 
 $query = new WP_Query($args);
 
@@ -84,19 +91,21 @@ if ($query->have_posts()) {
     echo '</select>';
     echo '</div>';
     echo '</form>';
-// Trier le tableau $annees du plus récent au plus ancien
-rsort($annees);
 
-// Sélecteur pour les années
-echo '<form action=" " method="post">';
+// Display the years
+foreach ($annees as $annee) {
+    // Sélecteur pour les années
+    echo '<form action="" method="post" data-date="' . esc_html($annee) . '">';
+}
 echo '<input type="hidden" name="postid" value="' . get_the_ID() . '">';
 echo '<input type="hidden" name="nonce" value="' . wp_create_nonce('flex') . '">';
 echo '<div class="custom-dropdown">';
-echo '<select id="annee" class="select2" name="Année">';
-echo '<option value="Toutes">Trie par</option>';
-foreach ($annees as $annee) {
-    echo '<option value="' . esc_html($annee) . '">' . esc_html($annee) . '</option>';
-}
+echo '<select id="annee" class="select2  " name="Année">';
+echo '<option value="Tout" class="selected">Trie par</option>';
+echo '<option data-action="actualiser"  class="order-recentes" value="Les plus récentes">Les plus récentes</option>';
+echo '<a data-action="actualiser"><option class="order-anciennes" value="Les plus anciennes">Les plus anciennes</option></a>';
+
+
 echo '</select>';
 echo '</div>';
 echo '</form>';

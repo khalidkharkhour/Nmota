@@ -146,7 +146,7 @@ $args = array(
 );
 
 $query = new WP_Query($args);
-echo '<div class="images-container">';
+echo '<div class="images-container ">';
 if ($query->have_posts()) {
     while ($query->have_posts()) {
         $query->the_post();
@@ -168,10 +168,19 @@ if ($query->have_posts()) {
         } else {
             $categorie = '';
         }
-      
-      echo '<a class="fancybox" data-fancybox="images" href="' . esc_url($photo_image_url) . '" alt="' . esc_attr($photo_title) . '" data-caption="<p>' . esc_html($reference) . ' ' . esc_html($categorie) . '</p>">' . '<img src="' . esc_url($photo_image_url) . '" alt="' . esc_attr($photo_title) . '">' . '</a>';
-      
-       
+        echo '<span class="fas fa-expand show-on-hover "></span>';
+        echo '<figcaption>';
+        echo '<span class="fas fa-eye show-on-hover  "></span>';
+        echo '<a class="fancybox" data-fancybox="images" href="' . esc_url($photo_image_url) . '" alt="' . esc_attr($photo_title) . '" data-caption="<p>' . esc_html($reference) . ' ' . esc_html($categorie) . '</p>">';
+        echo '<img src="' . esc_url($photo_image_url) . '" alt="' . esc_attr($photo_title) . '">';
+        echo '<span id="flex3">';
+        echo '<p class="prag show-on-hover  ">'. esc_attr($photo_title) .'</p>';
+        echo '<p class="prag show-on-hover  ">'. esc_html($categorie) .'</p>';
+       echo  '</span>';
+        echo '</a>';
+        echo '</figcaption>';
+        
+     
     }
 }
 echo '</div>';

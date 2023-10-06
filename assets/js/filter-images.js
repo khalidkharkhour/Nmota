@@ -38,7 +38,7 @@ jQuery(document).ready(function () {
 
     // Fonction pour charger les images via AJAX
     function loadImages() {
-        const ajaxurl = custom_script_vars.ajaxurl 
+        const ajaxurl = custom_script_vars.ajaxurl
         const postid = jQuery('input[name=postid]').val();
         const nonce = jQuery('input[name=nonce]').val();
         const data = {
@@ -87,43 +87,6 @@ jQuery(document).ready(function () {
     });
 });
 
-/*(function ($) {
-    $(document).ready(function () {
-        // Initialisation de Select2 pour les sélecteurs
-        $("#annee").select2();
-        $("#categorie").select2();
-        $("#format").select2();
-
-        const container = $('#image-grid');
-        const categoriesSelect = $('#categorie');
-        const formatsSelect = $('#format');
-
-        // Fonction pour filtrer les images en fonction de la catégorie et du format sélectionnés
-        function filterImages() {
-            const selectedCategory = categoriesSelect.val();
-            const selectedFormat = formatsSelect.val();
-
-            container.find('.image-item').each(function () {
-                const image = $(this);
-                const category = image.data('category');
-                const format = image.data('format');
-
-                // Affiche l'image si la catégorie est "Toutes" ou correspond à la catégorie sélectionnée
-                // et si le format est "Tous" ou correspond au format sélectionné
-                if ((selectedCategory === 'Toutes' || category === selectedCategory) &&
-                    (selectedFormat === 'Tous' || format === selectedFormat)) {
-                    image.show();
-                } else {
-                    image.hide();
-                }
-            });
-        }
-
-        // Écouteurs d'événements pour les sélecteurs de catégorie et de format
-        categoriesSelect.on('change', filterImages);
-        formatsSelect.on('change', filterImages);
-    });
-})(jQuery);*/
 (function ($) {
     $(document).ready(function () {
         // Initialisation de Select2 pour les sélecteurs
@@ -187,8 +150,73 @@ jQuery(document).ready(function () {
                 }
             });
         }
+
         // Écouteurs d'événements pour les sélecteurs de catégorie et de format
         categoriesSelect.on('change', filterImages);
         formatsSelect.on('change', filterImages);
     });
 })(jQuery);
+/*jQuery('#annee').on('click', function() {
+    // Obtenir la valeur actuelle de l'attribut order
+    jQuery("#annee").select2();
+    const order = $(this).val();
+
+    // Inverser la valeur de l'attribut order
+    order = order === 'Les plus anciennes' ? 'Les plus récentes' : 'Les plus anciennes';
+
+    // Mettre à jour la valeur de l'attribut order
+    $(this).val(order);
+});*/
+
+jQuery(document).ready(function($) {
+    // Fonction pour trier les images par ordre croissant (les plus anciennes)
+    function sortByOldest() {
+        var $imageGrid = $('#image-grid');
+        var $imageItems = $imageGrid.find('.image-item').toArray();
+
+        $imageItems.sort(function(a, b) {
+            var yearA = parseInt($(a).data('year'));
+            var yearB = parseInt($(b).data('year'));
+
+            return yearA - yearB;
+        });
+
+        $imageGrid.empty().append($imageItems);
+    }
+
+    // Écouteur d'événements pour le changement de sélection
+    $('#annee').change(function() {
+        var selectedValue = $(this).val();
+        if (selectedValue === 'Les plus anciennes') {
+            sortByOldest();
+        }
+    });
+});
+
+jQuery(document).ready(function($) {
+    // Fonction pour trier les images par ordre décroissant (les plus récentes)
+    function sortByRecent() {
+        var $imageGrid = $('#image-grid');
+        var $imageItems = $imageGrid.find('.image-item').toArray();
+
+        $imageItems.sort(function(a, b) {
+            var yearA = parseInt($(a).data('year'));
+            var yearB = parseInt($(b).data('year'));
+
+            return yearB - yearA;
+        });
+
+        $imageGrid.empty().append($imageItems);
+    }
+
+    // Écouteur d'événements pour le changement de sélection
+    $('#annee').change(function() {
+        var selectedValue = $(this).val();
+        if (selectedValue === 'Les plus récentes') {
+            sortByRecent();
+        }
+    });
+});
+
+
+
