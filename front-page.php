@@ -1,5 +1,6 @@
 <?php
 get_header();
+
 $template = locate_template('template_part/contact-modale.php');
 if ($template !== '') {
     get_template_part('template_part/contact', 'modale');
@@ -10,8 +11,9 @@ if ($template !== '') {
 $args = array(
     'post_type' => 'photo', // Type de publication personnalisé "photo"
     'posts_per_page' => -1, // Pour afficher toutes les images
-    'orderby' => 'date',    // Tri par date
-    'order' => 'DESC',      // Par ordre décroissant (du plus récent au plus ancien)
+    'orderby' => 'meta_value_num', // Tri par valeur numérique (année)
+    'meta_key' => 'annees', // Nom du champ personnalisé pour l'année
+    'order' => 'DESC', // Tri décroissant (plus récentes d'abord)au plus ancien)
 );
 
 $query = new WP_Query($args);
@@ -82,20 +84,23 @@ if ($query->have_posts()) {
     echo '</select>';
     echo '</div>';
     echo '</form>';
+// Trier le tableau $annees du plus récent au plus ancien
+rsort($annees);
 
-    // Sélecteur pour les années
-    echo '<form action=" " method="post">';
-    echo '<input type="hidden" name="postid" value="' . get_the_ID() . '">';
-    echo '<input type="hidden" name="nonce" value="' . wp_create_nonce('flex') . '">';
-    echo '<div class="custom-dropdown">';
-    echo '<select id="annee" class="select2" name="Année">';
-    echo '<option value="Toutes">Année</option>';
-    foreach ($annees as $annee) {
-        echo '<option value="' . esc_html($annee) . '">' . esc_html($annee) . '</option>';
-    }
-    echo '</select>';
-    echo '</div>';
-    echo '</form>';
+// Sélecteur pour les années
+echo '<form action=" " method="post">';
+echo '<input type="hidden" name="postid" value="' . get_the_ID() . '">';
+echo '<input type="hidden" name="nonce" value="' . wp_create_nonce('flex') . '">';
+echo '<div class="custom-dropdown">';
+echo '<select id="annee" class="select2" name="Année">';
+echo '<option value="Toutes">Trie par</option>';
+foreach ($annees as $annee) {
+    echo '<option value="' . esc_html($annee) . '">' . esc_html($annee) . '</option>';
+}
+echo '</select>';
+echo '</div>';
+echo '</form>';
+
 
     echo '</div>';
 
@@ -163,8 +168,8 @@ echo '<input type="hidden" name="postid" value="' . get_the_ID() . '">';
 echo '<input type="hidden" name="nonce" value="' . wp_create_nonce('load-more-action') . '">';
 echo '<button type="submit" class="btn1" id="load-more">Charger plus</button>';
 echo '</form>';
-echo '<input style="display: none;" type="hidden" name="nonce" value="' . wp_create_nonce('return-button-action') . '">';
-echo '<button class="btn1" id="return-button" style="display: none;">Retour</button>';
+echo '<input  type="hidden" name="nonce" value="' . wp_create_nonce('return-button-action') . '">';
+echo '<button class="btn1" id="return-button" >Retour</button>';
 echo '</div>';
 
 get_footer();

@@ -298,5 +298,4 @@ function load_gallery_images_callback()
 }
 add_action('wp_ajax_load_gallery_images', 'load_gallery_images_callback');
 add_action('wp_ajax_nopriv_load_gallery_images', 'load_gallery_images_callback');
-
-
+// Add this code to your theme's functions.php file or a custom plugin.

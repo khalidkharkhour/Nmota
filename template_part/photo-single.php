@@ -88,6 +88,7 @@ if ($query->have_posts()) {
 
         if ($attachments) {
             foreach ($attachments as $index => $attachment) {
+               
                 $image_url = wp_get_attachment_url($attachment->ID); // Obtenez l'URL de l'image
 
                 echo '<img class ="image-item" src="' . esc_url($image_url) . '" alt="Image ' . $index . '">';
@@ -153,9 +154,23 @@ if ($query->have_posts()) {
         $photo_title = get_the_title();
         $photo_image_url = get_field('image');
 
-       // echo '<div class="image-grid">';
-      //  echo '<h4 class="photo-title">' . esc_html($photo_title) . '</h4>';
-        echo '<img src="' . esc_url($photo_image_url) . '" alt="' . esc_attr($photo_title) . '">';
+        $post_categories = get_field('categories');
+        if (is_array($categories)) {
+            $categories = implode(', ', $categories);
+        }
+        $post = get_permalink();
+        
+        $titre = get_field('titre');
+        // Récupérer la valeur du champ 'categories'
+        $categories = get_field('categories');
+        if ($categories) {
+            $categorie = implode(', ', $categories);
+        } else {
+            $categorie = '';
+        }
+      
+      echo '<a class="fancybox" data-fancybox="images" href="' . esc_url($photo_image_url) . '" alt="' . esc_attr($photo_title) . '" data-caption="<p>' . esc_html($reference) . ' ' . esc_html($categorie) . '</p>">' . '<img src="' . esc_url($photo_image_url) . '" alt="' . esc_attr($photo_title) . '">' . '</a>';
+      
        
     }
 }
