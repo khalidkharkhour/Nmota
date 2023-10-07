@@ -84,15 +84,22 @@ if ($query->have_posts()) {
             'post_type'      => 'attachment',
             'post_parent'    => $post_id, // Utilisez la variable $post_id ici
             'posts_per_page' => -1,
+            'order'=> 'ASC',
         ));
 
         if ($attachments) {
             foreach ($attachments as $index => $attachment) {
-               
-                $image_url = wp_get_attachment_url($attachment->ID); // Obtenez l'URL de l'image
+        
+                $image_url = wp_get_attachment_url($attachment->ID);
+                $thumbnail_url = wp_get_attachment_image_src($attachment->ID, 'thumbnail')[0];
+                $full_url = wp_get_attachment_image_src($attachment->ID, 'full')[0];
+        
+                echo '<a href="' . esc_url($full_url) . '"><img src="' . esc_url($thumbnail_url) . '" alt="Image ' . $index . '" data-index="'. $index . '"></a>';
 
-                echo '<img class ="image-item" src="' . esc_url($image_url) . '" alt="Image ' . $index . '">';
+        
             }
+        
+        
         }
     }
     wp_reset_postdata();

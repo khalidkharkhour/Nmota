@@ -1,5 +1,5 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
-//@import url("https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css");
 //@import url("https:/fonts.googleapis.com/css?family=Space+Mono:400,700&display=swap");
 //@import url("https:/fonts.googleapis.com/css?family=Poppins:400,700&display=swap");
 
@@ -69,7 +69,7 @@
   --noir-100: rgba(0, 0, 0, 1);
   --p-font-family: "Poppins-Light", Helvetica;
   --p-font-size: 14px;
-  --a-font-size :16px;
+  --a-font-size: 16px;
   --p-font-style: normal;
   --p-font-weight: 300;
   --p-letter-spacing: 0px;
@@ -81,24 +81,6 @@
   --white2: #FFFFFF;
 
 }
-
-.eye {
-  background: url("../inc/images/eye.svg") center/cover no-repeat;
-  position: fixed;
-  right: 50%;
-  left: 50%;
-  display: block;
-  width: 1.5em;
-  height: 1.5em;
-  z-index: 2000;
-  transform: translate(-50%, -50%);
-  top: 15em;
-  
-  filter: drop-shadow(0px 1.21px 0px #15EA68);
-}
-
-
-
 
 
 @font-face {
@@ -284,7 +266,7 @@ a {
   top: 30%;
   right: 8%;
 
-  
+
 }
 
 
@@ -315,10 +297,19 @@ a {
     display: block !important;
   }
 }
-
+.fancybox-navigation .fancybox-button--arrow_right {
+ 
+  right: 12em !important;}
+  .fancybox-navigation .fancybox-button--arrow_left {
+    left: 4em !important;}
+    .fancybox-navigation  .fancybox-button div{
+      background-color: hsl(0, 0%, 5%) !important;
+     width: 115px;
+     border-radius: 20Px;
+    }
 .hero {
   position: relative;
-  background: url("../images/nathalie-1.webp") center/cover no-repeat ;
+  background: url("../images/nathalie-1.webp") center/cover no-repeat;
   color: white;
   text-align: center;
   padding: 400px 0;
@@ -550,7 +541,7 @@ label {
   justify-content: flex-end;
   margin-left: 15em;
   flex-direction: column;
-  height:50% ;
+  height: 50%;
 }
 
 .custom-dropdown {
@@ -558,39 +549,49 @@ label {
   overflow: visible;
 }
 
-.select2-container ,#annee ,#format ,#categorie {
-  
+.select2-container,
+#annee,
+#format,
+#categorie {
+
   background-color: var(--white);
   //border: 1px solid #ccc;
   border-radius: 8px !important;
   width: 281px !important;
- 
+
   cursor: pointer;
   //background: url("../inc/images/fleche-vers-le-bas.png") center/cover no-repeat;
-  
+
 }
+
 .select2-selection--single {
   height: 46px !important;
 }
+
 $colors: var(--rouge), var(--rouge-secondaire), var(--rouge-tertiaire), var(--rouge);
+
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
   background-color: var(--rouge);
-  
+
   color: white
 }
-.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable:nth-child(1){
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable:nth-child(1) {
   background-color: var(--rouge-secondaire);
 }
 
-.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable:nth-child(2){
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable:nth-child(2) {
   background-color: var(--rouge-tertiaire);
 }
-.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable:nth-child(3){
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable:nth-child(3) {
   background-color: var(--rouge-secondaire);
 }
-.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable:nth-child(4){
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable:nth-child(4) {
   background-color: var(--rouge-secondaire);
 }
+
 .btn1 {
   font-family: var(--description-photo-desktop-font-family);
   font-style: normal;
@@ -830,6 +831,7 @@ p {
     font-size: 19px;
   }
 }
+
 #single-photo-page {
   width: 100%;
   height: auto;
@@ -864,8 +866,11 @@ a {
   width: 46%;
 }
 
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  display: none !important;
+}
 
-@keyframes moveFas{
+@keyframes moveFas {
   from {
     transform: translateY(20px);
   }
@@ -874,38 +879,47 @@ a {
     transform: translateY(0px);
   }
 }
+
 #single-photo-page {
   .hero {
     display: none !important;
   }
+
   #flex3 {
- top:-2em;
- justify-content: center;
- align-items: center;
-  gap: 19em;
+    top: -2em;
+    justify-content: center;
+    align-items: center;
+    gap: 19em;
   }
 
-/* Use meaningful class names */
-.prag {
-  letter-spacing: var(--h2-mobile-letter-spacing);
-  animation: moveFas 10s infinite alternate;
-}
+  /* Use meaningful class names */
+  .prag {
+    letter-spacing: var(--h2-mobile-letter-spacing);
+    animation: moveFas 10s infinite alternate;
+  }
 
 
 
-/* Use a more specific selector for Font Awesome icons */
-.fa-eye::before {
-  content: "\f06e";
-  position: relative;
-  bottom: 14em;
-  left: 16em;
-  animation: moveFas 10s infinite alternate !important;
-}
+  /* Use a more specific selector for Font Awesome icons */
+  .fa-eye::before {
+    content: "\f06e";
+    position: relative;
+    bottom: 14em;
+    left: 16em;
+    animation: moveFas 10s infinite alternate !important;
+  }
 
-.fa-expand::before {
-  animation: moveFas 10s infinite alternate !important;
-}
-
+  .fa-expand::before {
+    animation: moveFas 10s infinite alternate !important;
+  }
+ /* .fancybox-content {
+    background: transparent;
+    display: inline-flex;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    left: 0em;
+  }*/
 
 }
 
@@ -1057,13 +1071,14 @@ a {
   color: var(--bluesgray-2);
 
 }
+
 .arrow-container {
   display: flex;
   justify-content: space-between;
   width: 10%;
   position: relative;
-  left: 62em ;
-  bottom: 4em ;
+  left: 62em;
+  bottom: 4em;
 }
 
 #gallery-1 {
@@ -1110,9 +1125,6 @@ figcaption {
 
 }
 
-figcaption:hover,
-.fa-eye:hover,
-.fa-expand:hover {}
 
 .CTA-2 {
   display: flex;
@@ -1320,6 +1332,7 @@ p {
     top: 4%;
   }
 }
+
 // Définir une classe commune pour les éléments à afficher en même temps
 .show-on-hover {
   opacity: 0;
@@ -1335,29 +1348,18 @@ p {
   left: 33em;
   top: 2em;
   color: var(--white2);
-  
+
 }
 
-/*.fa-expand:hover::before {
-  opacity: 1;
-  visibility: visible;
-}*/
-
-// Styles pour l'icône .fa-eye
 .fa-eye::before {
   content: "\f06e";
   position: relative;
   bottom: -11em;
   left: 16em;
   color: var(--white2);
+ color:var(--gris-fonc)
 }
 
-/*.fa-eye:hover::before {
-  opacity: 1;
-  visibility: visible;
-}*/
-
-// Styles pour la classe .prag
 .prag {
   font-size: var(--description-photo-mobile-font-size);
   font-family: var(--p-font-family);
@@ -1369,12 +1371,6 @@ p {
 
 }
 
-/*.prag:hover {
-  opacity: 1;
-  visibility: visible;
-}*/
-
-// Appliquer la classe commune aux éléments
 .fa-expand::before:hover,
 .fa-eye::before:hover,
 .prag:hover {
@@ -1388,11 +1384,13 @@ p {
   top: 28em;
   flex-direction: row;
 }
+
 #customize-controls img {
   max-width: 100%;
   width: 20vw;
 }
+
 .fancybox-caption__body {
-  
+
   word-spacing: 20em !important;
 }

@@ -135,7 +135,7 @@ if ($query->have_posts()) :
 
         // Récupérer l'URL de l'image depuis le champ personnalisé 'image'
         $image_url = get_field('image');
-        $reference = get_field('references');
+        $reference = get_field('reference');
         $format = get_field('format');
         $annee = get_field('annees');
 
@@ -150,6 +150,10 @@ if ($query->have_posts()) :
         }
 
         if ($image_url) {
+            $reference = get_field('reference');
+            if ($reference) {
+                $reference = implode(', ', $reference);
+            }
             echo '<div class="image-item" data-index="' . $index . '" data-category="' . esc_html($categorie) . '" data-format="' . esc_html($format) . '" data-year="' . esc_html($annee) . '">';
             echo '<a href="' . esc_url($image_url) . '" class="fancybox" data-fancybox="images" data-caption="<p>' . $reference . ' ' . $categorie . '</p>">';
             echo '<i class="fas fa-expand show-on-hover"></i>';

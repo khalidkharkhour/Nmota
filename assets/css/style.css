@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css");
 :root {
   --black: rgba(49, 49, 68, 1);
   --bleu-fonc: rgba(49, 49, 68, 1);
@@ -65,7 +66,7 @@
   --noir-100: rgba(0, 0, 0, 1);
   --p-font-family: "Poppins-Light", Helvetica;
   --p-font-size: 14px;
-  --a-font-size:16px;
+  --a-font-size: 16px;
   --p-font-style: normal;
   --p-font-weight: 300;
   --p-letter-spacing: 0px;
@@ -75,20 +76,6 @@
   --rouge-tertiaire: rgba(255, 214, 214, 1);
   --white: rgba(255, 255, 255, 1);
   --white2: #FFFFFF;
-}
-
-.eye {
-  background: url("../inc/images/eye.svg") center/cover no-repeat;
-  position: fixed;
-  right: 50%;
-  left: 50%;
-  display: block;
-  width: 1.5em;
-  height: 1.5em;
-  z-index: 2000;
-  transform: translate(-50%, -50%);
-  top: 15em;
-  filter: drop-shadow(0px 1.21px 0px #15EA68);
 }
 
 @font-face {
@@ -279,6 +266,20 @@ a {
 
 #front-photo-page .hero {
   display: block !important;
+}
+
+.fancybox-navigation .fancybox-button--arrow_right {
+  right: 12em !important;
+}
+
+.fancybox-navigation .fancybox-button--arrow_left {
+  left: 4em !important;
+}
+
+.fancybox-navigation .fancybox-button div {
+  background-color: hsl(0, 0%, 5%) !important;
+  width: 115px;
+  border-radius: 20Px;
 }
 
 .hero {
@@ -504,7 +505,10 @@ label {
   overflow: visible;
 }
 
-.select2-container, #annee, #format, #categorie {
+.select2-container,
+#annee,
+#format,
+#categorie {
   background-color: var(--white);
   border-radius: 8px !important;
   width: 281px !important;
@@ -764,6 +768,10 @@ a {
   width: 46%;
 }
 
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  display: none !important;
+}
+
 @keyframes moveFas {
   from {
     transform: translateY(20px);
@@ -775,6 +783,14 @@ a {
 #single-photo-page {
   /* Use meaningful class names */
   /* Use a more specific selector for Font Awesome icons */
+  /* .fancybox-content {
+     background: transparent;
+     display: inline-flex;
+     overflow: hidden;
+     -webkit-overflow-scrolling: touch;
+     position: relative;
+     left: 0em;
+   }*/
 }
 #single-photo-page .hero {
   display: none !important;
@@ -1185,22 +1201,15 @@ p {
   color: var(--white2);
 }
 
-/*.fa-expand:hover::before {
-  opacity: 1;
-  visibility: visible;
-}*/
 .fa-eye::before {
   content: "\f06e";
   position: relative;
   bottom: -11em;
   left: 16em;
   color: var(--white2);
+  color: var(--gris-fonc);
 }
 
-/*.fa-eye:hover::before {
-  opacity: 1;
-  visibility: visible;
-}*/
 .prag {
   font-size: var(--description-photo-mobile-font-size);
   font-family: var(--p-font-family);
@@ -1210,10 +1219,6 @@ p {
   text-transform: uppercase;
 }
 
-/*.prag:hover {
-  opacity: 1;
-  visibility: visible;
-}*/
 #flex3 {
   display: flex;
   justify-content: space-between;

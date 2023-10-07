@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     //const currentFile = scriptData.currentFile;
-    let currentIndex = Math.floor(Math.random() * 10) + 1;
+    let currentIndex = 0;
     const images = document.querySelectorAll('.galler-item img');
     const prevButton = document.querySelector('.prev');
     const nextButton = document.querySelector('.next');
