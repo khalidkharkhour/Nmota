@@ -299,3 +299,91 @@ function load_gallery_images_callback()
 add_action('wp_ajax_load_gallery_images', 'load_gallery_images_callback');
 add_action('wp_ajax_nopriv_load_gallery_images', 'load_gallery_images_callback');
 // Add this code to your theme's functions.php file or a custom plugin.
+function is_mobile()
+{
+    $user_agent = $_SERVER['HTTP_USER_AGENT'];
+
+    // Liste des chaînes d'agent utilisateur typiques des appareils mobiles
+    $mobile_agents = array(
+        'iPhone',          // Apple iPhone
+        'iPad',            // Apple iPad
+        'Android',         // 1.5+ Android
+        'webOS',           // Palm Pre Experimental
+        'BlackBerry',      // BlackBerry 9000
+        'iPod',            // Apple iPod touch
+        'Mobile',          // Generic Mobile
+        'Opera Mini',      // Opera Mini
+        'IEMobile',        // Internet Explorer Mobile
+        'Windows Phone',   // Microsoft Windows Phone
+    );
+
+    // Vérifier si l'agent utilisateur correspond à un appareil mobile
+    foreach ($mobile_agents as $agent) {
+        if (stripos($user_agent, $agent) !== false) {
+            return true;
+        }
+    }
+
+    return false;
+}
+function theme_customizer_settings($wp_customize) {
+    // Ajouter une section pour le logo dans le personnalisateur
+    $wp_customize->add_section('logo_section', array(
+        'title' => __('Logo', 'Nathalie-mota'),
+        'priority' => 30,
+    ));
+
+    // Ajouter un contrôle pour le logo
+    $wp_customize->add_setting('logo_setting', array(
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw', // Assure la sécurité de l'URL
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'logo_setting', array(
+        'label' => __('Sélectionner le logo', 'Nathalie-mota'),
+        'section' => 'logo_section',
+        'settings' => 'logo_setting',
+    )));
+}
+add_action('customize_register', 'theme_customizer_settings');
+function redirigerVers404() {
+    header("HTTP/1.0 404 Not Found");
+    include("404.php");
+    exit();
+}
+
+// Vérifiez l'URL de la requête
+$request_uri = $_SERVER['REQUEST_URI'];
+if ($request_uri !== '/' ) {
+    redirigerVers404();
+}
+// Récupérez tous les slugs des posts de type personnalisé "photo"
+$args = array(
+    'post_type' => 'photo', // Remplacez 'photo' par le nom de votre type de post personnalisé
+    'posts_per_page' => -1, // Récupérer tous les posts
+);
+
+$photo_posts = get_posts($args);
+
+// Créez un tableau pour stocker tous les slugs
+$photo_slugs = array();
+
+foreach ($photo_posts as $photo_post) {
+    $photo_slugs[] = $photo_post->post_name;
+}
+
+// Utilisez parse_url pour extraire les paramètres de l'URL
+$url_parts = parse_url($request_uri);
+
+if (isset($url_parts['query'])) {
+    parse_str($url_parts['query'], $query_params);
+
+    // Vérifiez si le paramètre 'photo' existe et correspond à l'un des slugs
+    if (isset($query_params['photo'])) {
+        $slug = $query_params['photo'];
+
+        if ( !in_array($slug, $photo_slugs)) {
+            redirigerVers404();
+        }
+    }
+}

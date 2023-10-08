@@ -151,7 +151,6 @@ $args = array(
         ),
     ),
 );
-
 $query = new WP_Query($args);
 echo '<div class="images-container ">';
 if ($query->have_posts()) {
@@ -166,7 +165,7 @@ if ($query->have_posts()) {
             $categories = implode(', ', $categories);
         }
         $post = get_permalink();
-        
+
         $titre = get_field('titre');
         // Récupérer la valeur du champ 'categories'
         $categories = get_field('categories');
@@ -177,21 +176,20 @@ if ($query->have_posts()) {
         }
         echo '<span class="fas fa-expand show-on-hover "></span>';
         echo '<figcaption>';
-        echo '<span class="fas fa-eye show-on-hover  "></span>';
+        echo '<a href="' . esc_url($post) . '"><i class="fas fa-eye show-on-hover"></i></a>'; // Lien vers le post actuel
         echo '<a class="fancybox" data-fancybox="images" href="' . esc_url($photo_image_url) . '" alt="' . esc_attr($photo_title) . '" data-caption="<p>' . esc_html($reference) . ' ' . esc_html($categorie) . '</p>">';
         echo '<img src="' . esc_url($photo_image_url) . '" alt="' . esc_attr($photo_title) . '">';
         echo '<span id="flex3">';
-        echo '<p class="prag show-on-hover  ">'. esc_attr($photo_title) .'</p>';
-        echo '<p class="prag show-on-hover  ">'. esc_html($categorie) .'</p>';
-       echo  '</span>';
+        echo '<p class="prag show-on-hover  ">' . esc_attr($photo_title) . '</p>';
+        echo '<p class="prag show-on-hover  ">' . esc_html($categorie) . '</p>';
+        echo  '</span>';
         echo '</a>';
         echo '</figcaption>';
-        
-     
     }
 }
 echo '</div>';
-wp_reset_postdata();  // Reset the post data to the original query
+wp_reset_postdata();
+
 ?>
  <a href="http://localhost:10038/" class="CTA-2" id="myLink" target="_self">Toutes les photos</a>
         </div>
