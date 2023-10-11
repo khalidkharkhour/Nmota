@@ -1,4 +1,12 @@
 <?php
+/**
+ * Modèle de la page d'accueil
+ *
+ * Ce fichier est utilisé pour afficher le contenu de la page d'accueil du site.
+ * 
+ * @package Nathalie-mota
+ */
+
 get_header();
 
 $template = locate_template('template_part/contact-modale.php');
@@ -29,18 +37,17 @@ if ($query->have_posts()) {
     $categories = array();
     $formats = array();
     $annees = array();
-    $references = array(); // Ajout de cette ligne pour initialiser $references
+    $references = array(); 
 
     while ($query->have_posts()) {
         $query->the_post();
 
-        // Récupérer les valeurs des champs ACF pour chaque post
+     
         $post_categories = get_field('categories');
         $post_formats = get_field('format');
         $post_annees = get_field('annees');
-        $post_references = get_field('references'); // Correction de cette ligne
+        $post_references = get_field('references'); 
 
-        // Vérifier si les valeurs sont des tableaux
         if ($post_categories) {
             $categories = array_merge($categories, $post_categories);
         }
@@ -57,12 +64,12 @@ if ($query->have_posts()) {
             $references = array_merge($references, $post_references);
         }
     }
-    // Supprimer les doublons en conservant l'ordre
+  
     $categories = array_unique($categories);
     $formats = array_unique($formats);
     $annees = array_unique($annees);
 
-    // Afficher les sélecteurs
+ 
     echo '<div id="flex">';
 
     echo '<form action="" method="post">';
@@ -78,7 +85,7 @@ if ($query->have_posts()) {
     echo '</div>';
     echo '</form>';
     
-    // Sélecteur pour les formats
+  
     echo '<form action=" " method="post">';
     echo '<input type="hidden" name="postid" value="' . get_the_ID() . '">';
     echo '<input type="hidden" name="nonce" value="' . wp_create_nonce('flex') . '">';
@@ -92,9 +99,9 @@ if ($query->have_posts()) {
     echo '</div>';
     echo '</form>';
 
-// Display the years
+
 foreach ($annees as $annee) {
-    // Sélecteur pour les années
+  
     echo '<form action="" method="post" data-date="' . esc_html($annee) . '">';
 }
 echo '<input type="hidden" name="postid" value="' . get_the_ID() . '">';
@@ -113,7 +120,7 @@ echo '</form>';
 
     echo '</div>';
 
-    wp_reset_postdata(); // Réinitialiser la requête
+    wp_reset_postdata(); 
 } else {
     echo 'Aucune image n\'a été trouvée pour le type de publication "photo".';
 }
@@ -125,7 +132,7 @@ $index = 0;
 if ($query->have_posts()) :
     while ($query->have_posts()) : $query->the_post();
         $titre = get_field('titre');
-        // Récupérer la valeur du champ 'categories'
+       
         $categories = get_field('categories');
         if ($categories) {
             $categorie = implode(', ', $categories);
@@ -133,7 +140,7 @@ if ($query->have_posts()) :
             $categorie = '';
         }
 
-        // Récupérer l'URL de l'image depuis le champ personnalisé 'image'
+      
         $image_url = get_field('image');
         $reference = get_field('reference');
         $format = get_field('format');
@@ -167,10 +174,10 @@ if ($query->have_posts()) :
             echo '</a>';
             echo '</div>';
         }
-        $index++; // Incrémenter l'index pour suivre les éléments
+        $index++; 
 
     endwhile;
-    wp_reset_postdata(); // Réinitialiser la requête
+    wp_reset_postdata(); 
 else :
     echo 'Aucune image n\'a été trouvée pour le type de publication "photo".';
 endif;
@@ -186,4 +193,3 @@ echo '<button class="btn1" id="return-button" >Retour</button>';
 echo '</div>';
 
 get_footer();
-?>

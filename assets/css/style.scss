@@ -790,9 +790,9 @@ a {
   font-family: var(--h2-desktop-font-family);
   font-size: var(--h2-desktop-line-height);
   font-style: var(--h2-desktop-font-style);
-  font-weight: var(--h1-desktop-font-weight);
+  font-weight: var(--description-photo-mobile-font-weight);
   letter-spacing: var(--h2-desktop-letter-spacing);
-  //line-height: var(--h2-desktop-line-height);
+  line-height: var(--h2-desktop-line-height);
   width: 27rem;
   position: relative;
   position: relative;
@@ -817,6 +817,7 @@ a {
   align-items: center;
   height: 100%;
   letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 #flex-cont {

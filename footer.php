@@ -1,7 +1,13 @@
 <footer class="footer-container">
     <ul>
-        <?php
-       
+    <?php
+/**
+ * Le modèle pour afficher le pied de page
+ *@package Nathalie-mota
+ *
+ */
+
+
 
         $links = [
             ['url' => '#', 'label' => 'Mentions Légales'],
@@ -17,7 +23,9 @@
 </footer>
 
 <?php wp_footer(); 
+
 ?>
+
 </body>
 
 </html>

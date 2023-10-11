@@ -13,7 +13,7 @@
           <h5 class="modal-title" data-text="TACTCON" id="myModalLabel"></h5>
         </div>
         <div class="modal-body">
-          <form action="<?php echo esc_url(admin_url('admin-post.php')); ?>" method="post">
+          <form action="<?php echo esc_url("./traitement-formulaire.php"); ?>" method="post">
             <input type="hidden" name="action" value="traitement-formulaire">
             <div class="form-group">
               <label for="name">Nom</label>

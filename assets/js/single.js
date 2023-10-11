@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
     //const currentFile = scriptData.currentFile;
-    let currentIndex = 0;
+   
     const images = document.querySelectorAll('.galler-item img');
     const prevButton = document.querySelector('.prev');
     const nextButton = document.querySelector('.next');
-
+ let currentIndex =  Math.floor((images.length - 11) % 16);
     function showImage(index) {
         for (let i = 0; i < images.length; i++) {
             images[i].style.display = 'none';

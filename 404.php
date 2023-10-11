@@ -1,5 +1,8 @@
 <?php
-// Vous pouvez inclure des balises PHP ici si nécessaire
+/**
+ * page d'erreur 404
+ * @package Nathalie-mota
+ */
 ?>
 
 <!DOCTYPE html>

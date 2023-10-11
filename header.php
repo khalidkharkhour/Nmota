@@ -1,3 +1,8 @@
+<?php /**
+ * Le modèle pour afficher le header
+ * @package Nathalie-mota
+ */
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 

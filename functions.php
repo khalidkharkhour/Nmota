@@ -1,4 +1,9 @@
 <?php
+/**
+ * Fonctions et paramètres du thème
+ *
+ * @package Nathalie-mota
+ */
 function enqueue_custom_styles_and_scripts()
 {
     wp_enqueue_script('jquery', 'https://code.jquery.com/jquery-3.6.0.min.js', array(), '3.6.0', true);
@@ -7,9 +12,9 @@ function enqueue_custom_styles_and_scripts()
     wp_enqueue_script('select2-js', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), '', true);
 
 
-   // wp_enqueue_style('fancybox-css', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css');
+    // wp_enqueue_style('fancybox-css', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css');
     //wp_enqueue_script('fancybox-js', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js', array('jquery'), '3.5.7', true);
-   // wp_enqueue_script('custom-script', get_template_directory_uri() . '/assets/js/slider.js', array('jquery'), '1.0', true);
+    // wp_enqueue_script('custom-script', get_template_directory_uri() . '/assets/js/slider.js', array('jquery'), '1.0', true);
     // Enqueuez le CSS personnalisé
     wp_enqueue_style('custom-style', get_template_directory_uri() . '/assets/css/style.css', array(), '1.0', 'all');
     wp_enqueue_script('custom-slider-script', get_template_directory_uri() . '/assets/js/slider.js', array('jquery'), '1.0', true);
@@ -21,9 +26,9 @@ function enqueue_custom_styles_and_scripts()
         'ajaxurl' => admin_url('admin-ajax.php')
     ));
 
-    // Vérifiez si vous êtes sur une page single.php et enqueu js spécifique
+
     if (is_single()) {
-        // Enqueuez votre script spécifique à single.php ici
+
         wp_enqueue_script('single-script', get_template_directory_uri() . '/assets/js/single.js', array('jquery'), '1.0', true);
     }
 }
@@ -267,12 +272,11 @@ add_action('acf/include_fields', function () {
 function load_gallery_images_callback()
 {
     if (isset($_POST['nonce']) && wp_verify_nonce($_POST['nonce'], 'load-more-action')) {
-        // ...
     } elseif (isset($_POST['nonce']) && wp_verify_nonce($_POST['nonce'], 'return-button-action')) {
     } else {
         $images = array();
 
-        // Ajoutez votre code pour récupérer les URL des images liées au post
+
         $args = array(
             'post_type' => 'attachment',
             'post_status' => 'inherit',
@@ -291,19 +295,18 @@ function load_gallery_images_callback()
             }
         }
 
-        // Renvoyez la réponse au format JSON avec les URL des images
+
         echo json_encode(array('success' => true, 'images' => $images));
     }
-    wp_die(); // Assurez-vous d'appeler wp_die() pour terminer correctement la requête AJAX
+    wp_die();
 }
 add_action('wp_ajax_load_gallery_images', 'load_gallery_images_callback');
 add_action('wp_ajax_nopriv_load_gallery_images', 'load_gallery_images_callback');
-// Add this code to your theme's functions.php file or a custom plugin.
+
 function is_mobile()
 {
     $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
-    // Liste des chaînes d'agent utilisateur typiques des appareils mobiles
     $mobile_agents = array(
         'iPhone',          // Apple iPhone
         'iPad',            // Apple iPad
@@ -317,7 +320,7 @@ function is_mobile()
         'Windows Phone',   // Microsoft Windows Phone
     );
 
-    // Vérifier si l'agent utilisateur correspond à un appareil mobile
+
     foreach ($mobile_agents as $agent) {
         if (stripos($user_agent, $agent) !== false) {
             return true;
@@ -326,17 +329,18 @@ function is_mobile()
 
     return false;
 }
-function theme_customizer_settings($wp_customize) {
-    // Ajouter une section pour le logo dans le personnalisateur
+function theme_customizer_settings($wp_customize)
+{
+
     $wp_customize->add_section('logo_section', array(
         'title' => __('Logo', 'Nathalie-mota'),
         'priority' => 30,
     ));
 
-    // Ajouter un contrôle pour le logo
+
     $wp_customize->add_setting('logo_setting', array(
         'default' => '',
-        'sanitize_callback' => 'esc_url_raw', // Assure la sécurité de l'URL
+        'sanitize_callback' => 'esc_url_raw',
     ));
 
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'logo_setting', array(
@@ -346,43 +350,44 @@ function theme_customizer_settings($wp_customize) {
     )));
 }
 add_action('customize_register', 'theme_customizer_settings');
-function redirigerVers404() {
+function redirigerVers404()
+{
     header("HTTP/1.0 404 Not Found");
     include("404.php");
     exit();
 }
 
-// Vérifiez l'URL de la requête
+
 $request_uri = $_SERVER['REQUEST_URI'];
-if ($request_uri !== '/' ) {
+if ($request_uri !== '/' and $request_uri ==='/wp-admin') {
     redirigerVers404();
 }
-// Récupérez tous les slugs des posts de type personnalisé "photo"
+
 $args = array(
-    'post_type' => 'photo', // Remplacez 'photo' par le nom de votre type de post personnalisé
-    'posts_per_page' => -1, // Récupérer tous les posts
+    'post_type' => 'photo',
+    'posts_per_page' => -1,
 );
 
 $photo_posts = get_posts($args);
 
-// Créez un tableau pour stocker tous les slugs
+
 $photo_slugs = array();
 
 foreach ($photo_posts as $photo_post) {
     $photo_slugs[] = $photo_post->post_name;
 }
 
-// Utilisez parse_url pour extraire les paramètres de l'URL
+
 $url_parts = parse_url($request_uri);
 
 if (isset($url_parts['query'])) {
     parse_str($url_parts['query'], $query_params);
 
-    // Vérifiez si le paramètre 'photo' existe et correspond à l'un des slugs
+
     if (isset($query_params['photo'])) {
         $slug = $query_params['photo'];
 
-        if ( !in_array($slug, $photo_slugs)) {
+        if (!in_array($slug, $photo_slugs)) {
             redirigerVers404();
         }
     }
